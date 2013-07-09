@@ -1,3 +1,6 @@
+
+all: map
+
 topo.map: topo.map.def topo.map.in
 	scripts/genmap topo.map.in topo.map.def > topo.map
 
