@@ -5034,7 +5034,7 @@ LAYER
     TYPE ANNOTATION
     NAME "orte5k"
     #DATA "way from (((select way,osm_id ,place ,name,population,amenity,coalesce(name||'|'||ele,name,ele) as elename,landuse from @osm_poi@ where  amenity = 'alm' or amenity = 'isolated_building' or place = 'isolated_dwelling' or place = 'locality' or place = 'farm' or place = 'farmyard') ) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
-    DATA "way from (((select way,osm_id ,place ,name,population,amenity,coalesce(name||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),name,trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ','))) as elename,landuse from topo_view_osm_poi where  amenity = 'alm' or place = 'isolated_dwelling' or place = 'locality' or place = 'farm' or place = 'farmyard') ) order by population) as foo using unique osm_id using srid=900913"
+    DATA "way from (((select way,osm_id ,place ,name,population,amenity,elename,landuse from topo_view_osm_poi where  amenity = 'alm' or place = 'isolated_dwelling' or place = 'locality' or place = 'farm' or place = 'farmyard') ) order by population) as foo using unique osm_id using srid=900913"
     LABELITEM 'elename'
     CLASSITEM 'place'
     SIZEUNITS  meters
@@ -5941,7 +5941,7 @@ LAYER
     MINSCALEDENOM 250001
     NAME "GIPFEL2"
     #DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||ele,name,ele) as elename,population from @osm_poi@ where nature='peak' and name is not null and cast(population as integer)>5000 and (cast(ele as float)>1000 or cast(srtmele as float)>1000) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
-    DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),name,trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ','))) as elename from topo_view_osm_poi where nature='peak') as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id,ele,name,elename from topo_view_osm_poi where nature='peak') as foo using unique osm_id using srid=900913"
     LABELITEM 'elename'
     CLASS
         STYLE
@@ -5973,7 +5973,7 @@ LAYER
     MINSCALEDENOM 100001
     NAME "GIPFEL3"
     #DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||ele,name,ele) as elename,population from @osm_poi@ where nature='peak' and name is not null and cast(population as integer)>1200 order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
-    DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),name,trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')))  as elename from topo_view_osm_poi where nature='peak' and name is not null) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id,ele,name,elename from topo_view_osm_poi where nature='peak' and name is not null) as foo using unique osm_id using srid=900913"
     LABELITEM 'elename'
     CLASS
         STYLE
@@ -6004,7 +6004,7 @@ LAYER
     MAXSCALEDENOM 100000
     NAME "GIPFEL4"
     #DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||ele,name,ele) as elename,population,nature from @osm_poi@ where nature='peak' or nature='cave_entrance' or nature='mountain_pass' or nature='col' or nature='saddle' order by cast(coalesce(ele,srtmele) as float) asc) as foo using unique osm_id using srid=900913"
-    DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),name,trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ','))) as elename,nature from topo_view_osm_poi where nature='peak' or nature='cave_entrance' or nature='mountain_pass' or nature='col' order by cast(ele as float)) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id,ele,name,elename,nature from topo_view_osm_poi where nature='peak' or nature='cave_entrance' or nature='mountain_pass' or nature='col' order by cast(ele as float)) as foo using unique osm_id using srid=900913"
     LABELITEM 'elename'
     CLASSITEM 'nature'
     SIZEUNITS meters    
@@ -6225,7 +6225,7 @@ LAYER
     TYPE POINT
     MAXSCALEDENOM  30000
     NAME "huette"
-    DATA "way from (select way,osm_id,tourism,amenity,name,coalesce(name||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),name,trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ','))) as elename from topo_view_osm_poi
+    DATA "way from (select way,osm_id,tourism,amenity,name,elename from topo_view_osm_poi
           where (tourism='alpine_hut' or amenity='shelter') and name is not null and way && !BOX! UNION ALL
           select ST_Centroid(way),osm_id,tourism,amenity,name,name as elename from topo_view_osm_polygon
           where (tourism='alpine_hut' or amenity='shelter') and name is not null and way && !BOX!)

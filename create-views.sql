@@ -72,7 +72,9 @@ grant select on topo_view_osm_line to public;
 
 DROP VIEW IF EXISTS topo_view_osm_poi;
 CREATE VIEW topo_view_osm_poi as select
-way,osm_id,historic,tourism,ele,place,tags->'name' as name,tags->'short_name' as shortname,amenity,tags->'religion' as religion,
+way,osm_id,historic,tourism,ele,
+coalesce(tags->'name'||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),tags->'name',trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ','))) as elename,
+place,tags->'name' as name,tags->'short_name' as shortname,amenity,tags->'religion' as religion,
 tags->'population' as population,landuse,military,aeroway,tags->'service' as service,railway,tags->'sport' as sport,
 leisure,tags->'addr:housenumber' as housenumber, "natural" as nature,tags->'information' as information,tags->'ruins' as ruins from planet_osm_point;
 grant select on topo_view_osm_poi to public;
