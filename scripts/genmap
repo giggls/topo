@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+# -*- coding: UTF-8 -*-
+#
+# trivial preprocessor script emulation of HTML entity like behaviour
+# available in mapnik
+# we replace any string in the form @varname@ in mapfile.in
+# by the string defined in definition file in key = value form
+#
+# Example:
+#
+# foo.map.def:
+# pgsqlcon = dbname=osm
+#
+# foo.map.in:
+# CONNECTION "@pgsqlcon@"
+#
+# foo.map:
+# CONNECTION "dbname=osm"
+#
+
+import sys,re
+
+#topo.map.in topo.map.def topo.map
+
+myvars = {}
+with open(sys.argv[2]) as mapdefs:
+  for line in mapdefs:
+    line=line.strip()
+    if line is not "":
+      p = re.compile('^#.*')
+      if not p.match(line):
+        name, var = line.partition("=")[::2]
+        myvars[name.strip()] = var.strip()
+
+infile = open(sys.argv[1],'r')
+mapdata = infile.read()
+infile.close()
+
+for key in myvars:
+  expr='@'+key+'@'
+  mapdata=re.sub(expr,myvars[key],mapdata)
+
+sys.stdout.write(mapdata)
+
+
+

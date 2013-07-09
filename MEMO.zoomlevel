@@ -1,0 +1,32 @@
+Zoom	OL.C.Scale      MAXSCALEDENOM
+ 0	444M
+ 1	222M
+ 2	111M
+ 3	 55M
+ 4	 28M
+ 5	 14M         16000000
+ 6	  7M          8000000
+ 7	  3M          4000000
+ 8	  2M          2000000
+ 9	867k          1000000
+10	433k           500000
+11	217k           250000
+12	108k           150000
+13	 54k           100000
+14	 27k            30000
+15	 14k            15000
+16	6771            10000
+17	3386             5000
+18	1693             2500
+
+
+von bis Beispiel:
+MAXSCALEDENOM 15000 # Z15
+MINSCALEDENOM 5000 # Z16
+
+Oder nur Z16:
+MINSCALEDENOM 5000
+MAXSCALEDENOM 10000
+
+MAXSCALEDENOM -> Maximaler Maßstab -> minimaler Zoomlevel
+MINSCALEDENOM -> Minimaler Maßstab -> maximaler Zoomlevel

@@ -1,0 +1,7133 @@
+
+####################################################################
+#                                                                  #
+#  Mapfile fuer http://geo.dianacht.de/topo                        #
+#                                                                  #
+#  Autor:   Max Berger, max@dianacht.de                            #
+#                                                                  #
+#  Lizenz:  AGPL                                                   #
+#           http://www.gnu.org/licenses/agpl-3.0.de.html           #
+#                                                                  #
+#  Das heisst: Mach was Du willst damit, aber gib irgendwo an,     #
+#    wo Du den Kartenstil her hast und Deine Aenderungen musst     #
+#    Du auch wieder freigeben. Du kannst also Deine eigenen        #
+#    Karten damit erzeugen und diese unter einer beliebigen        #
+#    Lizenz veroeffentlichen (soweit es Dir die Quelle Deiner      #
+#    Daten erlaubt). Die Veroeffentlichung Deiner Aenderungen      #
+#    am Stil gibt allerdings jedem anderen die Chance, aehnliche   #
+#    oder noch schoenere Karten herzustellen.                      #
+#                                                                  #
+#  Die Namensnennung kann in irgendeiner Dir angemessen            #
+#  erscheinenden Form erfolgen. Keinesfalls musst Du z.B.          #
+#  haessliche Labels auf Deine Karten kleben. Ein Link unter       #
+#  "sonstiges", eine Zeile im Abspann oder eine Erwaehnung in      #
+#  den Quellenangaben reicht voellig aus.                          #
+#                                                                  #
+####################################################################
+
+
+MAP
+
+
+
+OUTPUTFORMAT
+    NAME agg
+    DRIVER AGG/PNG8
+    FORMATOPTION "INTERLACE=OFF"
+    MIMETYPE "image/png"
+END
+
+OUTPUTFORMAT
+ NAME svg
+ DRIVER "CAIRO/SVG"
+ MIMETYPE "image/svg+xml"
+ IMAGEMODE RGB
+ EXTENSION "svg"
+END
+
+OUTPUTFORMAT
+  NAME pdf
+  DRIVER "CAIRO/PDF"
+  MIMETYPE "application/x-pdf"
+  IMAGEMODE RGB
+  EXTENSION "pdf"
+END
+
+
+FONTSET "osmfonts.lst"
+MAXSIZE 10000
+SIZE 800 800
+EXTENT         -180 -85 180 85
+# EXTENT        -179.999 -85 179.999 85
+IMAGECOLOR     "#EDEBE6"
+SHAPEPATH      "@shapepath@"
+
+
+WEB
+    METADATA
+      "ows_enable_request" "*"
+       wms_srs "EPSG:900913 EPSG:4326 EPSG:3857 EPSG:25832 EPSG:25833 EPSG:5003034 EPSG:31468 AUTO:42004"
+        labelcache_map_edge_buffer "-10"
+        wms_title "osm"
+    END
+   IMAGEPATH "/tmp/"
+   IMAGEURL  "/"
+END
+
+PROJECTION
+"init=epsg:900913"
+END
+
+
+SYMBOL
+   NAME bridge
+   TYPE SIMPLE
+END
+
+SYMBOL
+    NAME "citycircle"
+    TYPE ELLIPSE
+    POINTS 1 1 END
+    FILLED TRUE  
+END
+
+
+
+SYMBOL
+ NAME "oneway"
+ TYPE vector
+ POINTS
+  15  2
+  20  2
+  17  4
+  -99 -99
+  20  2
+  17  0
+ END
+END
+
+SYMBOL
+ NAME "gatter"
+ TYPE vector
+ POINTS
+  0   1
+  6   1
+  -99 -99
+  0   3
+  6   3
+  -99 -99
+  1   0
+  1   4
+  -99 -99      
+  3   0
+  3   4
+  -99 -99
+  5   0
+  5   4
+ END
+END
+
+
+
+
+SYMBOL
+ NAME "fluss"
+ TYPE vector
+ POINTS
+  80  3
+  90  3
+  87  6
+  -99 -99
+  90  3
+  87  0
+ END
+END
+
+
+SYMBOL
+ NAME "noaccess"
+ TYPE vector
+ POINTS
+  0 0
+  1 1
+ END
+END
+
+SYMBOL
+ NAME "treppe"
+ TYPE vector
+ POINTS
+  0 0
+  0 1
+  -99 -99
+  2 0
+  2 1
+ END
+END     
+
+SYMBOL
+ NAME "tram"
+ TYPE vector
+ POINTS
+  0  0
+  0  4
+  -99 -99
+  0  2
+  20 2
+ END
+END     
+
+SYMBOL
+ NAME "cliff"
+ TYPE vector
+ POINTS
+    0  0
+   25  0
+  -99 -99
+   1   0
+   5   10
+   10  0
+ END
+END     
+
+SYMBOL
+ NAME "minicliff"
+ TYPE vector
+ POINTS
+     0  0
+    20  0
+  -99 -99
+     3  0
+    10  8
+    17  0
+ END
+END     
+
+
+
+SYMBOL
+ NAME "ridge"
+ TYPE vector
+ POINTS
+    0   20
+   100  20
+  -99 -99
+    0   40
+    0    0
+ END
+END     
+
+SYMBOL  
+ NAME "strom"
+ TYPE vector
+ POINTS  
+   0  8
+  100  8 
+  90  16
+  -99 -99
+  100  8
+  90  0
+ END
+END
+
+SYMBOL  
+ NAME "hecke"
+ TYPE vector
+ POINTS  
+   0 3
+   1 3
+   3 1
+   4 1
+   6 3
+   7 3
+   8 2
+   9 2
+  10 3
+  11 3
+  13 1
+  15 3
+  15 4
+  13 6
+  11 4
+  10 4
+   9 5 
+   8 5
+   7 4
+   6 4
+   4 6
+   3 6
+   1 4
+   0 4
+   0 3
+ END
+ FILLED TRUE
+END
+
+
+SYMBOL
+ NAME "grenzstrich"
+ TYPE vector
+ POINTS  
+  5  4
+  20 4
+  -99 -99
+  5 2
+  5 6
+  -99 -99
+  20 2
+  20 6
+ END   
+END   
+
+SYMBOL
+ NAME "grenzbuerste"
+ TYPE vector
+ POINTS  
+  0 0
+  2 6
+ END   
+END   
+
+SYMBOL
+ NAME "stadtmauerbeidseits"
+ TYPE vector
+ POINTS
+  0  1
+  2  1
+  3  0
+  4  1
+  8  1
+  8  2
+  4  2
+  3  3
+  2  2
+  0  2
+  0  1 
+ END
+ FILLED TRUE
+END
+
+SYMBOL
+ NAME "stadtmauerrechts"
+ TYPE vector
+ POINTS
+  0  1
+  2  1
+  3  1
+  4  1
+  8  1
+  8  2
+  4  2
+  3  3
+  2  2
+  0  2
+  0  1 
+ END
+ FILLED TRUE
+END
+
+
+SYMBOL
+ NAME "schraffur"
+ TYPE hatch
+END
+
+######################################### GROSSE FLAECHEN #######################################################
+
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:900913"
+    END
+    NAME "gewerbe"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,osm_id ,landuse,highway,military,place,area, name from @osm_polygon@ where landuse IN ('industrial', 'commercial', 'airport', 'brownfield', 'railway', 'residential') or highway='residential' or military is not null order by area desc) as foo using unique osm_id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASSITEM "landuse"
+    LABELITEM "name"
+    MAXSCALEDENOM 1000010
+    CLASS
+        EXPRESSION (('[landuse]'='airport' or '[landuse]'='railway'))
+        STYLE
+            COLOR "#aaaaaa"
+        END
+        LABEL
+        TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+        MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 1
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+
+    CLASS
+        NAME "Gewerbe" 
+        EXPRESSION (('[landuse]'='industrial' or '[landuse]'='commercial') and [area] gt 100000)
+        STYLE
+            COLOR "#aaaaaa"
+        END
+        LABEL
+        TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+        MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 1
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[landuse]'='industrial' or '[landuse]'='commercial') and [area] le 100000)
+        STYLE
+            COLOR "#aaaaaa"
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ('[landuse]'='residential' and '[place]'='')
+        STYLE
+            COLOR "#cccccc"
+        END
+        LABEL
+        TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+        MAXSCALEDENOM 15000
+            SIZE 8
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 1
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+
+
+   
+    CLASS
+        EXPRESSION ('[landuse]'='residential')
+        STYLE
+            COLOR "#cccccc"
+        END
+    END
+END
+
+
+################################ KLEINE FLAECHEN ###########################################
+
+
+LAYER
+
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:900913"
+    END
+    NAME "flaechen_100k"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,osm_id,coalesce(shortname,name) as shortname,area,nature,barrier,landuse,wood,highway,railway,military,leisure,place,public_transport,amenity,aeroway,building,sport,tourism,name from @osm_polygon@ where building is null and ( nature is not null or barrier is not null or landuse is not null or wood is not null or highway is not null or railway is not null or military is not null or leisure is not null or amenity is not null or aeroway is not null or sport is not null or tourism is not null ) order by area desc) as foo using unique osm_id using srid=900913"
+
+
+
+
+
+
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASSITEM "landuse"
+    LABELITEM "name"
+    MAXSCALEDENOM 1000000
+    CLASS
+        EXPRESSION (('[landuse]'='airport' or '[landuse]'='railway'))
+        STYLE
+            COLOR "#aaaaaa"
+        END
+        LABEL
+        TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+        MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 1
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+
+    CLASS
+        NAME "Gewerbe" 
+        EXPRESSION (('[landuse]'='industrial' or '[landuse]'='commercial') and [area] gt 100000)
+        STYLE
+            COLOR "#aaaaaa"
+        END
+        LABEL
+        TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+        MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 1
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[landuse]'='industrial' or '[landuse]'='commercial') and [area] le 100000)
+        STYLE
+            COLOR "#aaaaaa"
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ('[landuse]'='residential' and '[place]'!='')
+        STYLE
+            COLOR "#cccccc"
+        END
+        LABEL
+        TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+        MAXSCALEDENOM 15000
+            SIZE 8
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 1
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+
+
+   
+    CLASS
+        EXPRESSION ('[landuse]'='residential')
+        STYLE
+            COLOR "#cccccc"
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ("[amenity]"="hospital")
+        STYLE
+            COLOR "#cccccc"
+        END
+    END
+    CLASS
+        EXPRESSION ("[amenity]"="parking" or "[aeroway]"="apron")
+        STYLE
+            COLOR "#cccccc"
+        END
+    END
+    CLASS
+        NAME "Schule"
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[amenity]'='school' or '[amenity]'='college' or '[amenity]'='university' )
+        STYLE
+            COLOR "#DDAAAA"
+        END
+        LABEL
+            TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+            MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 3
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+
+
+ CLASS
+        EXPRESSION ('[landuse]'='cemetery' or '[amenity]'='grave_yard')
+        NAME "Friedhof"
+        MAXSCALEDENOM 100000
+        STYLE
+            COLOR "#AAAA88"
+            OUTLINECOLOR "#888888"
+            OUTLINEWIDTH  0.2
+        END
+        LABEL
+        TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+        MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 2
+           WRAP ' '
+           MAXLENGTH 6
+            ALIGN CENTER
+        END
+ END
+
+ CLASS
+        EXPRESSION (([area] gt 10000) and ('[leisure]'='garden' or '[leisure]'='playground' or '[landuse]'='playground' or '[landuse]'='recreation_ground' ))
+        MAXSCALEDENOM 100000
+        STYLE
+            COLOR "#AAFFAA"
+        END
+        LABEL
+        TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+        MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR "#113311"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 2
+            POSITION cc
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+
+ CLASS
+        EXPRESSION (([area] gt 10000) and ('[leisure]'='park' or '[leisure]'='common'))
+        MAXSCALEDENOM 100000
+        STYLE
+            COLOR "#AAEEAA"
+        END
+        LABEL
+        TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+        MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR "#113311"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 2
+            POSITION cc
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+
+ CLASS
+        EXPRESSION (([area] gt 10000) and ('[tourism]'='zoo'))
+        MAXSCALEDENOM 100000
+        STYLE
+            OPACITY 50
+            COLOR "#AAEEAA"
+        END
+        LABEL
+        TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+        MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR "#113311"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 2
+            POSITION cc
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+
+
+
+ CLASS
+        EXPRESSION (([area] gt 10000) and ('[leisure]' = 'pitch' or ('[sport]' != '' and '[leisure]' != 'sports_centre' )))
+        MAXSCALEDENOM 100000
+        STYLE
+            COLOR "#AADDAA"
+            OUTLINECOLOR "#99aa99"
+            OUTLINEWIDTH  0.2
+        END
+        LABEL
+        TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+        MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR "#113311"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 2
+            POSITION cc
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+
+ CLASS
+        EXPRESSION (('[tourism]'='zoo'))
+        MAXSCALEDENOM 100000
+        STYLE
+            OPACITY 50
+            COLOR "#AAEEAA"
+        END
+    END
+
+
+ CLASS
+        NAME "Wiese"
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[leisure]'='garden' or '[leisure]'='playground' or '[landuse]'='playground' or '[landuse]'='recreation_ground' )
+        STYLE
+            COLOR "#AAFFAA"
+        END
+ END
+
+
+ CLASS
+        NAME "Sportplatz"
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[leisure]'='park' or '[leisure]'='common')
+        STYLE
+            COLOR "#AADDAA"
+        END
+    END
+
+ CLASS
+        NAME "Sportplatz"
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[leisure]' = 'pitch' or ('[sport]' != '' and '[leisure]' != 'sports_centre' ))
+        STYLE
+            COLOR "#AADDAA"
+            OUTLINECOLOR "#99aa99"
+            OUTLINEWIDTH  0.2
+        END
+    END
+
+  CLASS
+        NAME "Sportplatz"
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[leisure]' = 'sports_centre')
+        STYLE
+            COLOR "#AADDAA"
+            OPACITY 60
+            OUTLINECOLOR "#99aa99"
+            OUTLINEWIDTH  0.2
+        END
+    END
+
+
+
+
+ CLASS
+        EXPRESSION ('[sport]' = 'swimming')
+        MAXSCALEDENOM 100000
+        STYLE
+            COLOR "#579ae3"
+            OUTLINECOLOR "#99aa99"
+            OUTLINEWIDTH  0.2
+        END
+        LABEL
+        TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+        MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR "#000044"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 2
+            POSITION cc
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+
+ CLASS
+        NAME "Sportplatz"
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[sport]' = 'swimming')
+        STYLE
+            COLOR "#579ae3"
+            OUTLINECOLOR "#99aa99"
+            OUTLINEWIDTH  0.2
+        END
+    END
+
+
+    CLASS
+        MINSCALEDENOM 100001
+        EXPRESSION ([area] gt 1000000 and ('[nature]'="wood" or '[landuse]'="forest"))
+        STYLE
+            COLOR "#88bb88" 
+            OUTLINEWIDTH 0.3
+        END  
+        LABEL
+            MAXSCALEDENOM 600000
+            TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+            SIZE 7
+            COLOR "#113311"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 2
+            WRAP ' '
+            MINFEATURESIZE AUTO
+            MAXLENGTH 8
+            ALIGN CENTER
+        END
+    END
+    CLASS
+        MINSCALEDENOM 100001
+        EXPRESSION ('[nature]'='wood' or '[landuse]'="forest")
+        STYLE
+            COLOR "#88bb88"
+            OUTLINEWIDTH 0.3
+        END
+    END
+
+    CLASS
+        MAXSCALEDENOM 100000
+        EXPRESSION ([area] gt 1000000 and '[wood]'='coniferous' and ('[nature]'='wood' or '[landuse]'="forest"))
+        STYLE
+            COLOR "#88bb88" 
+            OUTLINEWIDTH 0.3
+        END  
+        STYLE
+            SYMBOL ../icons/png/misc/nadelwald.png
+        END
+        LABEL
+            MAXSCALEDENOM 600000
+            TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+            SIZE 7
+            COLOR "#113311"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 2
+            WRAP ' '
+            MINFEATURESIZE AUTO
+            MAXLENGTH 8
+            ALIGN CENTER
+        END
+    END
+
+    CLASS
+        NAME "Wald"
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[wood]'='coniferous' and ('[nature]'='wood' or '[landuse]'="forest"))
+        STYLE
+            COLOR "#88bb88"
+            OUTLINEWIDTH 0.3
+        END
+        STYLE
+            SYMBOL ../icons/png/misc/nadelwald.png
+        END
+    END
+
+    CLASS
+        NAME "Hecke"
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[barrier]'="hedge")
+        STYLE
+            COLOR "#88bb88"
+            OUTLINEWIDTH 0.1
+        END
+    END
+
+
+
+    CLASS
+        MAXSCALEDENOM 100000
+        EXPRESSION ([area] gt 1000000 and '[wood]'='deciduous' and ('[nature]'='wood' or '[landuse]'="forest"))
+        STYLE
+            COLOR "#88bb88" 
+            OUTLINEWIDTH 0.3
+        END  
+        STYLE
+            SYMBOL ../icons/png/misc/laubwald.png
+        END
+        LABEL
+            MAXSCALEDENOM 600000
+            TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+            SIZE 7
+            COLOR "#113311"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 2
+            WRAP ' '
+            MINFEATURESIZE AUTO
+            MAXLENGTH 8
+            ALIGN CENTER
+        END
+    END
+
+    CLASS
+        NAME "Wald"
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[wood]'="deciduous" and ('[nature]'='wood' or '[landuse]'="forest"))
+        STYLE
+            COLOR "#88bb88"
+            OUTLINEWIDTH 0.3
+        END
+        STYLE
+            SYMBOL ../icons/png/misc/laubwald.png
+        END
+    END
+
+
+    CLASS
+        NAME "Wald"
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[nature]'="wood" or '[landuse]'="forest")
+        STYLE
+            COLOR "#88bb88"
+            OUTLINEWIDTH 0.3
+        END
+        STYLE
+            SYMBOL ../icons/png/misc/wald.png
+        END
+    END
+
+    CLASS
+        MAXSCALEDENOM 100000
+        EXPRESSION ([area] gt 1000000 and ('[nature]'='wood' or '[landuse]'="forest"))
+        STYLE
+            COLOR "#88bb88" 
+            OUTLINEWIDTH 0.3
+        END  
+        STYLE
+            SYMBOL ../icons/png/misc/wald.png
+        END
+        LABEL
+            MAXSCALEDENOM 600000
+            TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+            SIZE 7
+            COLOR "#113311"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 2
+            WRAP ' '
+            MINFEATURESIZE AUTO
+            MAXLENGTH 8
+            ALIGN CENTER
+        END
+    END
+
+    CLASS
+        NAME "Wald"
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[nature]'='wood' or '[landuse]'="forest")
+        STYLE
+            COLOR "#88bb88"
+            OUTLINEWIDTH 0.3
+        END
+        STYLE
+            SYMBOL ../icons/png/misc/wald.png
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ('[landuse]'='farm' or '[landuse]'='farmland' or '[nature]'='agriculture' or '[landuse]'='allotments' or '[landuse]'='field')
+        STYLE
+            COLOR "#b8CCAA"
+            OUTLINEWIDTH 0.3
+        END
+    END
+    CLASS
+        EXPRESSION ('[landuse]'='farmyard')
+        STYLE
+            COLOR "#ddCCAA"
+            OUTLINEWIDTH 0.3
+        END
+    END
+
+    CLASS
+        MINSCALEDENOM 100001
+        EXPRESSION ('[nature]'='fell')
+        STYLE
+            COLOR "#d2d7cc"
+            OUTLINEWIDTH 0.3
+        END
+    END
+
+
+    CLASS
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[nature]'='fell')
+        STYLE
+            COLOR "#d2d7cc"
+            OUTLINEWIDTH 0.3
+        END
+        STYLE
+            SYMBOL ../icons/png/schrofen.png
+        END
+        LABEL
+            MAXSCALEDENOM 50000
+            TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+            SIZE 7
+            COLOR "#113311"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 1
+            WRAP ' '
+            MINFEATURESIZE AUTO
+            MAXLENGTH 8
+            ALIGN CENTER
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[landuse]'='grass' or '[nature]'='grassland' or '[landuse]'='greenfield' or  '[landuse]'='meadow')
+        STYLE
+            COLOR "#AACCAA"
+            OUTLINEWIDTH 0.3
+        END
+        LABEL
+            MAXSCALEDENOM 50000
+            TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+            SIZE 7
+            COLOR "#113311"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 1
+            WRAP ' '
+            MINFEATURESIZE AUTO
+            MAXLENGTH 8
+            ALIGN CENTER
+        END
+    END
+
+
+
+    CLASS
+        EXPRESSION ('[nature]'='sand' or '[nature]'='beach')
+        STYLE
+            COLOR "#ccbb77"
+            OUTLINEWIDTH 0.3
+        END
+    END
+
+
+
+    CLASS
+        MINSCALEDENOM 100001
+        EXPRESSION ([area] gt 1000000 and ('[nature]'='marsh' or '[nature]'='wetland' or '[nature]'='swamp'))
+        STYLE
+            COLOR "#88cc99" 
+            OUTLINEWIDTH 0.3
+        END  
+        LABEL
+            MAXSCALEDENOM 600000
+            TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+            SIZE 7
+            COLOR "#113311"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 2
+            WRAP ' '
+            MINFEATURESIZE AUTO
+            MAXLENGTH 8
+            ALIGN CENTER
+        END
+    END
+
+    CLASS
+        MINSCALEDENOM 100001
+        EXPRESSION ('[nature]'='marsh' or '[nature]'='wetland' or '[nature]'='swamp')
+        STYLE
+            COLOR "#88cc99"
+            OUTLINEWIDTH 0.3
+        END
+    END
+
+
+    CLASS
+        MAXSCALEDENOM 100000
+        EXPRESSION ([area] gt 1000000 and ('[nature]'='marsh' or '[nature]'='wetland' or '[nature]'='swamp'))
+        STYLE
+            COLOR "#88cc99" 
+            OUTLINEWIDTH 0.3
+        END  
+        STYLE
+            SYMBOL ../icons/png/landuse_swamp.p.24.png
+        END
+        LABEL
+            MAXSCALEDENOM 600000
+            TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+            SIZE 7
+            COLOR "#113311"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 2
+            WRAP ' '
+            MINFEATURESIZE AUTO
+            MAXLENGTH 8
+            ALIGN CENTER
+        END
+    END
+
+    CLASS
+        name "Sumpf"
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[nature]'='marsh' or '[nature]'='wetland' or '[nature]'='swamp')
+        STYLE
+            COLOR "#88cc99"
+            OUTLINEWIDTH 0.3
+        END
+        STYLE
+            SYMBOL ../icons/png/landuse_swamp.p.24.png
+        END
+    END
+
+
+
+    CLASS
+        NAME "Gebuesch"
+        MINSCALEDENOM 100001
+        EXPRESSION ('[nature]'='scrub')                     
+        STYLE
+            COLOR "#BFCC9D"
+            OUTLINEWIDTH 0.3
+        END
+    END
+
+    CLASS
+        NAME "Gebuesch"
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[nature]'='scrub')                     
+        STYLE
+            COLOR "#BFCC9D"
+            OUTLINEWIDTH 0.3
+        END
+        STYLE
+            SYMBOL ../icons/png/landuse_scrub.p.24.png
+        END
+    END
+
+    CLASS
+        NAME "Heide"
+        EXPRESSION ('[nature]'='heath')                     
+        STYLE
+            COLOR "#d4d890"
+            OUTLINEWIDTH 0.3
+        END
+        LABEL
+            MAXSCALEDENOM 50000
+            TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+            SIZE 7
+            COLOR "#113311"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 1
+            WRAP ' '
+            MINFEATURESIZE AUTO
+            MAXLENGTH 8
+            ALIGN CENTER
+        END
+    END
+
+
+
+  CLASS
+        MINSCALEDENOM 100001
+        EXPRESSION ('[nature]'='cliff' or '[nature]'='rock' or '[nature]'='bare_rock' or '[nature]'='bedrock' or '[nature]'='scree' or '[landuse]'='quarry' )
+        STYLE
+            COLOR "#d5d3d0" 
+            OUTLINEWIDTH 0.3
+        END  
+    END
+
+
+    CLASS
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[nature]'='rock'  or '[nature]'='bare_rock' or '[nature]'='bedrock')
+        STYLE
+            COLOR "#d5d3d0"
+            OUTLINEWIDTH 0.3
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 150000
+          SIZE 7
+          COLOR "#323232"
+          OUTLINECOLOR "#ffffff"
+          WRAP ' '   
+          MAXLENGTH 6 
+          ALIGN CENTER
+        END
+    END
+
+    CLASS
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[nature]'='cliff')
+        STYLE
+            COLOR "#d5d3d0"
+            OUTLINEWIDTH 0.1
+            OUTLINECOLOR "#c5c3c0"
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 150000
+          SIZE 7
+          COLOR "#323232"
+          OUTLINECOLOR "#ffffff"
+          WRAP ' '   
+          MAXLENGTH 6 
+          ALIGN CENTER
+        END
+    END
+
+
+
+    CLASS
+        MAXSCALEDENOM 100000
+        EXPRESSION ('[nature]'='scree' or  '[landuse]'='quarry' )
+        STYLE
+            COLOR "#d5d3d0"
+            OUTLINEWIDTH 0.3
+        END
+         STYLE
+            SYMBOL ../icons/png/geroell.png
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 150000
+          SIZE 7
+          COLOR "#323232"
+          OUTLINECOLOR "#ffffff"
+          WRAP ' '   
+          MAXLENGTH 6 
+          ALIGN CENTER
+        END
+    END
+
+
+
+    CLASS
+        EXPRESSION ('[nature]'='glacier')
+        STYLE
+            COLOR "#ddeeFF"
+            OUTLINEWIDTH 0.3
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 150000
+          SIZE 7
+          COLOR "#000064"
+          OUTLINECOLOR "#ffffff"
+          WRAP ' '   
+          MAXLENGTH 6 
+          ALIGN CENTER
+        END
+    END
+
+  CLASS
+        MAXSCALEDENOM  15000
+        NAME "Fussgaengerzone"
+        EXPRESSION ('[highway]'='pedestrian')
+        STYLE
+            COLOR "#a5a5a5"
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 10000
+          SIZE 7
+          COLOR "#000000"
+          OUTLINECOLOR "#ffffff"
+          WRAP ' '
+          MAXLENGTH 6
+          ALIGN CENTER
+        END
+    END
+
+  CLASS
+        MAXSCALEDENOM  15000
+        EXPRESSION ('[highway]'='residential' or '[highway]'='service' or '[highway]'='services' or '[highway]'='raceway' or '[highway]'='living_street')
+        STYLE
+         COLOR "#eeeeee"
+         OUTLINEWIDTH 0.3
+         OUTLINECOLOR "#222222"
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 10000
+          SIZE 7
+          COLOR "#000000"
+          OUTLINECOLOR "#ffffff"
+          WRAP ' '
+          MAXLENGTH 6
+          PRIORITY 1
+          ALIGN CENTER
+        END
+    END
+
+  CLASS
+        MAXSCALEDENOM  15000
+        EXPRESSION ('[highway]'='footway' or '[highway]'='cicleway' or '[highway]'='path')
+        STYLE
+         COLOR "#aaaaaa"
+         OUTLINEWIDTH 0.3
+         OUTLINECOLOR "#222222"
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 10000
+          SIZE 7
+          COLOR "#000000"
+          OUTLINECOLOR "#ffffff"
+          WRAP ' '
+          MAXLENGTH 6
+          PRIORITY 1
+          ALIGN CENTER
+        END
+    END
+
+  CLASS
+        MAXSCALEDENOM  15000
+        EXPRESSION ('[highway]'='track')
+        STYLE
+         COLOR "#bb8844"
+         OUTLINECOLOR "#886622"
+         OUTLINEWIDTH 0.3
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 10000
+          SIZE 7
+          COLOR "#000000"
+          OUTLINECOLOR "#ffffff"
+          WRAP ' '
+          MAXLENGTH 6
+          PRIORITY 1
+          ALIGN CENTER
+        END
+    END
+
+  CLASS
+        MAXSCALEDENOM  15000
+        EXPRESSION ('[railway]'='platform' or '[public_transport]'='platform')
+        STYLE
+            COLOR "#a0a0a0"
+        END
+    END
+END
+
+
+################### Schummerung
+
+ 
+LAYER
+  NAME           "schummerung"
+  STATUS         ON
+  GROUP          "default"
+  STATUS         OFF
+  TYPE           RASTER
+  OPACITY        20
+  DATA           "@hillshade@"
+  projection      "init=epsg:3857" end
+  # schoen aber rechenintensiv
+  PROCESSING "RESAMPLE=BILINEAR"
+END # of layer 
+
+
+################### Hoehenlinien
+LAYER
+    TYPE LINE
+    STATUS ON
+    NAME "hoehenlinien200"
+    GROUP "default"
+    MAXSCALEDENOM 150000 # Z12
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "dbname=osm"
+    DATA "geom from (select geom,id,height from contours where height%200=0) as foo using unique id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "height"
+    CLASS
+        STYLE
+         WIDTH 0.8
+         COLOR "#BE9E9E"
+        END
+        LABEL
+         MAXSCALEDENOM 100000 # Z13
+         MINSCALEDENOM 5000 # Z17
+         ANGLE FOLLOW
+         REPEATDISTANCE 450
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         SIZE 7
+         COLOR "#996666"
+        END     
+    END
+END
+
+LAYER
+    TYPE LINE
+    STATUS ON
+    NAME "hoehenlinien100"
+    GROUP "default"
+    MAXSCALEDENOM 100000 # Z13
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "dbname=osm"
+    DATA "geom from (select geom,id,height,height%200 as type from contours where height%100=0) as foo using unique id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "height"
+    CLASS
+       STYLE
+         MINSCALEDENOM 10000 # Z16
+         WIDTH 0.7
+         COLOR "#BE9E9E"
+       END
+       STYLE
+         MAXSCALEDENOM 10000 # Z16
+         WIDTH 1.0
+         COLOR "#BE9E9E"
+       END
+       LABEL
+         MAXSCALEDENOM 5000 # Z17
+         ANGLE FOLLOW
+         REPEATDISTANCE 450
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         SIZE 8
+         COLOR "#996666"
+       END
+    END
+END
+
+LAYER
+    TYPE LINE
+    STATUS ON
+    NAME "hoehenlinien10"
+    GROUP "default"
+    MAXSCALEDENOM 30000 # Z14
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "dbname=osm"
+    DATA "geom from (select geom,id,height,height%100 as type from contours) as foo using unique id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "height"
+    # 10m Hoehenlinien >= Zoomlevel 17
+    CLASS
+       MAXSCALEDENOM 5000 # Z16
+       EXPRESSION ('[type]'!='0')
+       STYLE
+         OPACITY 80
+         WIDTH 0.4
+         COLOR "#BE9E9E"
+       END
+    END
+
+    # 20m Hoehenlinien in Zoomlevel 15 und 16
+    CLASS
+       MAXSCALEDENOM 15000 # Z15
+       MINSCALEDENOM 5000 # Z16
+       EXPRESSION ('[type]'='30' or '[type]'='40' or '[type]'='60' or '[type]'='80')
+       STYLE
+         OPACITY 80
+         WIDTH 0.4
+         COLOR "#BE9E9E"
+       END
+    END
+
+    # 50m Hoehenlinien in Zoomlevel 14
+    CLASS
+       MINSCALEDENOM 15000 # Z15
+       EXPRESSION ('[type]'='50')
+       STYLE
+         OPACITY 80
+         WIDTH 0.4
+         COLOR "#BE9E9E"
+       END
+    END
+END
+
+
+########################################  Meer ###########################################################
+LAYER 
+   PROCESSING     "CLOSE_CONNECTION=DEFER"
+   PROCESSING     "APPROXIMATION_SCALE=FULL"
+   NAME           "meer"
+   TYPE           POLYGON
+   STATUS         ON
+   GROUP          "default"
+   DATA           "@oceanshape@"
+   PROJECTION
+      "init=epsg:900913"
+   END
+   CLASS 
+     STYLE 
+       COLOR "#579ae3"
+#       OUTLINECOLOR "#579ae3"
+#       WIDTH 0
+     END
+   END # of class
+END # of layer
+
+
+###################### Stehendes Wasser
+
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:900913"
+    END
+    NAME "stehendeswasser"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,osm_id ,nature ,area, name from @osm_polygon@ where nature ='water' or landuse='basin' or leisure='swimming_pool' or amenity='swimming_pool' or landuse='reservoir' or waterway='riverbank') as foo using unique osm_id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    MAXSCALEDENOM 2000000
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASS
+        EXPRESSION ([area] gt 1000000)
+        STYLE
+            COLOR "#579ae3"
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 500000
+          MINDISTANCE 400
+          SIZE 7
+          COLOR "#4444ff"
+          OUTLINECOLOR "#ffffff"
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+        END
+    END
+    CLASS
+        EXPRESSION ([area] le 1000000)
+        STYLE
+            COLOR "#579ae3"
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 10000
+          MINDISTANCE 400
+          SIZE 7
+          COLOR "#4444ff"
+          OUTLINECOLOR "#ffffff"
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+        END
+    END
+    CLASS
+        STYLE
+            COLOR "#579ae3"
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 120000
+          MINDISTANCE 400
+          SIZE 7
+          COLOR "#4444ff"
+          OUTLINECOLOR "#ffffff"
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+        END
+    END
+END
+
+
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:900913"
+    END
+    NAME "militaer"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,osm_id,coalesce(shortname,name) as shortname,landuse,highway,military,place,area, name from @osm_polygon@ where landuse='military' or  military is not null order by area desc) as foo using unique osm_id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    CLASSITEM "landuse"
+    LABELITEM "shortname"
+    MAXSCALEDENOM 150010
+    CLASS
+        EXPRESSION (('[landuse]'='military' or '[military]'!=''))
+        STYLE
+            WIDTH 0.5
+            OUTLINECOLOR "#784646"
+        END  
+        STYLE
+            SYMBOL ../icons/png/schraffur24.png
+        END
+        LABEL
+        TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+        MAXSCALEDENOM 15000
+            SIZE 7
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            PRIORITY 1
+            WRAP ' '
+            MAXLENGTH 6
+            ALIGN CENTER
+        END
+    END
+
+END
+
+##############################  HECKEN UND MAUERN #################################################
+
+LAYER
+    TYPE LINE
+    NAME "hecken"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,barrier,ruins,highway,twoside,man_made,nature,osm_id from @osm_line@ where ( man_made='embankment' or barrier='retaining_wall' or man_made='dyke' or barrier='hedge' or barrier='wall' or barrier='city_wall' or barrier='fence' or nature='tree_row' ) and way && !BOX! union select way,barrier,ruins,highway,twoside,man_made,nature,osm_id from @osm_polygon@ where ( man_made='embankment' or barrier='retaining_wall' or ( barrier='city_wall' and building is null ) or barrier='fence' ) and way && !BOX! ) as foo using unique osm_id using srid=900913"
+    SIZEUNITS meters
+    MAXSCALEDENOM 30000
+    CLASS
+        EXPRESSION (('[nature]'='tree_row'))
+        STYLE
+            COLOR "#88bb88"
+            SYMBOL "hecke"
+            SIZE 15
+            MINSIZE  2
+            MAXSIZE 10
+        END
+    END
+    CLASS
+        MAXSCALEDENOM 10000
+        EXPRESSION (('[barrier]'='hedge'))
+        STYLE
+            COLOR "#88bb88"
+            SYMBOL "hecke"
+            SIZE 10
+            MINSIZE 1
+            MAXSIZE 7
+        END
+    END
+    CLASS
+        MAXSCALEDENOM 10000
+        EXPRESSION (('[barrier]'='wall'))
+        STYLE
+            COLOR      "#997777"
+            OPACITY    80
+            WIDTH      2
+            MINWIDTH   0.4
+            MAXWIDTH   1.5
+        END
+    END
+    CLASS
+        MAXSCALEDENOM 20000
+        EXPRESSION (('[barrier]'='city_wall') and ('[ruins]'='yes'))
+        STYLE
+            COLOR      "#997777"
+            OPACITY    40
+            SYMBOL     "stadtmauerbeidseits"
+            SIZE       3  
+            MINSIZE    0.8
+            MAXSIZE    6
+        END
+    END
+    CLASS
+        MAXSCALEDENOM 20000
+        EXPRESSION (('[barrier]'='city_wall') and ('[twoside]'='yes'))
+        STYLE
+            COLOR      "#997777"
+            SYMBOL     "stadtmauerbeidseits"
+            SIZE       3  
+            MINSIZE    4
+            MAXSIZE    7
+        END
+    END
+    CLASS
+        MAXSCALEDENOM 20000
+        EXPRESSION (('[barrier]'='city_wall'))
+        STYLE
+            COLOR      "#997777"
+            # SYMBOL   "stadtmauerrechts"
+            SYMBOL     "stadtmauerbeidseits"
+            SIZE       3  
+            MINSIZE    4
+            MAXSIZE    7
+        END
+    END
+    CLASS
+        MAXSCALEDENOM 10000
+        EXPRESSION (('[barrier]'='fence'))
+        STYLE
+            COLOR      "#997777"
+            OPACITY    40
+            WIDTH      1
+            MINWIDTH   0.2
+            MAXWIDTH   0.8
+        END
+    END
+
+    CLASS
+        MAXSCALEDENOM 20000
+        EXPRESSION (('[man_made]'='embankment') or ('[barrier]'='retaining_wall') )
+        STYLE
+            COLOR      "#444455"
+            SYMBOL     "stadtmauerrechts"
+            OPACITY    40
+            SIZE       5
+            MINSIZE    5
+            MAXSIZE    8
+        END
+    END
+   CLASS
+        MAXSCALEDENOM 20000
+        EXPRESSION (('[man_made]'='dyke' and '[highway]'='track'))
+        STYLE
+            COLOR      "#444455"
+            SYMBOL     "stadtmauerbeidseits"
+            OPACITY    40
+            SIZE       15
+            MINSIZE    8
+            MAXSIZE    18
+        END
+    END
+
+    CLASS
+        MAXSCALEDENOM 20000
+        EXPRESSION ('[man_made]'='dyke' and ('[highway]'='path' or '[highway]'='footway' or '[highway]'='cycleway'))
+        STYLE
+            COLOR      "#444455"
+            SYMBOL     "stadtmauerbeidseits"
+            OPACITY    40
+            SIZE       8
+            MINSIZE    8
+            MAXSIZE    14
+        END
+    END
+
+    CLASS
+        MAXSCALEDENOM 20000
+        EXPRESSION (('[man_made]'='dyke'))
+        STYLE
+            COLOR      "#444455"
+            SYMBOL     "stadtmauerbeidseits"
+            OPACITY    40
+            SIZE       6
+            MINSIZE    6
+            MAXSIZE    9
+        END
+    END
+
+END
+
+
+
+
+
+
+############################### FLUESSE ################################################
+
+LAYER
+    TYPE LINE
+    NAME "fliessendeswasser"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,name,waterway,stream,streamtype,intermittent,osm_id from @osm_line@ where tunnel is null and waterway IN ('river', 'stream', 'canal', 'drain', 'ditch' ,'dam')) as foo using unique osm_id using srid=900913"
+    CLASSITEM "waterway"
+    LABELITEM 'name'
+    SIZEUNITS meters
+    MAXSCALEDENOM 2000000
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            COLOR "#579ae3"
+            WIDTH 30
+            MINWIDTH 0.5
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          ANGLE FOLLOW
+          MAXSCALEDENOM 50000
+          MINDISTANCE 400   
+          SIZE 30
+          MINSIZE 8
+          MAXSIZE 12
+          COLOR "#000033" 
+          OUTLINEWIDTH 2
+          OUTLINECOLOR "#ffffff"
+          ALIGN CENTER
+        END
+    END
+    CLASS
+        MAXSCALEDENOM 105000
+        EXPRESSION ('[waterway]'='stream' and ( '[stream]'='dry' or '[streamtype]'='dry' or '[intermittent]'='yes' ))
+        STYLE
+            COLOR "#bfbfb0"
+            WIDTH 8
+            MINWIDTH 0.5
+        END
+        STYLE
+            COLOR "#579ae3"
+            WIDTH 3
+            MINWIDTH 0.5
+            PATTERN 1 17 END
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          ANGLE FOLLOW
+          MAXSCALEDENOM 20000
+          MINDISTANCE 400   
+          SIZE 20
+          MINSIZE 7
+          MAXSIZE 12
+          COLOR "#000033" 
+          OUTLINEWIDTH 2
+          OUTLINECOLOR "#ffffff"
+          ALIGN CENTER
+        END
+    END
+
+    CLASS
+        MAXSCALEDENOM 105000
+        EXPRESSION "stream"
+        STYLE
+            COLOR "#579ae3"
+            WIDTH 10
+            MINWIDTH 0.5
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          ANGLE FOLLOW
+          MAXSCALEDENOM 20000
+          MINDISTANCE 400   
+          SIZE 20
+          MINSIZE 7
+          MAXSIZE 12
+          COLOR "#000033" 
+          OUTLINEWIDTH 2
+          OUTLINECOLOR "#ffffff"
+          ALIGN CENTER
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            COLOR "#579ae3"
+            WIDTH 15
+            MINWIDTH 0.5
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          ANGLE FOLLOW
+          MAXSCALEDENOM 20000
+          MINDISTANCE 400   
+          SIZE 20
+          MINSIZE 7
+          MAXSIZE 12
+          COLOR "#000033" 
+          OUTLINEWIDTH 2
+          OUTLINECOLOR "#ffffff"
+          ALIGN CENTER
+        END
+    END
+
+    CLASS
+        MAXSCALEDENOM 105000
+        EXPRESSION (('[waterway]'='drain' or '[waterway]'='ditch') and ( '[stream]'='dry' or '[streamtype]'='dry' or '[intermittent]'='yes' ))
+        STYLE
+            COLOR "#d5d3d0"
+            WIDTH 8
+            MINWIDTH 0.5   
+        END  
+        STYLE
+            COLOR "#579ae3"
+            WIDTH 3
+            MINWIDTH 0.5
+            PATTERN 1 17 END
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          ANGLE FOLLOW
+          MAXSCALEDENOM 10000
+          MINDISTANCE 400   
+          SIZE 15
+          MINSIZE 7
+          MAXSIZE 12
+          COLOR "#000033" 
+          OUTLINEWIDTH 2
+          OUTLINECOLOR "#ffffff"
+          ALIGN CENTER
+        END
+    END
+
+    CLASS
+        MAXSCALEDENOM 105000
+        EXPRESSION ('[waterway]'='drain' or '[waterway]'='ditch')
+        STYLE
+            COLOR "#579ae3"
+            WIDTH 10
+            MINWIDTH 0.5
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          ANGLE FOLLOW
+          MAXSCALEDENOM 10000
+          MINDISTANCE 400   
+          SIZE 15
+          MINSIZE 7
+          MAXSIZE 12
+          COLOR "#000033" 
+          OUTLINEWIDTH 2
+          OUTLINECOLOR "#ffffff"
+          ALIGN CENTER
+        END
+    END
+
+    CLASS
+        MAXSCALEDENOM 105000
+        EXPRESSION "dam"
+        STYLE
+            COLOR "#444455"
+            WIDTH 10
+            MINWIDTH 1
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          ANGLE FOLLOW
+          MAXSCALEDENOM 10000
+          MINDISTANCE 400   
+          SIZE 10
+          MINSIZE 7
+          MAXSIZE 12
+          COLOR "#222233" 
+          OUTLINEWIDTH 2
+          OUTLINECOLOR "#ffffff"
+          ALIGN CENTER
+        END
+    END
+
+END
+
+LAYER
+    TYPE LINE
+    NAME "fliessendeswasserpfeil"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,name,waterway,stream,streamtype,intermittent,osm_id from @osm_line@ where tunnel is null and waterway IN ('river', 'stream', 'canal', 'drain', 'ditch')) as foo using unique osm_id using srid=900913"
+    CLASSITEM "waterway"
+    LABELITEM 'name'
+    SIZEUNITS meters
+    MAXSCALEDENOM 15000
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            SYMBOL "fluss"
+            COLOR "#4488ff"
+            WIDTH 2
+            SIZE  20
+            MAXSIZE 50
+            MINWIDTH 0.3
+            MAXWIDTH 0.8
+        END
+    END
+
+    CLASS
+        MAXSCALEDENOM 10000
+        EXPRESSION ( '[stream]'!='dry' and '[streamtype]'!='dry' and '[intermittent]'!='yes' )
+        STYLE
+            SYMBOL "fluss"
+            COLOR "#2277cc"
+            WIDTH 2
+            SIZE  10
+            MAXSIZE 30
+            MINWIDTH 0.3
+            MAXWIDTH 0.8
+        END
+    END
+
+
+
+
+END
+
+
+
+
+LAYER
+    TYPE LINE
+    NAME "fliessendeswasser"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,waterway,stream,osm_id from @osm_line@ where tunnel is not null and waterway IN ('river', 'stream', 'canal', 'drain', 'ditch')) as foo using unique osm_id using srid=900913"
+    CLASSITEM "waterway"
+    SIZEUNITS meters
+    MAXSCALEDENOM 2000000
+    CLASS
+        EXPRESSION "river"
+        STYLE
+            OPACITY 30
+            COLOR "#579ae3"
+            WIDTH 30
+            MINWIDTH 0.5
+        END
+    END
+    CLASS
+        MAXSCALEDENOM 105000
+        EXPRESSION ('[waterway]'='stream' and '[stream]'='dry')
+        STYLE
+            OPACITY 30
+            COLOR "#9999ff"
+            WIDTH 5
+            MINWIDTH 0.5
+        END
+    END
+
+    CLASS
+        MAXSCALEDENOM 105000
+        EXPRESSION "stream"
+        STYLE
+            OPACITY 30
+            COLOR "#579ae3"
+            WIDTH 5
+            MINWIDTH 0.5
+        END
+    END
+    CLASS
+        EXPRESSION "canal"
+        STYLE
+            OPACITY 30
+            COLOR "#579ae3"
+            WIDTH 10
+            MINWIDTH 0.5
+        END
+    END
+    CLASS
+        MAXSCALEDENOM 105000
+        EXPRESSION ('[waterway]'='drain' or '[waterway]'='ditch')         
+        STYLE
+            OPACITY 30
+            COLOR "#579ae3"
+            WIDTH 10
+            MINWIDTH 0.5
+        END
+    END
+END
+
+
+
+############ CLIFF ##################
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    MAXSCALEDENOM 100000
+    NAME "CLIFF"
+    DATA "way from (select way,osm_id,name,nature from @osm_line@ where nature='cliff' or nature='ridge' or nature='arete' or nature='gorge' ) as foo using unique osm_id using srid=900913"
+    SIZEUNITS meters
+    CLASSITEM 'nature'
+    LABELITEM 'name'
+    CLASS
+        EXPRESSION 'cliff'
+        STYLE
+            WIDTH 10
+            MINWIDTH 0.1
+            MAXWIDTH 2
+            COLOR "#999999"
+            SYMBOL "cliff"
+            OPACITY 75
+        END
+        LABEL
+         MAXSCALEDENOM 20000
+         ANGLE FOLLOW
+         TYPE TRUETYPE FONT sci PARTIALS FALSE OUTLINEWIDTH 2
+         MINDISTANCE 400
+         SIZE 30
+         MINSIZE 7
+         MAXSIZE 9
+         COLOR "#000000"
+         WRAP ' '
+         PRIORITY 1
+         MAXLENGTH 5
+         ALIGN CENTER
+        END
+    END
+    CLASS
+        EXPRESSION 'ridge'
+        LABEL
+         MAXSCALEDENOM 20000
+         ANGLE FOLLOW
+         TYPE TRUETYPE FONT sci PARTIALS FALSE OUTLINEWIDTH 2
+         MINDISTANCE 400
+         SIZE 30
+         MINSIZE 7
+         MAXSIZE 9
+         COLOR "#000000"
+         WRAP ' '
+         PRIORITY 1
+         MAXLENGTH 5
+         ALIGN CENTER
+        END
+    END
+    CLASS
+        EXPRESSION 'arete'
+        LABEL
+         MAXSCALEDENOM 20000
+         ANGLE FOLLOW
+         TYPE TRUETYPE FONT sci PARTIALS FALSE OUTLINEWIDTH 2
+         MINDISTANCE 400
+         SIZE 25
+         MINSIZE 7
+         MAXSIZE 9
+         COLOR "#000000"
+         WRAP ' '
+         PRIORITY 1
+         MAXLENGTH 5
+         ALIGN CENTER
+        END
+    END
+    CLASS
+        EXPRESSION 'gorge'
+        LABEL
+         MAXSCALEDENOM 20000
+         ANGLE FOLLOW
+         TYPE TRUETYPE FONT sci PARTIALS FALSE OUTLINEWIDTH 2
+         MINDISTANCE 400
+         SIZE 30
+         MINSIZE 7
+         MAXSIZE 9
+         COLOR "#000000"
+         WRAP ' '
+         PRIORITY 1
+         MAXLENGTH 5
+         ALIGN CENTER
+        END
+    END
+
+END
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    MAXSCALEDENOM 100000
+    NAME "CLIFF"
+    DATA "way from (select way,osm_id,name,nature from @osm_polygon@ where nature='cliff' or nature='ridge') as foo using unique osm_id using srid=900913"
+    SIZEUNITS meters
+    CLASSITEM 'nature'
+    LABELITEM 'name'
+    CLASS
+        EXPRESSION 'cliff'
+        STYLE
+            WIDTH 2
+            MINWIDTH 0.5
+            MAXWIDTH 4
+            COLOR "#999999"
+            SYMBOL "minicliff"
+            OPACITY 60
+        END
+    END
+END
+
+
+
+
+#########################  GEBIRGSNAMEN ############################################################
+#
+#LAYER
+#    TYPE ANNOTATION
+#    STATUS ON
+#    GROUP "default"
+#    NAME "gebname"
+#    MAXSCALEDENOM  1000000
+#    MINSCALEDENOM    30000
+#    CONNECTIONTYPE POSTGIS
+#    CONNECTION "@pgsqlcon@"
+#    DATA "way from (select way,osm_id,bu,size,priority,angle,autoindex from osm_gebirge) as foo using unique autoindex using srid=900913"
+#    PROCESSING "LABEL_NO_CLIP=ON"
+#    PROCESSING "CLOSE_CONNECTION=DEFER"
+#    LABELITEM "bu"
+#    SIZEUNITS meters
+#    LABELCACHE off
+#    OPACITY   30
+#
+#
+#    CLASS
+#        MAXSCALEDENOM 1000000
+#        MINSCALEDENOM  500000
+#        EXPRESSION ([size] > 1200 and ( [priority]!=1 ) ) 
+#        LABEL 
+#         PARTIALS TRUE
+#         FONT "scb"
+#         TYPE TRUETYPE
+#         SIZE  [size]
+#         ANGLE [angle]
+#         MAXSIZE 40
+#         MINSIZE  1
+#         BUFFER 1
+#         COLOR "#1e0000"
+#         FORCE TRUE
+#        END
+#    END
+#
+#    CLASS
+#        MAXSCALEDENOM  500000
+#        MINSCALEDENOM  100000
+#        EXPRESSION ([size] > 1200 and ( [priority]!=2 ) ) 
+#        LABEL 
+#         PARTIALS TRUE
+#         FONT "scb"
+#         TYPE TRUETYPE
+#         SIZE  [size]
+#         ANGLE [angle]
+#         MAXSIZE 40
+#         MINSIZE  1
+#         BUFFER 1
+#         COLOR "#1e0000"
+#         FORCE TRUE
+#        END
+#    END
+#
+#    CLASS
+#        MAXSCALEDENOM 500000
+#        MINSCALEDENOM  50000
+#        EXPRESSION ([size] > 800 and [size] <= 1200 ) 
+#        LABEL 
+#         PARTIALS TRUE
+#         FONT "scb"
+#         TYPE TRUETYPE
+#         SIZE  [size]
+#         ANGLE [angle]
+#         MAXSIZE 40
+#         MINSIZE  1
+#         BUFFER 1
+#         COLOR "#1e0000"
+#         FORCE TRUE
+#        END
+#    END
+#    CLASS
+#        MAXSCALEDENOM 250000
+#        MINSCALEDENOM  30000 
+#        EXPRESSION ([size] <= 800 )
+#        LABEL 
+#         PARTIALS TRUE
+#         FONT "scb"
+#         TYPE TRUETYPE
+#         SIZE  [size]
+#         ANGLE [angle]
+#         MAXSIZE 40
+#         MINSIZE  1
+#         BUFFER 1
+#         COLOR "#1e0000"
+#         FORCE TRUE
+#        END
+#    END
+#
+#END
+
+
+##########################  HAEUSER ################################################################
+
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:900913"
+    END
+    NAME "haeuserboden"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,osm_id ,amenity ,name, tourism, power, ruins, abandoned,generator_source from @osm_polygon@ where building is not null or power='station' or power='generator') as foo using unique osm_id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    MAXSCALEDENOM 10000
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+
+    CLASS
+        EXPRESSION ('[ruins]'!='yes'  and '[abandoned]'!='yes')
+        STYLE
+            COLOR "#886666"
+            OFFSET 3 3
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[amenity]'='place_of_worship')
+        STYLE
+            COLOR "#775555"
+            OFFSET 3 3
+        END
+    END
+    CLASS
+        EXPRESSION ('[amenity]'='hospital')
+        STYLE
+            COLOR "#885555"
+            OFFSET 3 3
+        END
+    END
+    CLASS
+        EXPRESSION ('[amenity]'='school' or '[amenity]'='college' or '[amenity]'='university' or '[tourism]'='attraction' or '[amenity]'='townhall')
+        STYLE
+            COLOR "#885555"
+            OFFSET 3 3
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[power]'='generator' or '[power]'='station') and ('[generator_source]'!='solar'))
+        STYLE
+            COLOR "#886666"
+            OFFSET 3 3
+        END
+    END
+
+
+END
+
+LAYER
+    TYPE POLYGON
+    STATUS ON
+    PROJECTION
+        "init=epsg:900913"
+    END
+    NAME "haeuserdach"
+    GROUP "default"
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,osm_id ,amenity ,name, building, tourism, power, ruins, abandoned,generator_source from @osm_polygon@ where building is not null  or amenity='place_of_worship' or power='station' or power='generator') as foo using unique osm_id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    MAXSCALEDENOM 20000
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+
+    CLASS
+        EXPRESSION ('[ruins]'='yes'  or '[abandoned]'='yes')
+        STYLE
+            SYMBOL "schraffur"
+            WIDTH 0.5
+            ANGLE 30
+            COLOR "#aa8888"
+            SIZE 2
+        END
+        STYLE
+         OUTLINECOLOR "#aa8888"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[amenity]'='place_of_worship' and '[building]'='' )
+        STYLE
+            OPACITY 50
+            COLOR "#997777"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[amenity]'='place_of_worship')
+        STYLE
+            COLOR "#997777"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[amenity]'='hospital')
+        STYLE
+            COLOR "#aa7777"
+        END
+    END
+    CLASS
+        EXPRESSION ('[amenity]'='school' or '[amenity]'='college' or '[amenity]'='university' or '[tourism]'='attraction' or '[amenity]'='townhall')
+        STYLE
+            COLOR "#aa7777"
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 15000
+          MINDISTANCE 400
+          SIZE 7
+          COLOR "#333333"
+          OUTLINECOLOR "#ffffff"
+          PRIORITY 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[power]'='generator'  or '[power]'='station') and ('[generator_source]'='solar'))
+        STYLE
+            COLOR "#aaaaaa"
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 15000
+          MINDISTANCE 400
+          SIZE 7
+          COLOR "#222222"
+          OUTLINECOLOR "#ffffff"
+          PRIORITY 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ('[power]'='generator'  or '[power]'='station')
+        STYLE
+            COLOR "#aa9999"
+        END
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MAXSCALEDENOM 15000
+          MINDISTANCE 400
+          SIZE 7
+          COLOR "#222222"
+          OUTLINECOLOR "#ffffff"
+          PRIORITY 2
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+        END
+    END
+
+    CLASS
+        STYLE
+            COLOR "#aa8888"
+        END
+    END
+
+END
+
+######## Grenzen #######################################################################
+
+LAYER
+    STATUS ON 
+    GROUP "default" 
+    PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    MINSCALEDENOM  1500001
+    MAXSCALEDENOM 60000000
+
+    TYPE LINE
+    NAME "grenzensimple"
+    #DATA "way from (select way,name,border_id from osm_grenzen where type='simple') as foo using unique border_id using srid=900913"
+    DATA "way from (select way,name,osm_id from topo_view_osm_roads where boundary='administrative' and not boundary='maritime' and admin_level='2') as foo using unique osm_id using srid=900913"
+    SIZEUNITS pixels
+    CLASS
+     STYLE
+      OPACITY 50
+      COLOR "#000000"
+      WIDTH 1
+      OUTLINEWIDTH 0.5
+      OUTLINECOLOR "#ff0000"
+     END
+    END
+END
+
+LAYER
+    STATUS ON 
+    GROUP "default" 
+    PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    MAXSCALEDENOM 1500000
+    TYPE LINE
+    NAME "grenzen"
+    #DATA "way from (select way,name,border_id from osm_grenzen where type='full') as foo using unique border_id using srid=900913"
+    DATA "way from (select way,name,osm_id from topo_view_osm_roads where boundary='administrative' and not boundary='maritime' and admin_level='2') as foo using unique osm_id using srid=900913"
+    SIZEUNITS pixels
+    CLASS
+     MINSCALEDENOM 100001
+     STYLE
+      COLOR "#FF0000"  
+      OPACITY 30
+      WIDTH 3
+     END
+     STYLE
+      SYMBOL "grenzstrich"
+      COLOR "#000000"
+      OPACITY 60
+      SIZE 3
+     END
+    END
+
+    CLASS
+     MAXSCALEDENOM 100000
+     STYLE
+      SYMBOL "grenzbuerste"
+      COLOR "#FF0000"
+      OPACITY 40
+      SIZE 6
+     END
+     STYLE
+      SYMBOL "grenzstrich"
+      COLOR "#000000"
+      OPACITY 70
+      SIZE 6
+     END
+    END
+
+END
+
+
+
+
+
+########################### STRASSEN ################################################################
+
+
+LAYER
+    MAXSCALEDENOM 250000
+    MINSCALEDENOM  15001  
+    STATUS ON 
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "winzigestr"
+    DATA "way from (select way,osm_id,highway,sac_scale, CASE WHEN trail_visibility='no' THEN 50 WHEN trail_visibility='horrible' THEN 65 WHEN trail_visibility='bad' THEN 80 ELSE 99 END as visibility from @osm_line@ where (access is null or (access!='no' and access!='private')) and (highway = 'residential' or highway = 'services' or highway = 'pedestrian' or highway = 'service' or highway = 'track' or highway = 'path' or highway = 'via_ferrata') order by z_order) as foo using unique osm_id using srid=900913"
+    CLASSITEM "sac_scale"
+    SIZEUNITS meters
+    CLASS
+
+    CLASS
+        EXPRESSION ('[sac_scale]'='demanding_mountain_hiking' or '[sac_scale]'='alpine_hiking')
+        STYLE
+         OPACITY [visibility]
+         WIDTH 6
+         MAXWIDTH 5
+         PATTERN 60 40 END
+         COLOR "#555555"
+        END
+    END
+
+
+
+    CLASS
+        EXPRESSION ('[sac_scale]'='demanding_alpine_hiking')
+        STYLE
+         OPACITY [visibility]
+         WIDTH 6
+         MAXWIDTH 5
+         PATTERN 40 60 END
+         COLOR "#555555"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[sac_scale]'='difficult_alpine_hiking' or '[highway]'='via_ferrata')
+        STYLE
+         OPACITY [visibility]
+         WIDTH 6
+         MAXWIDTH 5
+         PATTERN 10 20 10 60 END
+         COLOR "#555555"
+        END
+    END
+
+
+
+    CLASS
+        STYLE
+         OPACITY [visibility]
+         WIDTH 6
+         MAXWIDTH 5
+         COLOR "#555555"
+        END
+    END
+
+END
+
+LAYER
+    MAXSCALEDENOM 2000000
+    MINSCALEDENOM  250000  
+    STATUS ON 
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "riesigestr"
+    DATA "way from (select way,osm_id,highway,ref,name,bridge,tunnel,railway from @osm_line@ where highway like 'motorway%' or highway like 'trunk%' or highway like 'primary%' or highway like 'secondary%' or highway like 'tertiary%' or railway = 'rail' order by z_order) as foo using unique osm_id using srid=900913"
+    CLASSITEM "highway"
+    SIZEUNITS meters
+    CLASS
+        EXPRESSION 'secondary'
+        STYLE
+         WIDTH 300
+         MAXWIDTH 3
+         COLOR "#cccc00"
+        END
+    END
+    CLASS
+        EXPRESSION 'primary'
+        STYLE
+         WIDTH 400
+         MAXWIDTH 3
+         COLOR "#dd6633"
+        END
+    END
+    CLASS
+        EXPRESSION 'motorway'
+        STYLE
+         WIDTH 500
+         MAXWIDTH 3
+         COLOR "#cc4444"
+        END
+    END
+
+END
+
+
+#################### Flughafen ##################################################################
+
+LAYER
+    MAXSCALEDENOM 150000
+    STATUS ON 
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "flughafen1"
+    DATA "way from (select way,osm_id,highway,ref,aeroway from @osm_line@ where aeroway = 'taxiway' order by z_order) as foo using unique osm_id using srid=900913"
+    SIZEUNITS meters
+    CLASS
+        STYLE
+         WIDTH 20
+         MAXWIDTH 3
+         COLOR "#555555"
+        END
+    END
+END
+
+LAYER
+    MAXSCALEDENOM 2000000
+    STATUS ON 
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "flughafen1"
+    DATA "way from (select way,osm_id,highway,ref,aeroway from @osm_line@ where aeroway = 'runway' order by z_order) as foo using unique osm_id using srid=900913"
+    SIZEUNITS meters
+    CLASS
+        STYLE
+         WIDTH 60
+         MAXWIDTH 3
+         COLOR "#555555"
+        END
+    END
+END
+
+LAYER
+    MAXSCALEDENOM 2000000
+    STATUS ON 
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE POLYGON
+    NAME "flughafen3"
+    DATA "way from (select way,osm_id,highway,ref,aeroway from @osm_polygon@ where aeroway = 'runway' order by z_order) as foo using unique osm_id using srid=900913"
+    SIZEUNITS meters
+    CLASS
+        STYLE
+         COLOR "#555555"
+        END
+    END
+END
+
+
+
+
+
+
+############### ############## GROSSER MASSTAB #####################################################
+
+LAYER
+    STATUS ON 
+    MAXSCALEDENOM 250000
+    MINSCALEDENOM  15001
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "strkl"
+    DATA "way from (select way,osm_id,highway,ref,name,bridge,tunnel,layer,railway from @osm_line@ where highway like 'motorway%' or highway like 'trunk%' or highway like 'primary%' or highway like 'secondary%' or highway like 'tertiary%' or highway='unclassified' or railway = 'rail' or railway = 'narrow_gauge' order by z_order) as foo using unique osm_id using srid=900913"
+    LABELITEM "ref"
+    CLASSITEM "highway"
+    SIZEUNITS meters
+
+    CLASS
+        EXPRESSION ('[highway]'='unclassified' and '[tunnel]'='yes')
+        STYLE
+         WIDTH 10
+         MAXWIDTH 12 
+         LINEJOIN NONE
+         OUTLINEWIDTH 0.2
+         COLOR "#ffffff"
+         OUTLINECOLOR "#cccccc"
+         OPACITY 60
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='tertiary_link' and '[tunnel]'='yes')   
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            LINEJOIN NONE
+            OUTLINEWIDTH 0.2
+            COLOR "#eeeeee"
+            OUTLINECOLOR "#cccccc"
+            OPACITY 60
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='tertiary' and '[tunnel]'='yes')
+        STYLE
+         WIDTH 10
+         MAXWIDTH 12 
+         LINEJOIN NONE
+         OUTLINEWIDTH 0.2
+         COLOR "#ffffbb"
+         OUTLINECOLOR "#cccccc"
+         OPACITY 60
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='secondary_link' and '[tunnel]'='yes')   
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            OUTLINEWIDTH 1
+            COLOR "#FFFF00"
+            OUTLINECOLOR "#bbbb00"
+            OPACITY 60
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='secondary' and '[tunnel]'='yes')
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            OUTLINEWIDTH 1
+            COLOR "#FFFF00"
+            OUTLINECOLOR "#bbbb00"
+            OPACITY 60
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='trunk_link' or '[highway]'='primary_link') and '[tunnel]'='yes')   
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12    
+            OUTLINEWIDTH 2
+            COLOR "#FFB400"
+            OUTLINECOLOR "#cc7700"
+            OPACITY 60
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='trunk' or '[highway]'='primary') and '[tunnel]'='yes')
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            OUTLINEWIDTH 2
+            COLOR "#FFB400"
+            OUTLINECOLOR "#DD8800"
+            OPACITY 60
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='motorway_link' and '[tunnel]'='yes')   
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            OUTLINEWIDTH 1
+            COLOR "#ff0000"
+            OUTLINECOLOR "#bb0000"
+            OPACITY 20
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='motorway' and '[tunnel]'='yes')
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            OUTLINEWIDTH 2
+            COLOR "#ff0000"
+            OUTLINECOLOR "#bb0000"
+            OPACITY 20
+        END
+    END
+
+    CLASS
+        EXPRESSION ((('[railway]'='rail' or '[railway]'='narrow_gauge') and '[tunnel]'='yes') or '[railway]'='subway')   
+        STYLE
+            WIDTH 2
+            MAXWIDTH 5
+            COLOR "#111111"
+            OPACITY 30
+        END
+    END
+
+
+
+############## Weder TUNNEL noch BRUECKE ####################
+
+    CLASS
+       EXPRESSION ('[highway]'='unclassified' and '[tunnel]'!='yes' and '[bridge]'!='yes')
+        STYLE
+         WIDTH 10
+         MAXWIDTH 12 
+         LINEJOIN NONE
+         OUTLINEWIDTH 0.2
+         COLOR "#eeeeee"
+         OUTLINECOLOR "#000000"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='tertiary_link' and '[tunnel]'!='yes' and '[bridge]'!='yes')   
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            LINEJOIN NONE
+            OUTLINEWIDTH 0.2
+            COLOR "#ffffbb"
+            OUTLINECOLOR "#000000"
+        END
+    END
+
+    CLASS
+       EXPRESSION ('[highway]'='tertiary' and '[tunnel]'!='yes' and '[bridge]'!='yes')
+        STYLE
+         WIDTH 10
+         MAXWIDTH 12 
+         LINEJOIN NONE
+         OUTLINEWIDTH 0.2
+         COLOR "#ffffbb"
+         OUTLINECOLOR "#000000"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='secondary_link' and '[tunnel]'!='yes' and '[bridge]'!='yes')   
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            LINEJOIN NONE
+            OUTLINEWIDTH 1
+            COLOR "#FFFF00"
+            OUTLINECOLOR "#cccc00"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='secondary' and '[tunnel]'!='yes' and '[bridge]'!='yes')
+        STYLE
+         WIDTH 10
+         MAXWIDTH 12 
+         LINEJOIN NONE
+         OUTLINEWIDTH 1
+         COLOR "#FFFF00"
+         OUTLINECOLOR "#cccc00"
+        END
+        LABEL
+         MAXSCALEDENOM 150000
+         ANGLE FOLLOW
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+         MINDISTANCE 400
+         SIZE 30
+         MINSIZE 7
+         MAXSIZE 15
+         COLOR "#333300"
+         OUTLINECOLOR "#ffffff"
+         WRAP ' '
+         MAXLENGTH 5
+         ALIGN CENTER
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='trunk_link' or '[highway]'='primary_link') and '[tunnel]'!='yes' and '[bridge]'!='yes')   
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12 
+            LINEJOIN NONE
+            OUTLINEWIDTH 2
+            COLOR "#FFB400"
+            OUTLINECOLOR "#dd6633"
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='trunk' or '[highway]'='primary') and '[tunnel]'!='yes' and '[bridge]'!='yes')
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12 
+            LINEJOIN NONE
+            OUTLINEWIDTH 2
+            COLOR "#FFB400"
+            OUTLINECOLOR "#dd6633"
+        END
+        LABEL
+         MAXSCALEDENOM 5250000
+         ANGLE FOLLOW
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+         MINDISTANCE 400
+         SIZE 35
+         MINSIZE 7
+         MAXSIZE 18
+         COLOR "#111100"
+         OUTLINECOLOR "#ffffff"
+         WRAP ' '
+         MAXLENGTH 5
+         ALIGN CENTER
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='motorway_link' and '[tunnel]'!='yes' and '[bridge]'!='yes')   
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12 
+            LINEJOIN NONE
+            OUTLINEWIDTH 2
+            COLOR "#ff0000"
+            OUTLINECOLOR "#cc4444"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='motorway' and '[tunnel]'!='yes' and '[bridge]'!='yes')
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            LINEJOIN NONE
+            OUTLINEWIDTH 2
+            COLOR "#ff0000"
+            OUTLINECOLOR "#cc4444"
+        END   
+        LABEL
+         MAXSCALEDENOM 1000000
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+         MINDISTANCE 300
+         SIZE 100
+         MINSIZE 6
+         MAXSIZE 10
+         COLOR "#000000"
+         WRAP ' '
+         MAXLENGTH 5
+         ALIGN CENTER
+         STYLE  
+          GEOMTRANSFORM labelpoly
+          COLOR "#ff5555"
+         END 
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[railway]'='rail' or '[railway]'='narrow_gauge') and '[tunnel]'!='yes' and '[bridge]'!='yes')   
+        STYLE
+            WIDTH 2
+            MAXWIDTH 5
+            COLOR "#111111"
+        END
+    END
+
+
+END
+
+############################# BRUECKEN
+
+
+LAYER
+    MAXSCALEDENOM 250000
+    MINSCALEDENOM  15001
+    STATUS ON 
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "strklbr"
+    DATA "way from (select way,osm_id,highway,ref,name,bridge,tunnel,railway from @osm_line@ where (bridge='yes' or bridge='viaduct') and (highway like 'motorway%' or highway like 'trunk%' or highway like 'primary%' or highway like 'secondary%' or highway like 'tertiary%' or highway='unclassified' or railway = 'rail' or railway = 'narrow_gauge' ) order by z_order) as foo using unique osm_id using srid=900913"
+    LABELITEM "ref"
+    CLASSITEM "highway"
+    SIZEUNITS meters
+
+    CLASS
+        EXPRESSION ('[highway]'='unclassified' )
+        STYLE
+         WIDTH 10
+         MAXWIDTH 12 
+         LINECAP butt
+         OUTLINEWIDTH 0.2
+         COLOR "#ffffff"
+         OUTLINECOLOR "#000000"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='tertiary_link' )   
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            LINECAP butt
+            OUTLINEWIDTH 0.2
+            COLOR "#ffffbb"
+            OUTLINECOLOR "#000000"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='tertiary' )
+        STYLE
+         WIDTH 10
+         MAXWIDTH 12 
+         LINECAP butt
+         OUTLINEWIDTH 0.2
+         COLOR "#ffffbb"
+         OUTLINECOLOR "#000000"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='secondary_link' )   
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#ffff00"
+            OUTLINECOLOR "#bbbb00"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='secondary' )
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            LINECAP butt
+            OUTLINEWIDTH 1
+            COLOR "#ffff00"
+            OUTLINECOLOR "#bbbb00"
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='trunk_link' or '[highway]'='primary_link') )   
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#FFB400"
+            OUTLINECOLOR "#cc7700"
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='trunk' or '[highway]'='primary') )
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#FFB400"
+            OUTLINECOLOR "#cc7700"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='motorway_link' )   
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#ff0000"
+            OUTLINECOLOR "#c03030"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='motorway' )
+
+        STYLE
+            WIDTH 10
+            MAXWIDTH 12
+            OUTLINEWIDTH 2
+            LINECAP butt
+            COLOR "#ff0000"
+            OUTLINECOLOR "#c03030"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[railway]'='rail' or '[railway]'='narrow_gauge' )   
+        STYLE
+            WIDTH 2
+            MAXWIDTH 5
+            COLOR "#111111"
+        END
+    END
+
+END
+
+
+
+############################# KLEINER MASSTAB #####################################################
+
+
+
+################# TUNNEL KLEINER MASSTAB #####################################################
+
+
+
+LAYER
+    STATUS ON
+    MAXSCALEDENOM  15000
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "strgrbr"
+    DATA "way from (select way,osm_id,highway,coalesce(shortname,name) as shortname,ref,name,bridge,tunnel,railway,surface,layer,tracktype,public_transport from @osm_line@ where (CAST(layer as float)<0 or tunnel = 'yes') and (highway is not null or railway is not null or public_transport='platform') order by z_order) as foo using unique osm_id using srid=900913"
+    LABELITEM "shortname"
+    CLASSITEM "highway"
+    SIZEUNITS meters
+    OPACITY   40    
+
+    CLASS
+        EXPRESSION ('[railway]'='platform' or '[public_transport]'='platform')   
+        STYLE
+            WIDTH 6
+            MAXWIDTH 12
+            LINECAP butt
+            OUTLINEWIDTH 0.1
+            COLOR "#a0a0a0"
+            OUTLINECOLOR "#000000"
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ('[highway]'='pedestrian' )   
+        STYLE
+            WIDTH 8
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.1
+            COLOR "#a5a5a5"
+            OUTLINECOLOR "#000000"
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ('[highway]'='cycleway')   
+        STYLE
+            WIDTH 3
+            MAXWIDTH 8
+            LINECAP butt
+            OUTLINEWIDTH 0.5
+            COLOR "#bbbbbb" 
+            OUTLINECOLOR "#444444"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='footway')   
+        STYLE
+            WIDTH 3
+            MAXWIDTH 8
+            LINECAP butt
+            OUTLINEWIDTH 0.5
+            COLOR "#bbbbbb" 
+            OUTLINECOLOR "#444444"
+        END
+    END
+
+    CLASS
+        EXPRESSION ( '[highway]'='bridleway' )   
+        STYLE
+            WIDTH 2
+            MAXWIDTH 6
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#444444"
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ('[highway]'='path')   
+        STYLE
+            WIDTH 2
+            MAXWIDTH 6
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#aaaaaa"
+            OUTLINECOLOR "#888888"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='steps')
+        STYLE
+            WIDTH 2
+            MAXWIDTH 6
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#aaaaaa"
+            OUTLINECOLOR "#888888"
+        END
+        STYLE
+            SYMBOL treppe
+            COLOR "#888888"
+            SIZE 2
+            MAXSIZE 6
+        END  
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='track' and '[tracktype]' = 'grade2')   
+        STYLE
+            WIDTH 8
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#886622"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='track' and '[tracktype]' = 'grade3')   
+        STYLE
+            WIDTH 8
+            MAXWIDTH 14
+            LINECAP butt
+            PATTERN 20 3  END
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#886622"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='track' and '[tracktype]' = 'grade4')   
+        STYLE
+            WIDTH 4
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#886622"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='track' and ('[tracktype]' = 'grade5' or ( '[tracktype]' = '' and '[surface]' != 'paved' and  '[surface]' != 'asphalt' ) ) )   
+        STYLE
+            WIDTH 4
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#886622"
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='living_street' or '[highway]'='service' or '[highway]'='raceway' or ('[highway]'='track' and ('[tracktype]'='grade1' or '[surface]'='paved' or '[surface]'='asphalt'))))   
+        STYLE
+            WIDTH 8
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.5
+            COLOR "#eeeeee"
+            OUTLINECOLOR "#333333"
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='residential' or ('[highway]'='road')) )   
+        STYLE
+            WIDTH 16
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.1
+            COLOR "#eeeeee"
+            OUTLINECOLOR "#000000"
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='unclassified' or  ('[highway]'='services')) )   
+        STYLE
+            WIDTH 18
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.2
+            COLOR "#aaaaaa"
+            OUTLINECOLOR "#444444"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='tertiary_link' )   
+        STYLE
+            WIDTH 20
+            MAXWIDTH 14
+            LINECAP butt
+            LINECAP butt
+            OUTLINEWIDTH 0.3
+            COLOR "#ffffbb"
+            OUTLINECOLOR "#cccccc"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='tertiary' )
+        STYLE
+         WIDTH 20
+         MAXWIDTH 14 
+         LINECAP butt
+         LINECAP butt
+         OUTLINEWIDTH 0.2
+         COLOR "#ffffbb"
+         OUTLINECOLOR "#cccccc"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='secondary_link' )   
+        STYLE
+            WIDTH 20
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#FFFF77"
+            OUTLINECOLOR "#bbbb00"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='secondary' )
+        STYLE
+            WIDTH 20
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#FFFF77"
+            OUTLINECOLOR "#bbbb00"
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='trunk_link' or '[highway]'='primary_link') )   
+        STYLE
+            WIDTH 20
+            MAXWIDTH 14    
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#FFcc44" 
+            OUTLINECOLOR "#dd6633"
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='trunk' or '[highway]'='primary') )
+        STYLE
+            WIDTH 20
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#FFcc44" 
+            OUTLINECOLOR "#dd6633"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='motorway_link' )   
+        STYLE
+            WIDTH 21
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#ee7777"
+            OUTLINECOLOR "#cc3333"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='motorway' )
+        STYLE
+            WIDTH 21
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#ee7777"
+            OUTLINECOLOR "#cc3333"
+        END
+    END
+
+    CLASS
+      EXPRESSION (('[railway]'='rail' or '[railway]'='narrow_gauge' or '[railway]'='subway'))   
+       STYLE
+        COLOR "#c8c8c8" 
+        WIDTH 2
+        MAXSIZE 6  
+        OUTLINEWIDTH 0.5
+        OUTLINECOLOR "#666666"
+       END
+       STYLE
+        COLOR "#666666"
+        WIDTH 2
+        MAXSIZE 6
+        PATTERN 12 20 END
+       END
+    END  
+END
+
+
+############## Wanderwege vorzeichnen ########################################################################
+
+LAYER
+    STATUS ON 
+    MAXSCALEDENOM  15000
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "strgr"
+    DATA "way from (select way,osm_id,highway,access from @osm_line@ where tunnel is null and bridge is null and (layer is null or CAST(layer as float)>=0) and (highway='path' or highway='track') order by z_order) as foo using unique osm_id using srid=900913 "
+    CLASSITEM "highway"
+    SIZEUNITS meters
+
+    CLASS 
+     MINSCALEDENOM  10000
+     EXPRESSION ('[access]'='no' or '[access]'='private')
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='path')
+        STYLE
+            OPACITY 30
+            WIDTH 3
+            MAXWIDTH 6
+            COLOR "#aaaaaa"
+            OUTLINEWIDTH 0.25
+            OUTLINECOLOR "#777777"
+
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='track')   
+        STYLE
+            OPACITY 10
+            WIDTH 7
+            MAXWIDTH 14
+            OUTLINEWIDTH 0.2
+            COLOR "#bb8844"
+            OUTLINECOLOR "#886622"
+        END
+    END
+
+END
+
+
+
+############## Weder TUNNEL noch BRUECKE KLEINER MASSTAB #####################################################
+
+
+LAYER
+    STATUS ON 
+    MAXSCALEDENOM  15000
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "strgr"
+    DATA "way from (select way,osm_id,coalesce(shortname,name) as shortname,highway,ref,coalesce(name,ref) as name,bridge,tunnel,leisure,sport,railway,tracktype,access,surface,public_transport,man_made,sac_scale,CASE WHEN trail_visibility='no' THEN 50 WHEN trail_visibility='horrible' THEN 65 WHEN trail_visibility='bad' THEN 80 ELSE 99 END as visibility  from @osm_line@ where tunnel is null and bridge is null and (layer is null or CAST(layer as float)>=0) and (highway is not null or railway is not null or public_transport='platform' or man_made='pier' or leisure='track') order by z_order) as foo using unique osm_id using srid=900913 "
+    LABELITEM "shortname"
+    CLASSITEM "highway"
+    SIZEUNITS meters
+
+    CLASS 
+     MINSCALEDENOM  10000
+     EXPRESSION (('[highway]'='path' or '[highway]'='footway' or '[highway]'='track' or '[highway]'='cicleway' or '[highway]'='service') and ('[access]'='no' or '[access]'='private'))
+    END
+
+    CLASS
+        EXPRESSION ('[railway]'='platform' or '[public_transport]'='platform')   
+        STYLE
+            WIDTH 6
+            MAXWIDTH 12
+            OUTLINEWIDTH 0.5
+            COLOR "#a0a0a0"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[man_made]'='pier')
+        STYLE
+            WIDTH 8
+            MAXWIDTH 14
+            LINECAP butt
+            COLOR "#EDEBE6"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 8
+         MAXSIZE 11
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+
+
+    CLASS
+        EXPRESSION ('[highway]'='pedestrian' )   
+        STYLE
+            WIDTH 8
+            MAXWIDTH 14
+            OUTLINEWIDTH 0.5
+            COLOR "#a5a5a5"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='cycleway' )   
+        STYLE
+            WIDTH 3
+            MAXWIDTH 8
+            OUTLINEWIDTH 0.5
+            COLOR "#bbbbbb"
+            OUTLINECOLOR "#444444"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='footway' )   
+        STYLE
+            WIDTH 3
+            MAXWIDTH 8
+            OUTLINEWIDTH 0.5
+            COLOR "#bbbbbb"
+            OUTLINECOLOR "#444444"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='steps' )   
+        STYLE
+            WIDTH 2
+            MAXWIDTH 6
+            OUTLINEWIDTH 2
+            COLOR "#aaaaaa"
+            OUTLINECOLOR "#888888"
+        END
+         STYLE   
+            SYMBOL treppe
+            COLOR "#888888"
+            SIZE 2
+            MAXSIZE 6
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='path' and ('[sac_scale]'='demanding_mountain_hiking' or '[sac_scale]'='alpine_hiking'))   
+        MINSCALEDENOM  5000
+        STYLE
+            OPACITY [visibility]
+            WIDTH 2
+            MAXWIDTH 6
+            OUTLINEWIDTH 1
+            PATTERN 50 30 END
+            COLOR "#aaaaaa"
+            OUTLINECOLOR "#555555"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         PRIORITY 1
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        MINSCALEDENOM  5000
+        EXPRESSION ('[highway]'='path' and ('[sac_scale]'='demanding_alpine_hiking'))   
+        STYLE
+            OPACITY [visibility]
+            WIDTH 2
+            MAXWIDTH 6
+            PATTERN 30 50 END
+            OUTLINEWIDTH 1
+            COLOR "#aaaaaa"
+            OUTLINECOLOR "#555555"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         PRIORITY 1
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        MINSCALEDENOM  5000
+        EXPRESSION ('[highway]'='path' and ('[sac_scale]'='difficult_alpine_hiking'))   
+        STYLE
+            OPACITY [visibility]
+            WIDTH 2
+            MAXWIDTH 6
+            PATTERN 5 20 5 40 END
+            OUTLINEWIDTH 1
+            COLOR "#aaaaaa"
+            OUTLINECOLOR "#555555"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         PRIORITY 1
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='path' and ('[sac_scale]'='demanding_mountain_hiking' or '[sac_scale]'='alpine_hiking'))   
+        STYLE
+            OPACITY [visibility]
+            WIDTH 2
+            MAXWIDTH 6
+            OUTLINEWIDTH 1
+            PATTERN 15 10 END
+            COLOR "#aaaaaa"
+            OUTLINECOLOR "#555555"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         PRIORITY 1
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='path' and ('[sac_scale]'='demanding_alpine_hiking'))   
+        STYLE
+            OPACITY [visibility]
+            WIDTH 2
+            MAXWIDTH 6
+            PATTERN 10 15 END
+            OUTLINEWIDTH 1
+            COLOR "#aaaaaa"
+            OUTLINECOLOR "#555555"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         PRIORITY 1
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='path' and ('[sac_scale]'='difficult_alpine_hiking')) or '[highway]'='via_ferrata')   
+        STYLE
+           OPACITY [visibility]
+            WIDTH 2
+            MAXWIDTH 6
+            PATTERN 1 6 1 12 END
+            OUTLINEWIDTH 1
+            COLOR "#aaaaaa"
+            OUTLINECOLOR "#555555"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         PRIORITY 1
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+
+
+    CLASS
+        EXPRESSION ('[highway]'='path' )   
+        STYLE
+           OPACITY [visibility]
+            WIDTH 2
+            MAXWIDTH 6
+            OUTLINEWIDTH 1
+            COLOR "#aaaaaa"
+            OUTLINECOLOR "#555555"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         PRIORITY 1
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION ( '[highway]'='bridleway' )   
+        STYLE
+            WIDTH 2
+            MAXWIDTH 6
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#886622"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW 
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         PRIORITY 1
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='track' and '[tracktype]' = 'grade2' ) )   
+        STYLE
+            WIDTH 8
+            MAXWIDTH 14
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#886622"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         PRIORITY 1
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+
+    CLASS
+        EXPRESSION ('[highway]'='track' and '[tracktype]' = 'grade3' )   
+        STYLE
+            WIDTH 8
+            MAXWIDTH 14
+            PATTERN 20 3  END
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#886622"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         PRIORITY 1
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='track' and '[tracktype]' = 'grade4' )   
+        STYLE
+            WIDTH 4
+            PATTERN 8 8  END
+            MAXWIDTH 14
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#886622"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         PRIORITY 1
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='track' and ('[tracktype]' = 'grade5' or ('[tracktype]' = '' and '[surface]' != 'paved' and '[surface]' != 'asphalt' ))  )   
+        STYLE
+            WIDTH 4
+            PATTERN 8 8 2 8  END
+            MAXWIDTH 14
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#886622"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='living_street' or '[highway]'='service' or '[highway]'='raceway' or ('[highway]'='track' and ('[tracktype]'='grade1' or '[surface]'='paved' or '[surface]' = 'asphalt'))) )   
+        STYLE
+            WIDTH 8
+            MAXWIDTH 14
+            OUTLINEWIDTH 0.5
+            COLOR "#eeeeee"
+            OUTLINECOLOR "#333333"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400 
+         PRIORITY 2
+         SIZE 16
+         MAXSIZE 11
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION (('[leisure]'='track') and ('[sport]'='running' or '[sport]'='athletics'))   
+        STYLE
+            WIDTH 6
+            MAXWIDTH 10
+            OUTLINEWIDTH 0.5
+            COLOR "#aaddaa"
+            OUTLINECOLOR "#779977"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400 
+         PRIORITY 2
+         SIZE 16
+         MAXSIZE 11
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION (('[leisure]'='track') and ('[sport]'='swimming'))   
+        STYLE
+            WIDTH 6
+            MAXWIDTH 10
+            OUTLINEWIDTH 0.5
+            COLOR "#579ae3"
+            OUTLINECOLOR "#333333"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400 
+         PRIORITY 2
+         SIZE 16
+         MAXSIZE 11
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+
+    CLASS
+        EXPRESSION (('[leisure]'='track') and ('[sport]'='motocross' or '[sport]'='karting' or '[sport]'='inline_skating' or '[sport]'='cycling' or '[sport]'='motocross' or '[sport]'='skateboard'))   
+        STYLE
+            WIDTH 6
+            MAXWIDTH 10
+            OUTLINEWIDTH 0.5
+            COLOR "#eeeeee"
+            OUTLINECOLOR "#333333"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400 
+         PRIORITY 2
+         SIZE 16
+         MAXSIZE 11
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+
+
+    CLASS
+        EXPRESSION (('[highway]'='residential' or ('[highway]'='road')) )   
+        STYLE
+            WIDTH 16
+            MAXWIDTH 14
+            OUTLINEWIDTH 0.5
+            COLOR "#eeeeee"
+            OUTLINECOLOR "#222222"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         PRIORITY 2
+         SIZE 16
+         MAXSIZE 11
+         COLOR "#000000"
+         ALIGN CENTER
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='unclassified' or  ('[highway]'='services')) )   
+        STYLE
+            WIDTH 18
+            MAXWIDTH 14
+            OUTLINEWIDTH 0.8
+            COLOR "#eeeeee"
+            OUTLINECOLOR "#111111"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         MAXOVERLAPANGLE 45
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 18
+         MAXSIZE 11
+         PRIORITY 2
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='tertiary_link' )   
+        STYLE
+            WIDTH 20
+            MAXWIDTH 14
+            OUTLINEWIDTH 2
+            COLOR "#ffffbb"
+            OUTLINECOLOR "#aaaa00"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='tertiary' )
+        STYLE
+         WIDTH 20
+         MAXWIDTH 14 
+         OUTLINEWIDTH 2
+         COLOR "#ffffbb"
+         OUTLINECOLOR "#aaaa00"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 20
+         MAXSIZE 12
+         PRIORITY 2
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='secondary_link' )   
+        STYLE
+            WIDTH 20
+            MAXWIDTH 14
+            OUTLINEWIDTH 2
+            COLOR "#FFFF77"
+            OUTLINECOLOR "#999900"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='secondary' )
+        STYLE
+         WIDTH 20
+         MAXWIDTH 14 
+         OUTLINEWIDTH 2
+         COLOR "#FFFF77"
+         OUTLINECOLOR "#999900"
+        END
+        LABEL
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 20
+         MAXSIZE 12
+         PRIORITY 2
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='trunk_link' or '[highway]'='primary_link') )   
+        STYLE
+            WIDTH 20
+            MAXWIDTH 14 
+            OUTLINEWIDTH 2
+            COLOR "#FFcc44" 
+            OUTLINECOLOR "#dd6633"
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='trunk' or '[highway]'='primary') )
+        STYLE
+           WIDTH 20
+            MAXWIDTH 14 
+            OUTLINEWIDTH 2
+            COLOR "#FFcc44"
+            OUTLINECOLOR "#dd6633"
+        END
+        LABEL
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 25
+         MAXSIZE 12
+         COLOR "#000000"
+         ALIGN CENTER
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='motorway_link' )   
+        STYLE
+            WIDTH 21
+            MAXWIDTH 14
+            OUTLINEWIDTH 2
+            COLOR "#ee9999"
+            OUTLINECOLOR "#cc4444"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='motorway' )
+        STYLE
+            WIDTH 21
+            MAXWIDTH 14
+            OUTLINEWIDTH 2
+            COLOR "#ee9999"
+            OUTLINECOLOR "#cc4444"
+        END
+        LABEL
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 25
+         MAXSIZE 12
+         COLOR "#000000"
+         PRIORITY 2
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+      EXPRESSION ('[railway]'='rail' or '[railway]'='narrow_gauge' or '[railway]'='subway')   
+     STYLE
+        COLOR "#c8c8c8"
+        WIDTH 3  
+        OUTLINEWIDTH 0.5
+        OUTLINECOLOR "#666666"
+      END
+      STYLE
+        COLOR "#666666"
+        WIDTH 3
+        MAXSIZE 8
+        PATTERN 12 20 END
+      END
+    END
+END
+
+############################# BRUECKEN KLEINER MASSTAB #####################################################
+
+
+
+LAYER
+    STATUS ON 
+    MAXSCALEDENOM  15000
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "strgrbr"
+    DATA "way from (select way,osm_id,highway,ref,name,bridge,tunnel,railway,surface,tracktype,public_transport from @osm_line@ where (bridge='yes' or bridge='viaduct') and (highway is not null or railway is not null) order by z_order) as foo using unique osm_id using srid=900913"
+    LABELITEM "ref"
+    CLASSITEM "highway"
+    SIZEUNITS meters
+
+    CLASS
+        EXPRESSION ('[highway]'='motorway')
+        STYLE
+             
+            WIDTH 21
+            MAXWIDTH 14
+            OUTLINEWIDTH 2
+            LINECAP butt
+            COLOR "#ee9999"
+            OUTLINECOLOR "#993333"
+        END
+    END
+    CLASS
+        EXPRESSION ('[highway]'='motorway_link')   
+        STYLE
+            
+            WIDTH 21
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#ee9999"
+            OUTLINECOLOR "#993333"
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='trunk' or '[highway]'='primary'))
+        STYLE
+             
+            WIDTH 20
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#FFcc44" 
+            OUTLINECOLOR "#dd6633"
+        END
+    END
+    CLASS
+        EXPRESSION (('[highway]'='trunk_link' or '[highway]'='primary_link'))   
+        STYLE
+            
+            WIDTH 20
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#FFcc44" 
+            OUTLINECOLOR "#dd6633"
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ('[highway]'='secondary')
+        STYLE
+            
+            WIDTH 20
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#ffff77"
+            OUTLINECOLOR "#bbbb22"
+        END
+    END
+    CLASS
+        EXPRESSION ('[highway]'='secondary_link')   
+        STYLE
+            
+            WIDTH 20
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#ffff77"
+            OUTLINECOLOR "#bbbb00"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='tertiary')
+        STYLE
+         WIDTH 20
+         
+         MAXWIDTH 14 
+         LINECAP butt
+         OUTLINEWIDTH 2
+         COLOR "#ffffbb"
+         OUTLINECOLOR "#555511"
+        END
+    END
+    CLASS
+        EXPRESSION ('[highway]'='tertiary_link')   
+        STYLE
+            
+            WIDTH 20
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 2
+            COLOR "#ffffbb"
+            OUTLINECOLOR "#555511"
+        END
+    END
+
+    CLASS
+        EXPRESSION (('[highway]'='unclassified' or  ('[highway]'='services')))   
+        STYLE
+            
+            WIDTH 18
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.8
+            COLOR "#eeeeee"
+            OUTLINECOLOR "#555555"
+        END
+    END
+
+
+    CLASS
+        EXPRESSION (('[highway]'='residential' or ('[highway]'='road')))   
+        STYLE
+            WIDTH 16
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.5
+            COLOR "#eeeeee"
+            OUTLINECOLOR "#555555"
+        END
+    END
+
+
+
+    CLASS
+        EXPRESSION (('[highway]'='living_street' or '[highway]'='service' or '[highway]'='raceway' or ('[highway]'='track' and ('[tracktype]'='grade1' or '[surface]'='paved' or '[surface]'='asphalt'))))   
+        STYLE
+            WIDTH 8
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.5
+            COLOR "#eeeeee"
+            OUTLINECOLOR "#555555"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='track' and '[tracktype]' = 'grade2')   
+        STYLE
+            WIDTH 8
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#332211"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='track' and '[tracktype]' = 'grade3')   
+        STYLE
+            WIDTH 8
+            MAXWIDTH 14
+            LINECAP butt
+            PATTERN 20 3  END
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#332211"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='track' and '[tracktype]' = 'grade4')   
+        STYLE
+            WIDTH 4
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#332211"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='track' and ('[tracktype]' = 'grade5' or ('[tracktype]' = '' and '[surface]' != 'paved'  and '[surface]' != 'asphalt') ))   
+        STYLE
+            WIDTH 4
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#332211"
+        END
+    END
+
+
+
+
+    CLASS
+        EXPRESSION ('[highway]'='cycleway')   
+        STYLE
+            WIDTH 4
+            MAXWIDTH 8
+            LINECAP butt
+            OUTLINEWIDTH 1.2
+            COLOR "#bbbbbb"  
+            OUTLINECOLOR "#444444"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='footway')   
+        STYLE
+            WIDTH 4
+            MAXWIDTH 8
+            LINECAP butt
+            OUTLINEWIDTH 1.2
+            COLOR "#bbbbbb"  
+            OUTLINECOLOR "#444444"
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ( '[highway]'='bridleway' )   
+        STYLE
+            WIDTH 2
+            MAXWIDTH 6
+            OUTLINEWIDTH 0.5
+            COLOR "#bb8844"
+            OUTLINECOLOR "#444444"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='path')   
+        STYLE
+            WIDTH 2
+            MAXWIDTH 6
+            LINECAP butt
+            OUTLINEWIDTH 1.2
+            COLOR "#aaaaaa"
+            OUTLINECOLOR "#505050"
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ('[highway]'='steps')   
+        STYLE
+            WIDTH 2
+            MAXWIDTH 6
+            LINECAP butt
+            OUTLINEWIDTH 1.5
+            COLOR "#aaaaaa"
+            OUTLINECOLOR "#888888"
+        END
+        STYLE
+            SYMBOL treppe
+            COLOR "#888888"
+            SIZE 2
+            MAXSIZE 6
+        END  
+    END
+
+
+    CLASS
+        EXPRESSION ('[railway]'='platform' or '[public_transport]'='platform')   
+        STYLE
+            WIDTH 6
+            MAXWIDTH 12
+            LINECAP butt
+            OUTLINEWIDTH 0.5
+            COLOR "#a0a0a0"
+            OUTLINECOLOR "#000000"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='pedestrian')   
+        STYLE
+            WIDTH 8
+            MAXWIDTH 14
+            LINECAP butt
+            OUTLINEWIDTH 0.5
+            COLOR "#888888"
+            OUTLINECOLOR "#000000"
+        END
+        LABEL
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 0
+         MINDISTANCE 400
+         SIZE 16
+         MAXSIZE 11
+         COLOR "#000000"
+         ALIGN CENTER
+        END   
+    END
+
+    CLASS
+      EXPRESSION ('[railway]'='rail' or '[railway]'='narrow_gauge'  or '[railway]'='subway')   
+     STYLE
+        COLOR "#c8c8c8"
+         
+        WIDTH 3   
+        OUTLINEWIDTH 1.33
+        OUTLINECOLOR "#505050"
+      END
+      STYLE
+        COLOR "#666666"
+         
+        WIDTH 3
+        MAXSIZE 8
+        PATTERN 12 20 END
+      END
+    END
+END
+
+##################### Trambahn #######################################
+
+LAYER
+    STATUS ON 
+    MAXSCALEDENOM  5000
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "strgr"
+    DATA "way from (select way,osm_id,railway,name,ref,tunnel,bridge from @osm_line@ where railway='tram') as foo using unique osm_id using srid=900913"
+    LABELITEM "name"
+    CLASSITEM "bridge"
+    SIZEUNITS meters
+    OPACITY 50
+
+    CLASS
+     EXPRESSION 'yes'
+     STYLE
+        COLOR "#eeeeee"
+        OUTLINECOLOR "#888888"
+        LINECAP butt
+        OUTLINEWIDTH 2
+        WIDTH 5
+        MAXSIZE 12
+      END
+     STYLE
+        COLOR "#333333"
+        WIDTH 1
+        MAXSIZE 12
+        SYMBOL "tram"
+      END
+    END
+    CLASS
+     STYLE
+        COLOR "#333333"
+        WIDTH 1
+        MAXSIZE 12
+        SYMBOL "tram"
+      END
+    END
+END
+
+
+################## oneway und noway ####################################
+
+LAYER
+    TYPE LINE
+    STATUS ON
+    PROJECTION
+        "init=epsg:900913"
+    END
+    GROUP "default"
+    NAME "oneways"
+    CONNECTIONTYPE postgis
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way, osm_id from @osm_line@ where oneway='yes' and highway in ('residential','tertiary','secondary','secondary_link','primary','primary_link','service','unclassified') order by z_order) as foo using unique osm_id using srid=900913"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 10000
+    OPACITY 30
+    CLASS
+        STYLE
+            SYMBOL "oneway"
+            SIZE 8
+            COLOR "#5a5a5a"
+        END
+    END
+END
+
+LAYER
+    TYPE LINE
+    STATUS ON
+    PROJECTION
+        "init=epsg:900913"
+    END
+    GROUP "default"
+    NAME "noway"
+    CONNECTIONTYPE postgis
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way, access, osm_id, highway,tracktype,surface,foot,bicycle as bike from @osm_line@ where (motorcar in ('private','no', 'agricultural', 'forestry' ) or access in('private','no') or vehicle='no' or motor_vehicle='no' or vehicle='forestry' or motor_vehicle='forestry' or vehicle='agricultural' or motor_vehicle='agricultural' or foot='no' or bicycle='no')  and highway in ('track','bridleway','residential','service','unclassified','path','footway','cycleway') order by z_order) as foo using unique osm_id using srid=900913"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    MAXSCALEDENOM 15000
+    SIZEUNITS meters
+
+    CLASS
+        EXPRESSION (('[access]'='no' or '[access]'='private' or ('[foot]'='no' and '[bike]'='no') ) and ('[highway]'='path' or '[highway]'='footway' or '[highway]'='cycleway' or '[highway]'='bridleway'))
+        STYLE
+            OPACITY 70
+            SYMBOL noaccess
+            COLOR "#2d2db4"
+            SIZE 10
+            MAXSIZE 8
+        END
+    END
+    CLASS
+        EXPRESSION (('[access]'='no' or '[access]'='private' or ('[foot]'='no' and '[bike]'='no') ) and ('[highway]'='track' and ('[tracktype]'='grade2' or '[tracktype]'='grade3' or '[tracktype]'='grade4' or '[tracktype]'='grade5' or ('[tracktype]'='' and '[surface]'!='paved' and '[surface]'!='asphalt'))))
+        STYLE
+            OPACITY 70
+            SYMBOL noaccess
+            COLOR "#2d2db4"
+            SIZE 12
+            MAXSIZE 14
+        END
+    END
+    CLASS
+        EXPRESSION (('[highway]'='track' and ('[tracktype]'='grade2' or '[tracktype]'='grade3' or '[tracktype]'='grade4' or '[tracktype]'='grade5' or ('[tracktype]'='' and '[surface]'!='paved' and '[surface]'!='asphalt'))))
+    END
+    CLASS
+        EXPRESSION  ('[highway]'='path' or '[highway]'='footway' or '[highway]'='cycleway' or '[highway]'='bridleway')
+    END
+
+    CLASS
+        STYLE
+            OPACITY 50
+            SYMBOL noaccess
+            COLOR "#5a5aff"
+            SIZE 12
+            MAXSIZE 14
+        END
+    END
+END
+
+
+
+
+
+########## Lifte ##################################################################
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    MAXSCALEDENOM  100000
+    TYPE LINE
+    NAME "lifte"
+    DATA "way from (select way,name,osm_id,aerialway from @osm_line@ where aerialway is not null) as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'aerialway'
+    SIZEUNITS meters
+    
+    CLASS
+       EXPRESSION ('[aerialway]'='cable_car' or '[aerialway]'='chair_lift' or '[aerialway]'='gondola' or '[aerialway]'='mixed_lift')
+       STYLE
+        COLOR "#777777"
+        PATTERN 5 50   END
+        WIDTH   15 
+        MAXWIDTH 8
+       END  
+       STYLE
+        COLOR "#777777"
+        WIDTH   8 
+        MAXWIDTH 2
+       END  
+       LABEL 
+         MAXSCALEDENOM  10000
+         ANGLE FOLLOW
+         MAXOVERLAPANGLE 45
+         TYPE TRUETYPE FONT sc PARTIALS FALSE
+         MINDISTANCE 400
+         SIZE 30  
+         MAXSIZE  9
+         MINSIZE  7
+         OFFSET 1 -50
+         COLOR "#000000"
+         OUTLINECOLOR "#ffffff"
+         OUTLINEWIDTH 5
+       END
+
+    END 
+
+    CLASS
+       EXPRESSION ('[aerialway]'='goods')
+       MAXSCALEDENOM 20000
+       STYLE
+        COLOR "#999999"
+        PATTERN 5 50   END
+        WIDTH    6 
+        MAXWIDTH 2
+       END  
+       STYLE
+        COLOR "#999999"
+        WIDTH   5 
+        MAXWIDTH 1
+       END  
+    END 
+
+    CLASS
+       MAXSCALEDENOM 20000
+       STYLE
+        COLOR "#777777"
+        PATTERN 5 50  END
+        WIDTH    6 
+        MAXWIDTH 2
+       END  
+       STYLE
+        COLOR "#777777"
+        WIDTH   6 
+        MAXWIDTH 1
+       END  
+    END 
+
+
+
+
+END
+
+
+
+############### Namen ##########################################################################
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    MINSCALEDENOM  1000001
+    TYPE ANNOTATION
+    NAME "orte2M"
+    DATA "way from (select way,osm_id ,place ,name from @osm_poi@ where place = 'city' order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'place'
+    CLASS
+        STYLE
+         SIZE   9
+         SYMBOL "citycircle"
+         COLOR  "#ffffff"
+         OUTLINECOLOR "#777777"
+         OUTLINEWIDTH 2
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 9
+            COLOR "#222222"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 8
+            PARTIALS FALSE
+            POSITION AUTO
+        END
+    END
+END
+
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    MAXSCALEDENOM 1000000
+    MINSCALEDENOM  250001
+    TYPE ANNOTATION
+    NAME "orte1M"
+    DATA "way from ((select way,osm_id ,place ,name,population from @osm_poi@ where place = 'city' or place = 'town') order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'place'
+    CLASS
+        EXPRESSION 'city'
+        STYLE
+         SIZE   9
+         SYMBOL "citycircle"
+         COLOR  "#ffffff"
+         OUTLINECOLOR "#777777"
+         OUTLINEWIDTH 2
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 9
+            COLOR "#222222"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 8
+            PARTIALS FALSE
+            POSITION AUTO
+        END
+    END
+    CLASS
+        EXPRESSION 'town'
+        STYLE
+         SIZE   7
+         SYMBOL "citycircle"
+         COLOR  "#ffffff"
+         OUTLINECOLOR "#777777"
+         OUTLINEWIDTH 2
+        END  
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#222222"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 8
+            PARTIALS FALSE
+            POSITION AUTO
+        END
+    END
+END
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    MAXSCALEDENOM  250000
+    MINSCALEDENOM  100001
+    TYPE ANNOTATION
+    NAME "orte100k"
+    DATA "way from ((select way,osm_id ,place ,name,population from @osm_poi@ where   place = 'city' or place = 'town' or place = 'village' or  place = 'suburb') order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'place'
+    CLASS
+        EXPRESSION 'city'
+        STYLE
+         SIZE   9
+         SYMBOL "citycircle"
+         COLOR  "#ffffff"
+         OUTLINECOLOR "#777777"
+         OUTLINEWIDTH 2
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 14
+            COLOR "#222222"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 8
+            PARTIALS FALSE
+            BUFFER  20
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION 'town'
+        STYLE
+         SIZE   7
+         SYMBOL "citycircle"
+         COLOR  "#ffffff"
+         OUTLINECOLOR "#777777"
+         OUTLINEWIDTH 2
+        END  
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 10
+            COLOR "#222222"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 7
+            PARTIALS FALSE
+            BUFFER 15
+            POSITION AUTO
+        END
+    END
+    CLASS
+        EXPRESSION 'village'
+        STYLE
+         SIZE   5
+         SYMBOL "citycircle"
+         COLOR  "#ffffff"
+         OUTLINECOLOR "#777777"
+         OUTLINEWIDTH 2
+        END  
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#222222"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 6
+            PARTIALS FALSE
+            BUFFER 10
+            POSITION AUTO
+        END
+    END
+    CLASS
+        EXPRESSION 'suburb'
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#555555"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PARTIALS FALSE
+            BUFFER 10
+            POSITION cc
+        END
+    END
+
+END
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    MAXSCALEDENOM  100001
+    MINSCALEDENOM   15000
+    TYPE ANNOTATION
+    NAME "orte100k"
+    DATA "way from (((select way,osm_id ,place ,name,population from @osm_poi@ where  place = 'town' or place = 'village' or  place = 'suburb' or place = 'hamlet')) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'place'
+    CLASS
+        EXPRESSION ('[place]'='town')
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 11
+            COLOR "#777777"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 7
+            PARTIALS FALSE
+            BUFFER 15
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION ('[place]'='village' or '[place]'='suburb')
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 8
+            COLOR "#555555"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 6
+            PARTIALS FALSE
+            BUFFER 10
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION ('[place]'='hamlet')
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#222222"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 5
+            PARTIALS FALSE
+            BUFFER 10
+            POSITION auto
+        END
+    END
+END
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    MAXSCALEDENOM   15000
+    MINSCALEDENOM    5001
+    TYPE ANNOTATION
+    NAME "orte15k"
+    DATA "way from (((select way,osm_id ,place ,name,population from @osm_poi@ where  place = 'town' or place = 'village' or  place = 'suburb' or place = 'hamlet')) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'place'
+    CLASS
+        EXPRESSION ('[place]'='town')
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 11
+            COLOR "#777777"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 7
+            PARTIALS FALSE
+            BUFFER 15
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION ('[place]'='village' or '[place]'='suburb' or '[place]'='hamlet')
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 8
+            COLOR "#555555"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 6
+            PARTIALS FALSE
+            BUFFER 10
+            POSITION auto
+        END
+    END
+END
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    MAXSCALEDENOM    5000
+    TYPE ANNOTATION
+    NAME "orte5k"
+    DATA "way from (((select way,osm_id ,place ,name,population from @osm_poi@ where  place = 'hamlet')) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    SIZEUNITS  meters
+    LABELITEM 'name'
+    CLASSITEM 'place'
+
+    CLASS
+        EXPRESSION ('[place]'='village' or '[place]'='suburb' or '[place]'='hamlet')
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE    45
+            MINSIZE 8
+            MAXSIZE 12
+            COLOR "#555555"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 4
+            ALIGN CENTER
+            PRIORITY 6
+            PARTIALS FALSE
+            BUFFER 10
+            POSITION auto
+        END
+    END
+END
+
+
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    MAXSCALEDENOM   30000
+    TYPE ANNOTATION
+    NAME "orte5k"
+    #DATA "way from (((select way,osm_id ,place ,name,population,amenity,coalesce(name||'|'||ele,name,ele) as elename,landuse from @osm_poi@ where  amenity = 'alm' or amenity = 'isolated_building' or place = 'isolated_dwelling' or place = 'locality' or place = 'farm' or place = 'farmyard') ) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    DATA "way from (((select way,osm_id ,place ,name,population,amenity,coalesce(name||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),name,trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ','))) as elename,landuse from topo_view_osm_poi where  amenity = 'alm' or place = 'isolated_dwelling' or place = 'locality' or place = 'farm' or place = 'farmyard') ) order by population) as foo using unique osm_id using srid=900913"
+    LABELITEM 'elename'
+    CLASSITEM 'place'
+    SIZEUNITS  meters
+    CLASS
+        EXPRESSION ('[place]'='isolated_dwelling' or '[place]'='farm' or '[landuse]'='farmyard' or '[amenity]'='alm')
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 35
+            MINSIZE 7
+            MAXSIZE 9
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 5
+            ALIGN center
+            PRIORITY 2
+            PARTIALS FALSE
+            WRAP '|'
+            BUFFER 10
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION ('[amenity]'='isolated_building')
+        MAXSCALEDENOM   10000
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 35
+            MINSIZE 6
+            MAXSIZE 8
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 5
+            ALIGN center
+            PRIORITY 2
+            PARTIALS FALSE
+            WRAP '|'
+            BUFFER 10
+            POSITION auto
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[place]'='locality')
+        LABEL
+            FONT sci
+            TYPE TRUETYPE
+            SIZE 35
+            MINSIZE 7
+            MAXSIZE 10
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 5
+            ALIGN CENTER
+            PRIORITY 2
+            PARTIALS FALSE
+            WRAP '|'
+            BUFFER 10
+            POSITION auto
+        END
+    END
+    
+END
+
+
+###################### Faehrlinien ########################################################
+
+
+LAYER
+    MAXSCALEDENOM  1000000 # bis zoomlevel 9
+    STATUS ON 
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "dbname=osm" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "ferry"
+    DATA "way from (select way,osm_id from topo_view_osm_line where route='ferry') as foo using unique osm_id using srid=900913"
+    #SIZEUNITS meters
+
+    CLASS   
+        STYLE
+         WIDTH 1
+         PATTERN 8 6  END
+         COLOR "#3030ff"
+        END
+    END
+END
+
+
+###################### Stromleitungen ########################################################
+
+
+LAYER
+    MAXSCALEDENOM  500000
+    STATUS ON 
+    GROUP "default" 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "strom"
+    DATA "way from (select way,osm_id from @osm_line@ where power='line') as foo using unique osm_id using srid=900913"
+    SIZEUNITS meters
+
+    CLASS
+        STYLE
+         WIDTH 1
+         MAXWIDTH 1
+         SYMBOL "strom"
+         COLOR "#111111"
+        END
+    END
+END
+
+
+
+
+######################### POIs ##########################################################################################
+
+
+######### Schulen, Uni... (Beschriftung ohne Icon, Flaechen wurden schon oben erfasst) ###################################
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE ANNOTATION
+    MAXSCALEDENOM 10000
+    NAME "iconloselabels"
+    DATA "way from (select way,osm_id,place,name,amenity,religion,tourism from @osm_poi@ where (amenity IN ('school', 'college', 'university', 'townhall') or tourism='attraction')) as foo using unique osm_id using srid=900913"
+
+    CLASSITEM 'amenity'
+    LABELITEM "name"
+    CLASS
+        EXPRESSION ('[amenity]'='school' or '[amenity]'='college' or '[amenity]'='university' or '[tourism]'='attraction' or '[amenity]'='townhall')
+        LABEL
+          TYPE TRUETYPE FONT sc PARTIALS FALSE OUTLINEWIDTH 2
+          MINDISTANCE 100
+          SIZE 7
+          PRIORITY 2
+          COLOR "#333333"
+          OUTLINECOLOR "#ffffff"
+          WRAP ' '
+          MAXLENGTH 5
+          ALIGN CENTER
+        END
+    END
+END
+
+
+################# Kirchen, Synagogen, Moscheen... ###############################################
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE POINT
+    MAXSCALEDENOM  15000
+    NAME "kirchen1"
+    DATA "way from (select way,osm_id ,place,name,amenity,tourism,religion,historic from @osm_poi@ where amenity='place_of_worship' or historic='castle' or historic='castleruin' or amenity='tower' or tourism='viewpoint') as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'religion'
+    CLASS
+        NAME "Kirche"
+        EXPRESSION 'christian'
+         SYMBOL ../icons/png/place_of_worship_christian3.p.16.png
+    END
+    CLASS
+        EXPRESSION 'buddhist'
+         SYMBOL ../icons/png/place_of_worship_buddhist3.p.16.png
+    END
+    CLASS
+        NAME "Synagoge"
+        EXPRESSION 'jewish'
+         SYMBOL ../icons/png/place_of_worship_jewish3.p.16.png
+    END
+    CLASS
+        NAME "Moschee"
+        EXPRESSION 'muslim'
+         SYMBOL ../icons/png/place_of_worship_islamic3.p.16.png
+    END
+    CLASS
+        EXPRESSION 'sikh'
+         SYMBOL ../icons/png/place_of_worship_sikh3.p.16.png
+    END
+    CLASS
+        EXPRESSION ('[amenity]'='place_of_worship')
+         SYMBOL ../icons/png/place_of_worship_unknown3.p.16.png
+    END
+    CLASS
+        EXPRESSION ('[historic]'='castle')
+         SYMBOL ../icons/png/burg16.png
+    END
+    CLASS
+        EXPRESSION ('[historic]'='castleruin')
+         SYMBOL ../icons/png/ruine16.png
+    END
+    CLASS
+        EXPRESSION ('[amenity]'='tower')
+         SYMBOL ../icons/png/turm16.png
+    END
+    CLASS
+        EXPRESSION ('[tourism]'='viewpoint')
+         SYMBOL ../icons/png/viewpoint16w.png
+    END
+
+END
+
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE ANNOTATION
+    MAXSCALEDENOM 10000
+    NAME "kirchen2"
+    DATA "way from (select way,osm_id ,place,name,amenity,religion,historic from @osm_poi@ where amenity='place_of_worship' or historic='castle' or historic='castleruin' or amenity='tower') as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'religion'
+    CLASS
+        EXPRESSION 'christian'
+        STYLE
+         SYMBOL ../icons/png/place_of_worship_christian3.p.16.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#555555"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION 'buddhist'
+        STYLE
+         SYMBOL ../icons/png/place_of_worship_buddhist3.p.16.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#555555"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION 'jewish'
+        STYLE
+         SYMBOL ../icons/png/place_of_worship_jewish3.p.16.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#555555"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION 'muslim'
+        STYLE
+         SYMBOL ../icons/png/place_of_worship_islamic3.p.16.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#555555"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 5
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION 'sikh'
+        STYLE
+         SYMBOL ../icons/png/place_of_worship_sikh3.p.16.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#555555"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION AUTO
+        END
+    END
+    CLASS
+        EXPRESSION ('[amenity]'='place_of_worship')
+        STYLE
+         SYMBOL ../icons/png/place_of_worship_unknown3.p.16.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#555555"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            PARTIALS FALSE
+            WRAP ' '
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION ('[historic]'='castle')
+        STYLE
+         SYMBOL ../icons/png/burg16.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#555555"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            PARTIALS FALSE
+            WRAP ' '
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION ('[historic]'='castleruin')
+        STYLE
+         SYMBOL ../icons/png/ruine16.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#555555"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            PARTIALS FALSE
+            WRAP ' '
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION ('[amenity]'='tower')
+        STYLE
+         SYMBOL ../icons/png/turm16.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#555555"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            PARTIALS FALSE
+            WRAP ' '
+            POSITION auto
+        END
+    END
+
+END
+
+################# Krankenhaeuser, wieder erst icon, dann icon-text  ###############################################
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE POINT
+    MAXSCALEDENOM  15000
+    NAME "hospitaeler"
+    DATA "way from (select way,osm_id,name,amenity from @osm_poi@ where amenity='hospital') as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'amenity'
+    CLASS
+         SYMBOL ../icons/png/health_hospital.n.12.png
+    END
+END
+
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE ANNOTATION
+    MAXSCALEDENOM 10000
+    NAME "hospitaeler"
+    DATA "way from (select way,osm_id,name,amenity from @osm_poi@ where amenity='hospital') as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'amenity'
+    CLASS
+        NAME "Krankenhaus"
+        STYLE
+         SYMBOL ../icons/png/health_hospital.n.12.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#cc2222"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 3
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+END
+
+
+################# Sport ####################################################
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE POINT
+    MAXSCALEDENOM  10000
+    NAME "playground"
+    DATA "way from (select way,osm_id,sport,leisure from @osm_poi@ where (sport is not null or leisure='pitch')) as foo using unique osm_id using srid=900913"
+    CLASSITEM 'sport'
+    CLASS
+     EXPRESSION 'archery'
+     SYMBOL ../icons/png/sport_archery.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'baseball'
+     SYMBOL ../icons/png/sport_baseball.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'bogenschiessen'
+     SYMBOL ../icons/png/sport_archery.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'canoe'
+     SYMBOL ../icons/png/sport_canoe.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'climbing'
+     SYMBOL ../icons/png/sport_hillclimbing.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'equestrian'
+     SYMBOL ../icons/png/sport_horse_racing.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'golf'
+     SYMBOL ../icons/png/sport_golf.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'gym'
+     SYMBOL ../icons/png/sport_gym.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'gymnastics'
+     SYMBOL ../icons/png/sport_gym.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'horse_racing'
+     SYMBOL ../icons/png/sport_horse_racing.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'ice'
+     SYMBOL ../icons/png/sport_iceskating.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'ice_hockey'
+     SYMBOL ../icons/png/sport_iceskating.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'ice_skating'
+     SYMBOL ../icons/png/sport_iceskating.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'inlinehockey'
+     SYMBOL ../icons/png/sport_iceskating.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'miniature_golf'
+     SYMBOL ../icons/png/sport_miniature_golf.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'motocross'
+     SYMBOL ../icons/png/sport_motorracing.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'motor'
+     SYMBOL ../icons/png/sport_motorracing.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'motorcycle'
+     SYMBOL ../icons/png/sport_motorracing.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'polo'
+     SYMBOL ../icons/png/sport_horse_racing.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'sailing'
+     SYMBOL ../icons/png/sport_sailing.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'scuba_diving'
+     SYMBOL ../icons/png/sport_diving.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'shooting'
+     SYMBOL ../icons/png/sport_shooting.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'ski-jump'
+     SYMBOL ../icons/png/sport_skiing_downhill.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'skiing'
+     SYMBOL ../icons/png/sport_skiing_downhill.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'soccer'
+     SYMBOL ../icons/png/sport_soccer.glow.16.png
+    END
+    CLASS
+     EXPRESSION 'swimming'
+     SYMBOL ../icons/png/sport_swimming_outdoor.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'swimming_pool'
+     SYMBOL ../icons/png/sport_swimming_outdoor.glow.20.png
+    END
+    CLASS
+     EXPRESSION 'tennis'
+     SYMBOL ../icons/png/sport_tennis.glow.16.png
+    END
+   CLASS
+     NAME "Sportplatz"
+     EXPRESSION ('[leisure]'='pitch')
+     SYMBOL ../icons/png/sport_soccer.glow.16.png
+    END  
+    CLASS
+     SYMBOL ../icons/png/sport_leisure_centre.glow.16.png
+    END
+END
+
+
+
+
+
+################# Flughaefen  ###############################################
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE POINT
+    MAXSCALEDENOM  150000
+    NAME "aerodrome"
+    DATA "way from (select way,osm_id,name,amenity from @osm_poi@ where aeroway='aerodrome') as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'amenity'
+    CLASS
+         SYMBOL ../icons/png/transport_airport.n.12.png
+    END
+END
+
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE ANNOTATION
+    MAXSCALEDENOM 30000
+    NAME "aerodrome"
+    DATA "way from (select way,osm_id,name,amenity from @osm_poi@ where aeroway='aerodrome') as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'amenity'
+    CLASS
+        STYLE
+         SYMBOL ../icons/png/transport_airport.n.12.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#2222ff"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 3
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+END
+
+
+################# Bahnhof, wieder erst icon, dann icon-text  ###############################################
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE POINT
+    MAXSCALEDENOM  30000
+    MINSCALEDENOM  15001
+    NAME "bahnhoefe1"
+    DATA "way from (select way,osm_id,name,service,amenity,railway from @osm_poi@ where railway='station' or railway='tram_stop') as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'service'
+    CLASS
+     EXPRESSION 'ubahn'   
+       NAME "U-Bahnhof"
+       STYLE
+         SYMBOL ../icons/png/transport_u-bahn.p.10.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#2222cc"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            BUFFER  4
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+    CLASS
+     EXPRESSION 'sbahn'
+       NAME "S-Bahnhof"   
+       STYLE
+         SYMBOL ../icons/png/transport_s-bahn.p.10.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#2222cc"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            BUFFER  4
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+    CLASS
+       EXPRESSION ('[railway]'='station')
+       NAME "Bahnhof"
+       STYLE
+         SIZE   7
+         SYMBOL "citycircle"
+         COLOR  "#2222cc"
+         OUTLINECOLOR "#777777"
+         OUTLINEWIDTH 2
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#2222cc"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            BUFFER  4
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+
+END
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE POINT
+    MAXSCALEDENOM  15000
+    NAME "bahnhoefe2"
+    DATA "way from (select way,osm_id,name,service,amenity,railway from @osm_poi@ where railway='station' or railway='tram_stop') as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'service'
+    CLASS
+     EXPRESSION 'ubahn'
+      NAME "U-Bahnhof"
+      SYMBOL ../icons/png/transport_u-bahn.p.16.png
+    END
+    CLASS
+     EXPRESSION 'sbahn'
+      NAME "S-Bahnhof"
+      SYMBOL ../icons/png/transport_s-bahn.p.16.png
+    END
+    CLASS
+      NAME "Bahnhof"
+      EXPRESSION ('[railway]'='station')
+     SYMBOL ../icons/png/transport_train_station2.n.16.png
+    END
+    CLASS
+     MAXSCALEDENOM 10000
+     NAME "Trambahnstation" 
+     EXPRESSION ('[railway]'='tram_stop')
+     SYMBOL ../icons/png/transport_tram_stop.n.16.png
+    END
+    
+END
+
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE ANNOTATION
+    MAXSCALEDENOM 15000
+    NAME "bahnhoefe3"
+    DATA "way from (select way,osm_id,name,service,amenity,railway from @osm_poi@ where railway='station' or railway='tram_stop') as foo using unique osm_id using srid=900913"
+    LABELITEM 'name'
+    CLASSITEM 'service'
+    CLASS
+     EXPRESSION 'ubahn'
+        STYLE
+         SYMBOL ../icons/png/transport_u-bahn.p.16.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#2222cc"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+    CLASS
+     EXPRESSION 'sbahn'
+        STYLE
+         SYMBOL ../icons/png/transport_s-bahn.p.16.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#2222cc"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION ('[railway]'='station')
+        STYLE
+         SYMBOL ../icons/png/transport_train_station2.n.16.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#2222cc"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+    CLASS
+        EXPRESSION ('[railway]'='tram_stop')
+        MAXSCALEDENOM 5000
+        STYLE
+         SYMBOL ../icons/png/transport_tram_stop.n.16.png 
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#2222cc"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+END
+
+
+########################### Baeume ########################################
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE POINT
+    MAXSCALEDENOM 5000
+    NAME "baum"
+    DATA "way from (select way,osm_id from  @osm_poi@nt where nature='tree') as foo using unique osm_id using srid=900913"
+    CLASS
+     STYLE
+         OPACITY 50
+         SIZE   3
+         SYMBOL "citycircle"
+         COLOR  "#88bb88"
+         OUTLINECOLOR "#88cc88"
+         OUTLINEWIDTH 0.2
+     END
+    END
+END
+
+
+
+
+
+########################### Hausnummern ########################################
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE ANNOTATION
+    MAXSCALEDENOM 5000
+    NAME "hausnummern"
+    DATA "way from (select way,osm_id,housenumber from  @osm_poi@ where housenumber is not null) as foo using unique osm_id using srid=900913"
+    LABELITEM 'housenumber'
+    CLASS
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 6
+            COLOR "#111111"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 1
+            ALIGN CENTER
+            PRIORITY 1
+            PARTIALS FALSE
+            MAXLENGTH 8
+            WRAP ' '
+            POSITION auto
+        END
+    END
+END
+
+########################### Gipfel ########################################
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE POINT
+    MAXSCALEDENOM 1000000
+    MINSCALEDENOM 100001
+    NAME "GIPFEL1"
+    #DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||ele,name,ele) as elename,population from @osm_poi@ where nature='peak' and name is not null and cast(population as integer)>8000 and (cast(ele as float)>1000 or cast(srtmele as float)>1000) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id from topo_view_osm_poi where nature='peak' and name is NOT NULL) as foo using unique osm_id using srid=900913"
+    CLASS
+        STYLE
+         SYMBOL ../icons/png/poi_peak.p.9.png
+        END
+    END
+END
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE ANNOTATION
+    MAXSCALEDENOM 1000000
+    MINSCALEDENOM 250001
+    NAME "GIPFEL2"
+    #DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||ele,name,ele) as elename,population from @osm_poi@ where nature='peak' and name is not null and cast(population as integer)>5000 and (cast(ele as float)>1000 or cast(srtmele as float)>1000) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),name,trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ','))) as elename from topo_view_osm_poi where nature='peak') as foo using unique osm_id using srid=900913"
+    LABELITEM 'elename'
+    CLASS
+        STYLE
+         SYMBOL ../icons/png/poi_peak.p.9.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            BUFFER 10
+            PARTIALS FALSE
+            MAXLENGTH 2
+            WRAP '|'
+            POSITION lc
+        END
+    END
+END
+
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE ANNOTATION
+    MAXSCALEDENOM 250000
+    MINSCALEDENOM 100001
+    NAME "GIPFEL3"
+    #DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||ele,name,ele) as elename,population from @osm_poi@ where nature='peak' and name is not null and cast(population as integer)>1200 order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),name,trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')))  as elename from topo_view_osm_poi where nature='peak' and name is not null) as foo using unique osm_id using srid=900913"
+    LABELITEM 'elename'
+    CLASS
+        STYLE
+         SYMBOL ../icons/png/poi_peak.p.9.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            BUFFER 10
+            PARTIALS FALSE
+            MAXLENGTH 2
+            WRAP '|'
+            POSITION lc
+        END
+    END
+END
+
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE ANNOTATION
+    MAXSCALEDENOM 100000
+    NAME "GIPFEL4"
+    #DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||ele,name,ele) as elename,population,nature from @osm_poi@ where nature='peak' or nature='cave_entrance' or nature='mountain_pass' or nature='col' or nature='saddle' order by cast(coalesce(ele,srtmele) as float) asc) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),name,trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ','))) as elename,nature from topo_view_osm_poi where nature='peak' or nature='cave_entrance' or nature='mountain_pass' or nature='col' order by cast(ele as float)) as foo using unique osm_id using srid=900913"
+    LABELITEM 'elename'
+    CLASSITEM 'nature'
+    SIZEUNITS meters    
+    CLASS
+        EXPRESSION 'peak'
+        STYLE
+         SIZE 300
+         MAXSIZE 9
+         MINSIZE 9
+         SYMBOL ../icons/png/poi_peak.p.9.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 40  
+            MINSIZE 7
+            MAXSIZE 12
+            COLOR "#000000"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 5
+            ALIGN CENTER
+            PRIORITY 2
+            BUFFER 10
+            PARTIALS FALSE
+            MAXLENGTH 2
+            WRAP '|'
+            POSITION lc
+        END
+    END
+    CLASS
+        EXPRESSION ('[nature]'='mountain_pass' or '[nature]'='col' or '[nature]'='saddle' )
+        STYLE
+         SIZE 300
+         MAXSIZE 8
+         MINSIZE 8
+         SYMBOL ../icons/png/poi_pass.p.9.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 35
+            MINSIZE 7 
+            MAXSIZE 12
+            COLOR "#333333"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 5
+            ALIGN CENTER
+            PRIORITY 1
+            BUFFER 5
+            PARTIALS FALSE
+            MAXLENGTH 2
+            WRAP '|'
+            POSITION auto
+        END
+    END
+
+    CLASS
+        EXPRESSION ('cave_entrance')
+        STYLE
+         SIZE 300
+         MAXSIZE 16
+         MINSIZE 16
+         SYMBOL ../icons/png/cave.16.png
+        END
+        LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 35
+            MINSIZE 7 
+            MAXSIZE 9
+            COLOR "#333333"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 5
+            ALIGN CENTER
+            PRIORITY 1
+            BUFFER 5
+            PARTIALS FALSE
+            MAXLENGTH 2
+            WRAP '|'
+            POSITION auto
+        END
+    END
+
+END
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE POINT
+    MAXSCALEDENOM 10000
+    NAME "MARTERL"
+    DATA "way from (select way,osm_id,amenity,historic,tourism,ele||'m' as ele,information,nature from @osm_poi@ where historic like 'wayside%' or (tourism='information' and (information='guidepost' or information='board' or information='map') or information='cairn' or information='survey_point' or amenity='bench' or amenity='hunting_stand' )) as foo using unique osm_id using srid=900913"
+    LABELITEM 'ele'
+    CLASSITEM 'historic'
+    CLASS
+        EXPRESSION 'wayside_cross'
+        STYLE
+         OFFSET 0 -8
+         SYMBOL ../icons/png/wayside_cross.16.png
+        END
+    END
+    CLASS
+        EXPRESSION 'wayside_shrine'
+        STYLE
+         OFFSET 0 -8
+         SYMBOL ../icons/png/wayside_shrine.16.png
+        END
+    END
+    CLASS
+        EXPRESSION ('[tourism]'='information' and ('[information]'='map' or '[information]'='board'))
+        STYLE
+         OFFSET 6 -8
+         SYMBOL ../icons/png/board.16.png
+        END  
+    END
+    CLASS
+        MAXSCALEDENOM 5000
+        EXPRESSION ('[amenity]'='bench')
+        STYLE
+         OFFSET 6 -8
+         SYMBOL ../icons/png/parkbank.png
+        END  
+    END
+    CLASS
+        EXPRESSION ('[amenity]'='hunting_stand')
+        STYLE
+         OFFSET 0 -8
+         SYMBOL ../icons/png/jaegerstand.png
+        END  
+    END
+    CLASS
+        EXPRESSION ('[tourism]'='information' and '[information]'='guidepost')
+        STYLE
+         OFFSET 0 -8
+         SYMBOL ../icons/png/signpost.16.png
+        END
+        LABEL
+            FONT sc
+            OFFSET 0 -10
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#dd8855"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            PRIORITY 1
+            BUFFER 5
+            PARTIALS FALSE
+            POSITION lc
+        END
+    END
+    CLASS
+        EXPRESSION ('[information]'='cairn')
+        STYLE
+         OFFSET 0 -8
+         SYMBOL ../icons/png/cairn16.png
+        END
+        LABEL
+            FONT sc
+            OFFSET 0 -10
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#dd8855"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            PRIORITY 1
+            BUFFER 5
+            PARTIALS FALSE
+            POSITION lc
+        END
+    END
+    CLASS
+        EXPRESSION ('[information]'='survey_point')
+        STYLE
+         OFFSET 0 -8
+         SYMBOL ../icons/png/tp16.png
+        END
+        LABEL
+            FONT sc
+            OFFSET 0 -10
+            TYPE TRUETYPE
+            SIZE 7
+            COLOR "#333333"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            PRIORITY 1
+            BUFFER 5
+            PARTIALS FALSE
+            POSITION lc
+        END
+    END
+END
+
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE POINT
+    MAXSCALEDENOM 3000
+    NAME "SCHRANKEN"
+    DATA "way from (select way,osm_id,barrier from @osm_poi@nt where ( barrier in ('wall','fence','ditch','hedge') and ( access is null or access in ('no','private') ) and (foot is null or foot in ('no','private')))  or ( barrier in ('rope','chain','gate') and (access in ('no','private') and (foot is null or foot in ('no','private')))) or barrier is not null and foot in ('no','private')) as foo using unique osm_id using srid=900913"
+    LABELITEM 'barrier'
+    CLASSITEM 'barrier'
+    CLASS
+        STYLE
+         SYMBOL 'gatter'
+         SIZE 8
+         MAXSIZE 8
+         COLOR "#444400"
+        END
+    END
+END
+
+
+
+
+########## Huetten ###############################
+
+LAYER
+    STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE POINT
+    MAXSCALEDENOM  30000
+    NAME "huette"
+    DATA "way from (select way,osm_id,tourism,amenity,name,coalesce(name||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),name,trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ','))) as elename from topo_view_osm_poi
+          where (tourism='alpine_hut' or amenity='shelter') and name is not null and way && !BOX! UNION ALL
+          select ST_Centroid(way),osm_id,tourism,amenity,name,name as elename from topo_view_osm_polygon
+          where (tourism='alpine_hut' or amenity='shelter') and name is not null and way && !BOX!)
+          as foo using unique osm_id using srid=900913"
+    LABELITEM 'elename'
+    CLASSITEM 'amenity'   
+    CLASS
+         EXPRESSION ('[amenity]'='shelter' and '[tourism]'!='alpine_hut')
+         MINSCALEDENOM  15001
+         NAME "huette"
+         style
+          SYMBOL ../icons/png/accommodation_shelter.red.glow.12.png
+         END
+    END
+    CLASS
+         EXPRESSION ('[amenity]'='shelter' and '[tourism]'!='alpine_hut')
+         MAXSCALEDENOM  15000
+         NAME "huette"
+         style
+          SYMBOL ../icons/png/accommodation_shelter.red.glow.16.png
+         END
+         LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 8
+            COLOR "#aa0000"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN center
+            PRIORITY 1
+            BUFFER 5
+            PARTIALS FALSE
+            MAXLENGTH 2
+            WRAP '|'
+            POSITION auto
+        END
+    END
+
+    CLASS
+         MINSCALEDENOM  15001
+         NAME "huette"
+         style
+          SYMBOL ../icons/png/house.red.14.png
+         END
+    END
+    CLASS
+         MAXSCALEDENOM  15000
+         NAME "huette"
+         style
+          SYMBOL ../icons/png/house.red.16.png
+         END
+         LABEL
+            FONT sc
+            TYPE TRUETYPE
+            SIZE 8
+            COLOR "#aa0000"
+            OUTLINECOLOR "#ffffff"
+            OUTLINEWIDTH 2
+            ALIGN CENTER
+            PRIORITY 2
+            BUFFER 5
+            PARTIALS FALSE
+            MAXLENGTH 2
+            WRAP '|'
+            POSITION auto
+        END
+    END
+END
+
+################ Kneipen ##############################
+
+LAYER
+    STATUS ON
+    GROUP "default"
+    PROJECTION "init=epsg:900913" END 
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE POINT
+    MAXSCALEDENOM  20000
+    NAME "kneipen"
+    DATA "way from (select way,osm_id,name,amenity,population,nature from @osm_poi@ where amenity in ('biergarten','pub','bar','fast_food','cafe','restaurant','drinking_water')  and  (tourism is null or tourism!='alpine_hut') or nature='spring')  as foo using unique way using srid=900913"
+    LABELITEM 'name'
+    CLASS
+     EXPRESSION ([population]<5 and '[amenity]'='fast_food')
+     STYLE
+      SYMBOL ../icons/png/food_fastfood2.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  10000
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+    CLASS
+     EXPRESSION ([population]<5 and '[amenity]'='biergarten')
+     STYLE
+      SYMBOL ../icons/png/food_biergarten.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  10000
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+    CLASS
+     EXPRESSION ([population]<5 and '[amenity]'='restaurant')
+     STYLE
+      SYMBOL ../icons/png/food_restaurant.glow.16.png
+     END
+     LABEL
+      MAXSCALEDENOM  10000
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+    CLASS
+     EXPRESSION ([population]<5 and '[amenity]'='cafe')
+     STYLE
+      SYMBOL ../icons/png/food_cafe.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  10000
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+    CLASS
+     EXPRESSION ([population]<5 and '[amenity]'='pub')
+     STYLE
+      SYMBOL ../icons/png/food_pub.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  10000
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+    CLASS
+     EXPRESSION ([population]<5 and '[amenity]'='bar')
+     STYLE
+      SYMBOL ../icons/png/food_bar.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  10000
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+
+    CLASS
+     MAXSCALEDENOM  5000
+     EXPRESSION ([population]<30 and '[amenity]'='fast_food')
+     STYLE
+      SYMBOL ../icons/png/food_fastfood2.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  2500
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+    CLASS
+     MAXSCALEDENOM  5000
+     EXPRESSION ([population]<30 and '[amenity]'='biergarten')
+     STYLE
+      SYMBOL ../icons/png/food_biergarten.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  2500
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+    CLASS
+     MAXSCALEDENOM  5000
+     EXPRESSION ([population]<30 and '[amenity]'='restaurant')
+     STYLE
+      SYMBOL ../icons/png/food_restaurant.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  2500
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+    CLASS
+     MAXSCALEDENOM  5000
+     EXPRESSION ([population]<30 and '[amenity]'='cafe')
+     STYLE
+      SYMBOL ../icons/png/food_cafe.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  2500
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+    CLASS
+     MAXSCALEDENOM  5000
+     EXPRESSION ([population]<30 and '[amenity]'='pub')
+     STYLE
+      SYMBOL ../icons/png/food_pub.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  2500
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+    CLASS
+     MAXSCALEDENOM  5000
+     EXPRESSION ([population]<30 and '[amenity]'='bar')
+     STYLE
+      SYMBOL ../icons/png/food_bar.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  2500
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+
+    CLASS
+     MAXSCALEDENOM  5000
+     EXPRESSION ('[amenity]'='drinking_water')
+     STYLE
+      SYMBOL ../icons/png/food_drinkingtap.glow.16.png
+     END
+   END
+
+    CLASS
+     MAXSCALEDENOM  5000
+     EXPRESSION ('[nature]'='spring')
+     STYLE
+      SYMBOL ../icons/png/spring.glow.16.png
+     END
+   END
+
+
+    CLASS
+     MAXSCALEDENOM  2500
+     EXPRESSION ('[amenity]'='fast_food')
+     STYLE
+      SYMBOL ../icons/png/food_fastfood2.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  1300
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+
+    CLASS
+     MAXSCALEDENOM  2500
+     EXPRESSION ('[amenity]'='biergarten')
+     STYLE
+      SYMBOL ../icons/png/food_biergarten.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  1300
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+
+    CLASS
+     MAXSCALEDENOM  2500
+     EXPRESSION ('[amenity]'='restaurant')
+     STYLE
+      SYMBOL ../icons/png/food_restaurant.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  1300
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+
+    CLASS
+     MAXSCALEDENOM  2500
+     EXPRESSION ('[amenity]'='cafe')
+     STYLE
+      SYMBOL ../icons/png/food_cafe.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  1300
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+
+    CLASS
+     MAXSCALEDENOM  2500
+     EXPRESSION ('[amenity]'='pub')
+     STYLE
+      SYMBOL ../icons/png/food_pub.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  1300
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+
+    CLASS
+     MAXSCALEDENOM  2500
+     EXPRESSION ('[amenity]'='bar')
+     STYLE
+      SYMBOL ../icons/png/food_bar.glow.12.png
+     END
+     LABEL
+      MAXSCALEDENOM  1300
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8
+      WRAP ' '
+      MAXLENGTH 8
+      COLOR "#331100"
+      OUTLINEWIDTH 1
+      OUTLINECOLOR "#ffffff"
+      PARTIALS FALSE
+      POSITION lc
+      ALIGN center
+     END
+   END
+
+END
+
+
+
+
+######### Copyright ##############################
+
+LAYER 
+  STATUS OFF
+  NAME "CR"
+  TYPE annotation
+  TRANSFORM ll
+  UNITS PIXELS
+
+  FEATURE
+    POINTS
+       0 0
+    END
+    TEXT "Karte cc-by geo.dianacht.de/topo; Daten OpenStreetMap (odbl-Lizenz)| Höhen: ASTER GDEM (ein Produkt von METI und NASA)"  
+  END
+  CLASS
+    LABEL
+      WRAP "|"
+      FONT sc
+      TYPE TRUETYPE
+      SIZE 8   
+      BUFFER 4
+      POSITION ur
+      OUTLINEWIDTH 3
+      COLOR "#000000"
+      ANTIALIAS TRUE
+      OUTLINECOLOR "#ffffff"
+      FORCE TRUE
+    END
+  END
+END
+
+SCALEBAR  
+  UNITS kilometers  
+  INTERVALS 3
+  STATUS OFF
+  POSITION lr
+  TRANSPARENT OFF
+  STYLE 0
+  IMAGECOLOR "#EDEBE6"
+  LABEL
+    POSITION ul
+    TYPE TRUETYPE
+    FONT sc
+    SIZE 8
+    COLOR "#010101"
+  END
+  SIZE 250 5
+  COLOR "#ebebeb"
+  BACKGROUNDCOLOR "#646464"
+  OUTLINECOLOR "#000000"
+END
+
+
+#################### WANDERWEGE #############################
+
+LAYER
+    STATUS OFF
+    MAXSCALEDENOM  500000
+    CONNECTIONTYPE postgis 
+    CONNECTION "@pgsqlcon@" 
+    PROCESSING "CLOSE_CONNECTION=DEFER" 
+    TYPE LINE
+    NAME "ww"
+    DATA "way from (select way,osm_id,highway,sac_scale,tracktype,surface from @osm_line@ where (highway='path' or highway='track' or highway='footway' or highway='via_ferrata') and service='wanderweg' order by z_order) as foo using unique osm_id using srid=900913 "
+    CLASSITEM "highway"
+    SIZEUNITS meters
+
+    CLASS
+        EXPRESSION ('[highway]'='path' and ('[sac_scale]'='demanding_mountain_hiking' or '[sac_scale]'='alpine_hiking' or '[sac_scale]'='demanding_alpine_hiking' or '[sac_scale]'='difficult_alpine_hiking' or '[highway]'='via_ferrata'))   
+        STYLE
+            OPACITY 30
+            WIDTH 8
+            MAXWIDTH 10
+            COLOR "#ff00ff"
+        END
+    END
+
+
+    CLASS
+        EXPRESSION ('[highway]'='footway' or '[highway]'='path')   
+        STYLE
+            OPACITY 60
+            WIDTH 8
+            MAXWIDTH 10
+            COLOR "#ff00ff"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='track' and ('[tracktype]'='grade1' or '[surface]'='paved' or '[surface]' = 'asphalt'))
+        STYLE
+            OPACITY 40
+            WIDTH 10
+            MAXWIDTH 16
+            COLOR "#ff00ff"
+        END
+    END
+
+    CLASS
+        EXPRESSION ('[highway]'='track')   
+        STYLE
+            OPACITY 60
+            WIDTH 10
+            MAXWIDTH 16
+            COLOR "#ff00ff"
+        END
+    END
+END
+
+
+
+#################### GPX-TRACK #############################
+
+LAYER
+    STATUS OFF   
+    CONNECTIONTYPE OGR
+    VALIDATION 'exgpxfile' '^[0-9a-zA-Z\.\-_]+$' END 
+    CONNECTION "/home/www/geo/topo/gpx/%exgpxfile%"    
+    TYPE LINE 
+    DATA "tracks"
+    NAME "gpx"   
+    PROJECTION "init=epsg:4326" END
+    CLASS   
+       STYLE
+        OPACITY 100
+        WIDTH 2    
+        COLOR "#FF0000"
+        OUTLINECOLOR "#000000"
+        OUTLINEWIDTH 1
+       END  
+    END     
+END
+
+
+
+#################### UTM #######################################
+
+
+
+
+LAYER
+    TYPE LINE
+    STATUS OFF
+    NAME "utmz32"
+    MAXSCALEDENOM 10000000
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,id,type,name from utm where zone='32') as foo using unique id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASS
+        MAXSCALEDENOM 100000
+        STYLE
+         OPACITY 70
+         WIDTH 1
+         COLOR "#ff0000"
+        END
+        LABEL
+         ANGLE FOLLOW
+         TYPE TRUETYPE 
+         FONT sc 
+         PARTIALS TRUE
+         SIZE 7
+         REPEATDISTANCE 600
+         OUTLINECOLOR "#ffffff"
+         COLOR "#ff0000"
+         OUTLINEWIDTH 1
+        END     
+    END
+
+    CLASS
+        EXPRESSION ('[type]'='10' or '[type]'='5' )
+        MAXSCALEDENOM 300000
+        STYLE
+         OPACITY 70
+         WIDTH 1
+         COLOR "#ff0000"
+        END
+        LABEL
+         ANGLE FOLLOW
+         TYPE TRUETYPE 
+         FONT sc 
+         PARTIALS TRUE
+         SIZE 7
+         REPEATDISTANCE 600
+         OUTLINECOLOR "#ffffff"
+         COLOR "#ff0000"
+         OUTLINEWIDTH 1
+        END     
+    END
+
+    CLASS
+        EXPRESSION ('[type]'='10')
+        STYLE
+         OPACITY 70
+         WIDTH 1
+         COLOR "#ff0000"
+        END
+        LABEL
+         ANGLE FOLLOW
+         TYPE TRUETYPE 
+         FONT sc 
+         PARTIALS TRUE
+         SIZE 7
+         REPEATDISTANCE 600
+         OUTLINECOLOR "#ffffff"
+         COLOR "#ff0000"
+         OUTLINEWIDTH 1
+        END     
+    END
+END
+
+LAYER
+    TYPE LINE
+    STATUS OFF
+    NAME "utmz33"
+    MAXSCALEDENOM 10000000
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,id,type,name from utm where zone='33') as foo using unique id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASS
+        MAXSCALEDENOM 100000
+        STYLE
+         OPACITY 70
+         WIDTH 1
+         COLOR "#ff0000"
+        END
+        LABEL
+         ANGLE FOLLOW
+         TYPE TRUETYPE 
+         FONT sc 
+         PARTIALS TRUE
+         SIZE 7
+         REPEATDISTANCE 600
+         OUTLINECOLOR "#ffffff"
+         COLOR "#ff0000"
+         OUTLINEWIDTH 1
+        END     
+    END
+
+    CLASS
+        EXPRESSION ('[type]'='10' or '[type]'='5' )
+        MAXSCALEDENOM 300000
+        STYLE
+         OPACITY 70
+         WIDTH 1
+         COLOR "#ff0000"
+        END
+        LABEL
+         ANGLE FOLLOW
+         TYPE TRUETYPE 
+         FONT sc 
+         PARTIALS TRUE
+         SIZE 7
+         REPEATDISTANCE 600
+         OUTLINECOLOR "#ffffff"
+         COLOR "#ff0000"
+         OUTLINEWIDTH 1
+        END     
+    END
+
+    CLASS
+        EXPRESSION ('[type]'='10')
+        STYLE
+         OPACITY 70
+         WIDTH 1
+         COLOR "#ff0000"
+        END
+        LABEL
+         ANGLE FOLLOW
+         TYPE TRUETYPE 
+         FONT sc 
+         PARTIALS TRUE
+         SIZE 7
+         REPEATDISTANCE 600
+         OUTLINECOLOR "#ffffff"
+         COLOR "#ff0000"
+         OUTLINEWIDTH 1
+        END     
+    END
+END
+
+LAYER
+    TYPE LINE
+    STATUS OFF
+    NAME "gk4"
+    MAXSCALEDENOM 10000000
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,id,type,name from gk where zone='4') as foo using unique id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASS
+        MAXSCALEDENOM 100000
+        STYLE
+         OPACITY 70
+         WIDTH 1
+         COLOR "#ff0000"
+        END
+        LABEL
+         ANGLE FOLLOW
+         TYPE TRUETYPE 
+         FONT sc 
+         PARTIALS FALSE
+         SIZE 7
+         REPEATDISTANCE 600
+         OUTLINECOLOR "#ffffff"
+         COLOR "#ff0000"
+         OUTLINEWIDTH 1
+        END     
+    END
+
+    CLASS
+        EXPRESSION ('[type]'='10' or '[type]'='5' )
+        MAXSCALEDENOM 300000
+        STYLE
+         OPACITY 70
+         WIDTH 1
+         COLOR "#ff0000"
+        END
+        LABEL
+         ANGLE FOLLOW
+         TYPE TRUETYPE 
+         FONT sc 
+         PARTIALS FALSE
+         SIZE 7
+         REPEATDISTANCE 600
+         OUTLINECOLOR "#ffffff"
+         COLOR "#ff0000"
+         OUTLINEWIDTH 1
+        END     
+    END
+
+    CLASS
+        EXPRESSION ('[type]'='10')
+        STYLE
+         OPACITY 70
+         WIDTH 1
+         COLOR "#ff0000"
+        END
+        LABEL
+         ANGLE FOLLOW
+         TYPE TRUETYPE 
+         FONT sc 
+         PARTIALS FALSE
+         SIZE 7
+         REPEATDISTANCE 600
+         OUTLINECOLOR "#ffffff"
+         COLOR "#ff0000"
+         OUTLINEWIDTH 1
+        END     
+    END
+END
+
+
+
+LAYER
+    TYPE LINE
+    STATUS OFF
+    NAME "gradnetz"
+    MAXSCALEDENOM 10000000
+    CONNECTIONTYPE POSTGIS
+    CONNECTION "@pgsqlcon@"
+    DATA "way from (select way,id,type,name from gradnetz) as foo using unique id using srid=900913"
+    PROCESSING "LABEL_NO_CLIP=ON"
+    PROCESSING "CLOSE_CONNECTION=DEFER"
+    LABELITEM "name"
+    CLASS
+        MAXSCALEDENOM 200000
+        STYLE
+         OPACITY 70
+         WIDTH 1
+         COLOR "#000077"
+        END
+        LABEL
+         ANGLE FOLLOW
+         TYPE TRUETYPE 
+         FONT sc 
+         PARTIALS TRUE
+         SIZE 7
+         REPEATDISTANCE 600
+         OUTLINECOLOR "#ffffff"
+         COLOR "#000077"
+         OUTLINEWIDTH 1
+        END     
+    END
+
+    CLASS
+        EXPRESSION ('[type]'='G' or '[type]'='Z' )
+        STYLE
+         OPACITY 70
+         WIDTH 1
+         COLOR "#000077"
+        END
+        LABEL
+         ANGLE FOLLOW
+         TYPE TRUETYPE 
+         FONT sc 
+         PARTIALS TRUE
+         SIZE 7
+         REPEATDISTANCE 600
+         OUTLINECOLOR "#ffffff"
+         COLOR "#000077"
+         OUTLINEWIDTH 1
+        END     
+    END
+
+END
+
+
+
+#################################################################################################
+END # of MAP
+

@@ -1,0 +1,83 @@
+Beschreibung der Änderungen zum Original unter
+http://geo.dianacht.de/topo/topo.map.txt:
+
+Datei umbenennen in topo.map.in!
+
+Anpassungsarbeiten:
+
+IMAGECOLOR "#EDEBE6" Wegen Wasserpolygonen
+
+Rauswerfen der Layer:
+WELT:
+welt
+kleinewelt
+winzigewelt
+kartenrand
+
+GEBIRGSNAMEN auskommentiert (derzeit)
+
+Datenbankname (über genmap script lösen):
+sed -i -e 's/CONNECTION "host=localhost dbname=osm user=osm password=osm port=5432"/CONNECTION "@pgsqlcon@"/' topo.map.in
+
+Suchen und ersetzen:
+sed -i -e 's/osm_polygon/@osm_polygon@/g' topo.map.in
+sed -i -e 's/osm_line/@osm_line@/g' topo.map.in
+sed -i -e 's/osm_poi/@osm_poi@/g' topo.map.in
+
+hstore tags-> durch direkte namen ersetzen
+Bei Konstruktionen wie "tags->'two_sided' as twoside" einfach durch twoside ersetzen und im view passend biegen:
+sed -i -e "s/tags->'[a-z_:]\+' as //g" topo.map.in
+sed -i -e "s/tags->'\([a-z_:]\+\)'/\1/g" topo.map.in
+
+Datei für Schummerung:
+/raid0/shapes/srtm_world-3857-hillshade.tif
+
+LAYER
+  NAME           "schummerung"
+  STATUS         ON
+  GROUP          "default"
+  STATUS         OFF
+  TYPE           RASTER
+  OPACITY        20
+  DATA           "@hillshade@"
+  projection      "init=epsg:3857" end
+  # schoen aber rechenintensiv
+  PROCESSING "RESAMPLE=BILINEAR"
+END # of layer
+
+Hoehenlinien durch Geofabrik Hoehenlinien ersetzen!
+
+Meer einfügen:
+########################################  Meer ###########################################################
+LAYER 
+   PROCESSING     "CLOSE_CONNECTION=DEFER"
+   PROCESSING     "APPROXIMATION_SCALE=FULL"
+   NAME           "meer"
+   TYPE           POLYGON
+   STATUS         ON
+   GROUP          "default"
+   DATA           "@oceanshape@"
+   PROJECTION
+      "init=epsg:900913"
+   END
+   CLASS 
+     STYLE 
+       COLOR "#579ae3"
+#       OUTLINECOLOR "#579ae3"
+#       WIDTH 0
+     END
+   END # of class
+END # of layer
+
+Faehrlinien einfügen:
+
+
+
+Ersetzen:
+Höhenlinien
+
+TODO:
+GEBIRGSNAMEN
+GRENZEN
+topo_view_osm_roads statt topo_view_osm_line
+restaurants
