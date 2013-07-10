@@ -23,6 +23,7 @@ tags->'abandoned' as abandoned,
 building,
 tourism,
 power,
+tags->'generator:source' as generator_source,
 tags->'ref' as ref,
 z_order,
 man_made,
@@ -62,12 +63,12 @@ grant select on topo_view_osm_area to public;
 
 DROP VIEW IF EXISTS topo_view_osm_line;
 CREATE VIEW topo_view_osm_line as select
-way,osm_id,waterway,highway,tags->'two_sided' as twoside,tags->'ref' as ref,tags->'name' as name,tags->'short_name' as shortname,tags->'bridge' as bridge,tags->'tunnel' as tunnel,
+way,osm_id,waterway,highway,tags->'two_sided' as twoside,tags->'ref' as ref,tags->'name' as name,tags->'short_name' as shortname,leisure,tags->'sport' as sport ,tags->'bridge' as bridge,tags->'tunnel' as tunnel,
 railway,aeroway,z_order,man_made,tags->'layer' as layer,tags->'surface' as surface,tags->'tracktype' as tracktype,
-aerialway,power,route,tags->'oneway' as oneway,tags->'motorcar' as motorcar,tags->'access' as access,
+aerialway,power,route,tags->'oneway' as oneway,tags->'motorcar' as motorcar,tags->'access' as access,tags->'bicycle' as bike,
 tags->'trail_visibility' as trail_visibility,tags->'foot' as foot,tags->'vehicle' as vehicle,tags->'motor_vehicle' as motor_vehicle,
 tags->'stream' as stream,tags->'stream:type' as streamtype,tags->'intermittent' as intermittent,tags->'sac_scale' as sac_scale,tags->'ruins' as ruins,
-tags->'public_transport' as public_transport,"natural" as nature,tags->'barrier' as barrier,tags->'bicycle' as bike,width,boundary,tags->'admin_level' as admin_level from planet_osm_line;
+tags->'public_transport' as public_transport,"natural" as nature,tags->'barrier' as barrier,width,boundary,tags->'admin_level' as admin_level from planet_osm_line;
 grant select on topo_view_osm_line to public;
 
 DROP VIEW IF EXISTS topo_view_osm_poi;
@@ -76,7 +77,8 @@ way,osm_id,historic,tourism,ele,
 coalesce(tags->'name'||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),tags->'name',trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ','))) as elename,
 place,tags->'name' as name,tags->'short_name' as shortname,amenity,tags->'religion' as religion,
 tags->'population' as population,landuse,military,aeroway,tags->'service' as service,railway,tags->'sport' as sport,
-leisure,tags->'addr:housenumber' as housenumber, "natural" as nature,tags->'information' as information,tags->'ruins' as ruins from planet_osm_point;
+leisure,tags->'addr:housenumber' as housenumber, "natural" as nature,tags->'barrier' as barrier,tags->'access' as access,tags->'bicycle' as bike,tags->'foot' as foot,
+tags->'information' as information,tags->'ruins' as ruins from planet_osm_point;
 grant select on topo_view_osm_poi to public;
 
 DROP VIEW IF EXISTS topo_view_osm_roads;

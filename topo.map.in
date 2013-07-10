@@ -34,6 +34,7 @@ OUTPUTFORMAT
     NAME agg
     DRIVER AGG/PNG8
     FORMATOPTION "INTERLACE=OFF"
+    FORMATOPTION "GAMMA=0.5"
     MIMETYPE "image/png"
 END
 
@@ -1715,20 +1716,21 @@ END
 
 LAYER
     TYPE LINE
-    NAME "fliessendeswasser"
+    NAME "fliessendeswasser_oberirdisch"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "@pgsqlcon@"
-    DATA "way from (select way,name,waterway,stream,streamtype,intermittent,osm_id from @osm_line@ where tunnel is null and waterway IN ('river', 'stream', 'canal', 'drain', 'ditch' ,'dam')) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,name,waterway,stream,streamtype,intermittent,COALESCE(width,CASE WHEN waterway='river' THEN 30 WHEN waterway='canal' THEN 15 ELSE 10 END) as width,osm_id from @osm_line@ where tunnel is null and waterway IN ('river', 'stream', 'canal', 'drain', 'ditch' ,'dam')) as foo using unique osm_id using srid=900913"
     CLASSITEM "waterway"
     LABELITEM 'name'
     SIZEUNITS meters
     MAXSCALEDENOM 2000000
+    # river
     CLASS
         EXPRESSION "river"
         STYLE
             COLOR "#579ae3"
-            WIDTH 30
+            WIDTH [width]
             MINWIDTH 0.5
         END
         LABEL
@@ -1745,6 +1747,7 @@ LAYER
           ALIGN CENTER
         END
     END
+    # stream trocken
     CLASS
         MAXSCALEDENOM 105000
         EXPRESSION ('[waterway]'='stream' and ( '[stream]'='dry' or '[streamtype]'='dry' or '[intermittent]'='yes' ))
@@ -1773,13 +1776,13 @@ LAYER
           ALIGN CENTER
         END
     END
-
+    # stream
     CLASS
         MAXSCALEDENOM 105000
         EXPRESSION "stream"
         STYLE
             COLOR "#579ae3"
-            WIDTH 10
+            WIDTH [width]
             MINWIDTH 0.5
         END
         LABEL
@@ -1796,11 +1799,12 @@ LAYER
           ALIGN CENTER
         END
     END
+    # canal
     CLASS
         EXPRESSION "canal"
         STYLE
             COLOR "#579ae3"
-            WIDTH 15
+            WIDTH [width]
             MINWIDTH 0.5
         END
         LABEL
@@ -1817,7 +1821,7 @@ LAYER
           ALIGN CENTER
         END
     END
-
+    # drain/ditch trocken
     CLASS
         MAXSCALEDENOM 105000
         EXPRESSION (('[waterway]'='drain' or '[waterway]'='ditch') and ( '[stream]'='dry' or '[streamtype]'='dry' or '[intermittent]'='yes' ))
@@ -1846,13 +1850,13 @@ LAYER
           ALIGN CENTER
         END
     END
-
+    # drain/ditch
     CLASS
         MAXSCALEDENOM 105000
         EXPRESSION ('[waterway]'='drain' or '[waterway]'='ditch')
         STYLE
             COLOR "#579ae3"
-            WIDTH 10
+            WIDTH [width]
             MINWIDTH 0.5
         END
         LABEL
@@ -1869,13 +1873,13 @@ LAYER
           ALIGN CENTER
         END
     END
-
+    # dam
     CLASS
         MAXSCALEDENOM 105000
         EXPRESSION "dam"
         STYLE
             COLOR "#444455"
-            WIDTH 10
+            WIDTH [width]
             MINWIDTH 1
         END
         LABEL
@@ -1932,10 +1936,6 @@ LAYER
             MAXWIDTH 0.8
         END
     END
-
-
-
-
 END
 
 
@@ -1943,7 +1943,7 @@ END
 
 LAYER
     TYPE LINE
-    NAME "fliessendeswasser"
+    NAME "fliessendeswasser_unterirdisch"
     GROUP "default"
     CONNECTIONTYPE POSTGIS
     CONNECTION "@pgsqlcon@"
@@ -4582,7 +4582,7 @@ LAYER
     NAME "noway"
     CONNECTIONTYPE postgis
     CONNECTION "@pgsqlcon@"
-    DATA "way from (select way, access, osm_id, highway,tracktype,surface,foot,bicycle as bike from @osm_line@ where (motorcar in ('private','no', 'agricultural', 'forestry' ) or access in('private','no') or vehicle='no' or motor_vehicle='no' or vehicle='forestry' or motor_vehicle='forestry' or vehicle='agricultural' or motor_vehicle='agricultural' or foot='no' or bicycle='no')  and highway in ('track','bridleway','residential','service','unclassified','path','footway','cycleway') order by z_order) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way, access, osm_id, highway,tracktype,surface,foot,bike from @osm_line@ where (motorcar in ('private','no', 'agricultural', 'forestry' ) or access in('private','no') or vehicle='no' or motor_vehicle='no' or vehicle='forestry' or motor_vehicle='forestry' or vehicle='agricultural' or motor_vehicle='agricultural' or foot='no' or bike='no')  and highway in ('track','bridleway','residential','service','unclassified','path','footway','cycleway') order by z_order) as foo using unique osm_id using srid=900913"
     PROCESSING "CLOSE_CONNECTION=DEFER"
     MAXSCALEDENOM 15000
     SIZEUNITS meters
@@ -5873,7 +5873,7 @@ LAYER
     TYPE POINT
     MAXSCALEDENOM 5000
     NAME "baum"
-    DATA "way from (select way,osm_id from  @osm_poi@nt where nature='tree') as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id from  @osm_poi@ where nature='tree') as foo using unique osm_id using srid=900913"
     CLASS
      STYLE
          OPACITY 50
@@ -6202,7 +6202,7 @@ LAYER
     TYPE POINT
     MAXSCALEDENOM 3000
     NAME "SCHRANKEN"
-    DATA "way from (select way,osm_id,barrier from @osm_poi@nt where ( barrier in ('wall','fence','ditch','hedge') and ( access is null or access in ('no','private') ) and (foot is null or foot in ('no','private')))  or ( barrier in ('rope','chain','gate') and (access in ('no','private') and (foot is null or foot in ('no','private')))) or barrier is not null and foot in ('no','private')) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id,barrier from @osm_poi@ where ( barrier in ('wall','fence','ditch','hedge') and ( access is null or access in ('no','private') ) and (foot is null or foot in ('no','private')))  or ( barrier in ('rope','chain','gate') and (access in ('no','private') and (foot is null or foot in ('no','private')))) or barrier is not null and foot in ('no','private')) as foo using unique osm_id using srid=900913"
     LABELITEM 'barrier'
     CLASSITEM 'barrier'
     CLASS
