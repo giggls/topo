@@ -1,8 +1,9 @@
 # This file contains definitions for global definitions
 # which will apear on multiple places in the generated mapfile
 
-shapepath = /tmp
+shapepath = /home/sven/osm/topo
 pgsqlcon = dbname=osm
+osmfonts = /home/sven/osm/topo/osmfonts.lst
 
 hillshade=/raid0/shapes/srtm_world-3857-hillshade.tif
 oceanshape=/home/sven/osm/ocean/ocean-120328

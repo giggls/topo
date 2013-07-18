@@ -27,8 +27,9 @@
 
 
 MAP
-
-
+# write debug Information (like render times) to stderr
+CONFIG "MS_ERRORFILE" stderr
+DEBUG 5
 
 OUTPUTFORMAT
     NAME agg
@@ -55,7 +56,7 @@ OUTPUTFORMAT
 END
 
 
-FONTSET "osmfonts.lst"
+FONTSET @osmfonts@
 MAXSIZE 10000
 SIZE 800 800
 EXTENT         -180 -85 180 85
@@ -269,14 +270,14 @@ SYMBOL
  NAME "grenzstrich"
  TYPE vector
  POINTS  
-  5  4
-  20 4
+  3  2
+  14 2
   -99 -99
-  5 2
-  5 6
+  3 0
+  3 4
   -99 -99
-  20 2
-  20 6
+  14 0
+  14 4
  END   
 END   
 
@@ -2405,7 +2406,7 @@ LAYER
     SIZEUNITS pixels
     CLASS
      STYLE
-      OPACITY 50
+      OPACITY 25
       COLOR "#000000"
       WIDTH 1
       OUTLINEWIDTH 0.5
@@ -2428,13 +2429,13 @@ LAYER
      MINSCALEDENOM 100001
      STYLE
       COLOR "#FF0000"  
-      OPACITY 30
+      OPACITY 15
       WIDTH 3
      END
      STYLE
       SYMBOL "grenzstrich"
       COLOR "#000000"
-      OPACITY 60
+      OPACITY 30
       SIZE 3
      END
     END
@@ -2444,13 +2445,13 @@ LAYER
      STYLE
       SYMBOL "grenzbuerste"
       COLOR "#FF0000"
-      OPACITY 40
+      OPACITY 20
       SIZE 6
      END
      STYLE
       SYMBOL "grenzstrich"
       COLOR "#000000"
-      OPACITY 70
+      OPACITY 35
       SIZE 6
      END
     END
@@ -5926,10 +5927,10 @@ LAYER
     MINSCALEDENOM 100001
     NAME "GIPFEL1"
     #DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||ele,name,ele) as elename,population from @osm_poi@ where nature='peak' and name is not null and cast(population as integer)>8000 and (cast(ele as float)>1000 or cast(srtmele as float)>1000) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
-    DATA "way from (select way,osm_id from topo_view_osm_poi where nature='peak' and name is NOT NULL) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id,ele,name,elename from topo_view_osm_peak where dominanz >8000 order by dominanz asc) as foo using unique osm_id using srid=900913"
     CLASS
         STYLE
-         SYMBOL ../icons/png/poi_peak.p.9.png
+	 SYMBOL ../icons/png/poi_peak.p.9.png
         END
     END
 END
@@ -5940,8 +5941,7 @@ LAYER
     MAXSCALEDENOM 1000000
     MINSCALEDENOM 250001
     NAME "GIPFEL2"
-    #DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||ele,name,ele) as elename,population from @osm_poi@ where nature='peak' and name is not null and cast(population as integer)>5000 and (cast(ele as float)>1000 or cast(srtmele as float)>1000) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
-    DATA "way from (select way,osm_id,ele,name,elename from topo_view_osm_poi where nature='peak') as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id,ele,name,elename from topo_view_osm_peak where dominanz >5000 order by dominanz asc) as foo using unique osm_id using srid=900913"
     LABELITEM 'elename'
     CLASS
         STYLE
@@ -5955,7 +5955,7 @@ LAYER
             OUTLINECOLOR "#ffffff"
             OUTLINEWIDTH 2
             ALIGN CENTER
-            PRIORITY 2
+            PRIORITY 5
             BUFFER 10
             PARTIALS FALSE
             MAXLENGTH 2
@@ -5972,8 +5972,7 @@ LAYER
     MAXSCALEDENOM 250000
     MINSCALEDENOM 100001
     NAME "GIPFEL3"
-    #DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||ele,name,ele) as elename,population from @osm_poi@ where nature='peak' and name is not null and cast(population as integer)>1200 order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
-    DATA "way from (select way,osm_id,ele,name,elename from topo_view_osm_poi where nature='peak' and name is not null) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id,ele,name,elename from topo_view_osm_peak where dominanz >1200 order by dominanz asc) as foo using unique osm_id using srid=900913"
     LABELITEM 'elename'
     CLASS
         STYLE
@@ -5987,7 +5986,7 @@ LAYER
             OUTLINECOLOR "#ffffff"
             OUTLINEWIDTH 2
             ALIGN CENTER
-            PRIORITY 2
+            PRIORITY 5
             BUFFER 10
             PARTIALS FALSE
             MAXLENGTH 2
@@ -6003,8 +6002,7 @@ LAYER
     TYPE ANNOTATION
     MAXSCALEDENOM 100000
     NAME "GIPFEL4"
-    #DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||ele,name,ele) as elename,population,nature from @osm_poi@ where nature='peak' or nature='cave_entrance' or nature='mountain_pass' or nature='col' or nature='saddle' order by cast(coalesce(ele,srtmele) as float) asc) as foo using unique osm_id using srid=900913"
-    DATA "way from (select way,osm_id,ele,name,elename,nature from topo_view_osm_poi where nature='peak' or nature='cave_entrance' or nature='mountain_pass' or nature='col' order by cast(ele as float)) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id,ele,name,elename,nature from topo_view_osm_poi where nature='peak' or nature='cave_entrance' or nature='mountain_pass' or nature='col' order by ele) as foo using unique osm_id using srid=900913"
     LABELITEM 'elename'
     CLASSITEM 'nature'
     SIZEUNITS meters    
@@ -6015,6 +6013,7 @@ LAYER
          MAXSIZE 9
          MINSIZE 9
          SYMBOL ../icons/png/poi_peak.p.9.png
+         #SYMBOL ../icons/png/debug-magenta.png
         END
         LABEL
             FONT sc
@@ -6026,7 +6025,7 @@ LAYER
             OUTLINECOLOR "#ffffff"
             OUTLINEWIDTH 5
             ALIGN CENTER
-            PRIORITY 2
+            PRIORITY 10
             BUFFER 10
             PARTIALS FALSE
             MAXLENGTH 2
@@ -6089,6 +6088,7 @@ LAYER
     END
 
 END
+
 
 LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 

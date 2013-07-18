@@ -91,6 +91,7 @@ CREATE VIEW topo_view_osm_peak as SELECT
    poi.osm_id,
    poi.tags->'name' as name,
    poi.ele,
+   coalesce(poi.tags->'name'||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),poi.tags->'name',trim(trailing ',' from replace(TO_CHAR(poi.ele,'FM9999D99'), '.', ','))) as elename,
    poi.way,
    COALESCE(ST_DISTANCE(poi.way, (SELECT geom FROM contours WHERE (contours.height>=(10*ROUND(poi.ele/10.0)) AND st_dwithin(contours.geom,poi.way,50000)) ORDER BY geom <-> poi.way LIMIT 1)),50000) as dominanz
 FROM
