@@ -6,7 +6,10 @@ pgsqlcon = dbname=osm
 osmfonts = /home/sven/osm/topo/osmfonts.lst
 
 hillshade=/raid0/shapes/srtm_world-3857-hillshade.tif
-oceanshape=/home/sven/osm/ocean/ocean-120328
+oceanshape=/raid0/shapes/ocean-polygons/water-polygons-split-3857/water_polygons
+
+# lowzoom
+boundaries=/home/sven/osm/mapnik/world_boundaries/110m_admin_0_boundary_lines_land
 
 osm_polygon = topo_view_osm_polygon
 osm_line = topo_view_osm_line

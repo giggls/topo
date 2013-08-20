@@ -3,9 +3,9 @@
 # Check if all symbols referenced in mapfile are available
 # either as files or as an internal symbol definition
 
-MAPFILE=mytopo.map
+MAPFILE=topo.map.in
 
-for i in $(grep SYMBOL $MAPFILE |sed -e 's/^ *SYMBOL *//g' -e 's/\"//g'); do
+for i in $(grep -e '^ *[^#]SYMBOL' $MAPFILE |sed -e 's/^ *SYMBOL *//g' -e 's/\"//g' -e "s/'//g"); do
   if ! [ -f $i ]; then
     # if SYMBOL is not a file it must be an internal SYMBOL
     # so we need to check for this first before printing an

@@ -1,0 +1,7 @@
+Create a shapefile with two rectangles for area without hillshade:
+
+print_wms_extent.py srtm_world-3857-hillshade.tif
+"wms_extent" "-20037508.249339 -8399793.325458 20037491.700156 8399830.786030"
+
+ogr2ogr -f "ESRI Shapefile" nosrtm.shp PG:"dbname=osm" -sql "select st_SetSRID('BOX3D(-20037508.249339 8399830.786030,20037491.700156 20037508.34)'::box3d,900913) union select st_SetSRID('BOX3D(-20037508.249339 -20037508.34,20037491.700156 -8399793.325458)'::box3d,900913)"
+

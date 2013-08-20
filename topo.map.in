@@ -1320,6 +1320,21 @@ LAYER
   PROCESSING "RESAMPLE=BILINEAR"
 END # of layer 
 
+LAYER
+  NAME           "keine_schummerung"
+  STATUS         ON
+  GROUP          "default"
+  STATUS         OFF
+  TYPE           POLYGON
+  OPACITY        20
+  DATA           "/raid0/shapes/nosrtm"
+  projection      "init=epsg:3857" end
+  CLASS
+    STYLE
+      COLOR "#b5b5b5"
+    END
+  END
+END # of layer
 
 ################### Hoehenlinien
 LAYER
@@ -2393,11 +2408,33 @@ END
 ######## Grenzen #######################################################################
 
 LAYER
-    STATUS ON 
+    STATUS ON
+    GROUP "default" 
+    PROJECTION "init=epsg:4326" END
+    MINSCALEDENOM  32000001
+
+    TYPE LINE
+    NAME "grenzen_lowzoom"
+    DATA "@boundaries@"
+    SIZEUNITS pixels
+    CLASS
+     STYLE
+      OPACITY 50
+      COLOR "#000000"
+      WIDTH 1
+      OUTLINEWIDTH 0.5
+      OUTLINECOLOR "#ff0000"
+     END
+    END
+END
+
+
+LAYER
+    STATUS ON
     GROUP "default" 
     PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
     MINSCALEDENOM  1500001
-    MAXSCALEDENOM 60000000
+    MAXSCALEDENOM  32000000
 
     TYPE LINE
     NAME "grenzensimple"
@@ -4715,9 +4752,10 @@ END
 LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
     MINSCALEDENOM  1000001
+    MAXSCALEDENOM  8000000
     TYPE ANNOTATION
     NAME "orte2M"
-    DATA "way from (select way,osm_id ,place ,name from @osm_poi@ where place = 'city' order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    DATA "way from (select way,osm_id ,place ,name from @osm_poi@ where place = 'city' order by population asc) as foo using unique osm_id using srid=900913"
     LABELITEM 'name'
     CLASSITEM 'place'
     CLASS
