@@ -1327,7 +1327,7 @@ LAYER
   STATUS         OFF
   TYPE           POLYGON
   OPACITY        20
-  DATA           "/raid0/shapes/nosrtm"
+  DATA           "@nosrtm@"
   projection      "init=epsg:3857" end
   CLASS
     STYLE

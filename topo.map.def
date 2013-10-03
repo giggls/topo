@@ -6,6 +6,7 @@ pgsqlcon = dbname=osm
 osmfonts = /home/sven/osm/topo/osmfonts.lst
 
 hillshade=/raid0/shapes/srtm_world-3857-hillshade.tif
+nosrtm=/raid0/shapes/nosrtm
 oceanshape=/raid0/shapes/ocean-polygons/water-polygons-split-3857/water_polygons
 
 # lowzoom
