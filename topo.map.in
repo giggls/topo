@@ -1,6 +1,11 @@
 
 ####################################################################
 #                                                                  #
+#  Mapfile fuer Topokarte und plain osm2pgsql Datenbank            #
+#  Autor: Sven Geggus <sven-osm@geggus.net>                        #
+#                                                                  #
+#  weitestgehend basierend auf:                                    #
+#                                                                  #
 #  Mapfile fuer http://geo.dianacht.de/topo                        #
 #                                                                  #
 #  Autor:   Max Berger, max@dianacht.de                            #
@@ -428,8 +433,6 @@ END
 
 ################################ KLEINE FLAECHEN ###########################################
 
-
-LAYER
 
 LAYER
     TYPE POLYGON
