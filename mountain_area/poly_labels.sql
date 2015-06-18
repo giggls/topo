@@ -127,11 +127,11 @@ CREATE or REPLACE FUNCTION arc_from_poly(polygon geometry) RETURNS geometry AS $
     -- now check if west <-> east or north <-> south is the longer distance
     cpoints[1]=pcenter;
     IF ((ST_Y(north)-ST_Y(south)) > (ST_X(east)-ST_X(west))) THEN
-      RAISE NOTICE 'north-south is longest distance % %',ST_astext(north),ST_astext(south);
+      -- RAISE NOTICE 'north-south is longest distance % %',ST_astext(north),ST_astext(south);
       cpoints[0]=north;
       cpoints[2]=south;
     ELSE
-      RAISE NOTICE 'east-west is longest distance';
+      -- RAISE NOTICE 'east-west is longest distance';
       cpoints[0]=west;
       cpoints[2]=east;
     END IF;
@@ -163,7 +163,7 @@ CREATE or REPLACE FUNCTION trim_arc(arc geometry, margin double precision, num_s
 
     center = get_circle_center(arc);
     angle_end = get_angle(center,ST_PointN(arc,1),ST_PointN(arc,3));
-    RAISE NOTICE 'endpoint angle: %',(180.0/pi())*angle_end;
+    -- RAISE NOTICE 'endpoint angle: %',(180.0/pi())*angle_end;
     /* We need to use the corresponding angle in case of different sinage
        and if the absolute value of the center angle is larger than
        the absolute value of the end angle.
@@ -172,21 +172,21 @@ CREATE or REPLACE FUNCTION trim_arc(arc geometry, margin double precision, num_s
        A valid angle would be Stubaier Alpen -2127978
     */
     angle_centroid = get_angle(center,ST_PointN(arc,1),ST_PointN(arc,2));
-    RAISE NOTICE 'centroid angle: %',(180.0/pi())*angle_centroid;
+    -- RAISE NOTICE 'centroid angle: %',(180.0/pi())*angle_centroid;
     IF (((angle_end < 0) AND (angle_centroid > 0)) OR ((angle_end > 0) AND (angle_centroid < 0))) THEN
       -- e.g. Türnitzer Alpen -2247622
       angle_end=-2*pi()+angle_end;
-      RAISE NOTICE 'correction (different signage of angles) : %',(180.0/pi())*angle_end;
+      -- RAISE NOTICE 'correction (different signage of angles) : %',(180.0/pi())*angle_end;
     ELSE
       IF (abs(angle_centroid) > abs(angle_end)) THEN
         IF (angle_end >0) THEN
           -- e.g. Plessur-Alpen -2505682
           angle_end=-2*pi()+angle_end;
-          RAISE NOTICE 'correction (|c| > |e| positive values): %',(180.0/pi())*angle_end;
+          -- RAISE NOTICE 'correction (|c| > |e| positive values): %',(180.0/pi())*angle_end;
         ELSE
           -- e.g. Bjelašnica -4138017
           angle_end=2*pi()+angle_end;
-          RAISE NOTICE 'correction (|c| > |e| negative values): %',(180.0/pi())*angle_end;
+          -- RAISE NOTICE 'correction (|c| > |e| negative values): %',(180.0/pi())*angle_end;
         END IF;
       END IF;
     END IF;
@@ -203,4 +203,37 @@ CREATE or REPLACE FUNCTION trim_arc(arc geometry, margin double precision, num_s
   END;
 $$ LANGUAGE 'plpgsql';
 
+-- CREATE TYPE t_labeled_lines AS (label text,linestring geometry);
 
+-- examples:
+-- select (render_objects_from_polgon).* from (select render_objects_from_polgon(tags->'name',way,20) from mountain_area where osm_id=-4138017) f;
+-- select (render_objects_from_polgon).label,ST_AsText((render_objects_from_polgon).linestring) from
+-- (select render_objects_from_polgon(tags->'name',way,20) from mountain_area where osm_id=-4138017) f;
+
+CREATE or REPLACE FUNCTION render_objects_from_polgon(label text, polygon geometry, margin double precision)
+RETURNS SETOF t_labeled_lines as $$
+DECLARE
+  linestring geometry;
+  len_label integer;
+  i integer;
+  point geometry;
+  lastpoint geometry;
+  curline geometry;
+BEGIN
+  len_label = char_length(label);
+  linestring = trim_arc(arc_from_poly(polygon),margin,len_label);
+  i = 0;
+  FOR point IN SELECT points.geom FROM ( SELECT (ST_DumpPoints(linestring)).* ) AS points LOOP
+    IF (i > 0) THEN
+      curline = ST_SetSRID(ST_Makeline(lastpoint,point),ST_SRID(polygon));
+      RETURN NEXT (substr(label, i, 1), curline);
+    END IF;
+    if (i = len_label) THEN
+      EXIT;
+    END IF;
+    i = i + 1;
+    lastpoint = point;
+  END LOOP;
+  RETURN;
+END;
+$$ language 'plpgsql';
