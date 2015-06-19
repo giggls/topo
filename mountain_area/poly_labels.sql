@@ -43,7 +43,7 @@ CREATE or REPLACE FUNCTION get_circle_center(circularobj geometry) RETURNS geome
 
     RETURN ST_SetSRID(ST_MakePoint(cx, cy),ST_SRID(circularobj));
   END;
-$$ LANGUAGE 'plpgsql';
+$$ LANGUAGE 'plpgsql' IMMUTABLE;
 
 CREATE or REPLACE FUNCTION get_angle(origin geometry, p0 geometry, p1 geometry) RETURNS double precision AS $$
   DECLARE
@@ -55,7 +55,7 @@ CREATE or REPLACE FUNCTION get_angle(origin geometry, p0 geometry, p1 geometry) 
     -- RAISE NOTICE 'ang1: % ang2: % ang1-ang2: %',(180.0/pi())*ang1,(180.0/pi())*ang2,(180.0/pi())*(ang1-ang2);
     RETURN ang1-ang2;
   END;
-$$ LANGUAGE 'plpgsql';
+$$ LANGUAGE 'plpgsql' IMMUTABLE;
 
 CREATE or REPLACE FUNCTION arc_from_poly(polygon geometry) RETURNS geometry AS $$
   DECLARE
@@ -142,7 +142,7 @@ CREATE or REPLACE FUNCTION arc_from_poly(polygon geometry) RETURNS geometry AS $
     -- http://gis.stackexchange.com/questions/16712/st-makeline-equivalent-for-circularstring-in-postgis
     RETURN ST_GeomFromEWKT(replace(ST_AsEWKT(ST_MakeLine(cpoints)),'LINESTRING','CIRCULARSTRING'));
   END;
-$$ LANGUAGE 'plpgsql';
+$$ LANGUAGE 'plpgsql' IMMUTABLE;
 
 CREATE or REPLACE FUNCTION trim_arc(arc geometry, margin double precision, num_segments integer) RETURNS geometry AS $$
   DECLARE
@@ -201,7 +201,7 @@ CREATE or REPLACE FUNCTION trim_arc(arc geometry, margin double precision, num_s
     cpoints[1]=ST_PointN(arc,2);
     RETURN ST_CurveToLine(ST_GeomFromEWKT(replace(ST_AsEWKT(ST_MakeLine(cpoints)),'LINESTRING','CIRCULARSTRING')),num_segments);
   END;
-$$ LANGUAGE 'plpgsql';
+$$ LANGUAGE 'plpgsql' IMMUTABLE;
 
 -- CREATE TYPE t_labeled_lines AS (label text,linestring geometry);
 
@@ -236,4 +236,4 @@ BEGIN
   END LOOP;
   RETURN;
 END;
-$$ language 'plpgsql';
+$$ language 'plpgsql' IMMUTABLE;
