@@ -2146,120 +2146,59 @@ LAYER
   SIZEUNITS meters
   LABELCACHE off
   CLASS
-   # uncomment this to render label arc for debugging puroposes
-   #   STYLE
-   #     WIDTH 50
-   #     COLOR "#000000"
-   #   END  
-   LABEL
-    ANGLE FOLLOW
+   # in original style this has been separated by manually adjusted priority entry
+   # in table
+   MAXSCALEDENOM 1000000
+   MINSCALEDENOM  100000
+   EXPRESSION ([lsize] > 1200)
+   LABEL 
     PARTIALS TRUE
-    FONT "scb"   
+    FONT "scb"
     TYPE TRUETYPE
     SIZE  [lsize]
-    MAXSIZE 40   
-    MINSIZE  1   
-    BUFFER 1     
+    ANGLE FOLLOW
+    MAXSIZE 40
+    MINSIZE  1
+    BUFFER 1
+    COLOR "#1e0000"
+    FORCE TRUE
+   END
+  END
+  CLASS
+   MAXSCALEDENOM 500000
+   MINSCALEDENOM  50000
+   EXPRESSION ([lsize] > 800 and [lsize] <= 1200 ) 
+   LABEL 
+    PARTIALS TRUE
+    FONT "scb"
+    TYPE TRUETYPE
+    SIZE  [lsize]
+    ANGLE FOLLOW
+    MAXSIZE 40
+    MINSIZE  1
+    BUFFER 1
+    COLOR "#1e0000"
+    FORCE TRUE
+   END
+  END
+  CLASS
+   MAXSCALEDENOM 250000
+   MINSCALEDENOM  30000 
+   EXPRESSION ([lsize] <= 800)
+   LABEL 
+    PARTIALS TRUE
+    FONT "scb"
+    TYPE TRUETYPE
+    SIZE  [lsize]
+    ANGLE FOLLOW
+    MAXSIZE 40
+    MINSIZE  1
+    BUFFER 1
     COLOR "#1e0000"
     FORCE TRUE
    END
   END
 END
-
-
-#########################  GEBIRGSNAMEN ############################################################
-#
-#LAYER
-#    TYPE ANNOTATION
-#    STATUS ON
-#    GROUP "default"
-#    NAME "gebname"
-#    MAXSCALEDENOM  1000000
-#    MINSCALEDENOM    30000
-#    CONNECTIONTYPE POSTGIS
-#    CONNECTION "@pgsqlcon@"
-#    DATA "way from (select way,osm_id,bu,size,priority,angle,autoindex from osm_gebirge) as foo using unique autoindex using srid=900913"
-#    PROCESSING "LABEL_NO_CLIP=ON"
-#    PROCESSING "CLOSE_CONNECTION=DEFER"
-#    LABELITEM "bu"
-#    SIZEUNITS meters
-#    LABELCACHE off
-#    OPACITY   30
-#
-#
-#    CLASS
-#        MAXSCALEDENOM 1000000
-#        MINSCALEDENOM  500000
-#        EXPRESSION ([size] > 1200 and ( [priority]!=1 ) ) 
-#        LABEL 
-#         PARTIALS TRUE
-#         FONT "scb"
-#         TYPE TRUETYPE
-#         SIZE  [size]
-#         ANGLE [angle]
-#         MAXSIZE 40
-#         MINSIZE  1
-#         BUFFER 1
-#         COLOR "#1e0000"
-#         FORCE TRUE
-#        END
-#    END
-#
-#    CLASS
-#        MAXSCALEDENOM  500000
-#        MINSCALEDENOM  100000
-#        EXPRESSION ([size] > 1200 and ( [priority]!=2 ) ) 
-#        LABEL 
-#         PARTIALS TRUE
-#         FONT "scb"
-#         TYPE TRUETYPE
-#         SIZE  [size]
-#         ANGLE [angle]
-#         MAXSIZE 40
-#         MINSIZE  1
-#         BUFFER 1
-#         COLOR "#1e0000"
-#         FORCE TRUE
-#        END
-#    END
-#
-#    CLASS
-#        MAXSCALEDENOM 500000
-#        MINSCALEDENOM  50000
-#        EXPRESSION ([size] > 800 and [size] <= 1200 ) 
-#        LABEL 
-#         PARTIALS TRUE
-#         FONT "scb"
-#         TYPE TRUETYPE
-#         SIZE  [size]
-#         ANGLE [angle]
-#         MAXSIZE 40
-#         MINSIZE  1
-#         BUFFER 1
-#         COLOR "#1e0000"
-#         FORCE TRUE
-#        END
-#    END
-#    CLASS
-#        MAXSCALEDENOM 250000
-#        MINSCALEDENOM  30000 
-#        EXPRESSION ([size] <= 800 )
-#        LABEL 
-#         PARTIALS TRUE
-#         FONT "scb"
-#         TYPE TRUETYPE
-#         SIZE  [size]
-#         ANGLE [angle]
-#         MAXSIZE 40
-#         MINSIZE  1
-#         BUFFER 1
-#         COLOR "#1e0000"
-#         FORCE TRUE
-#        END
-#    END
-#
-#END
-
 
 ##########################  HAEUSER ################################################################
 
