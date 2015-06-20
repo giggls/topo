@@ -203,14 +203,14 @@ CREATE or REPLACE FUNCTION trim_arc(arc geometry, margin double precision, num_s
   END;
 $$ LANGUAGE 'plpgsql' IMMUTABLE;
 
--- CREATE TYPE t_labeled_lines AS (label text,linestring geometry);
+-- CREATE TYPE t_labeled_lines AS (label text,linestring geometry, pseudo_id bigint);
 
 -- examples:
--- select (render_objects_from_polgon).* from (select render_objects_from_polgon(tags->'name',way,20) from mountain_area where osm_id=-4138017) f;
+-- select (render_objects_from_polgon).* from (select render_objects_from_polgon(tags->'name',way,osm_id,20) from mountain_area where osm_id=-4138017) f;
 -- select (render_objects_from_polgon).label,ST_AsText((render_objects_from_polgon).linestring) from
--- (select render_objects_from_polgon(tags->'name',way,20) from mountain_area where osm_id=-4138017) f;
+-- (select render_objects_from_polgon(tags->'name',way,osm_id,20) from mountain_area where osm_id=-4138017) f;
 
-CREATE or REPLACE FUNCTION render_objects_from_polgon(label text, polygon geometry, margin double precision)
+CREATE or REPLACE FUNCTION render_objects_from_polgon(label text, polygon geometry, osm_id bigint, margin double precision)
 RETURNS SETOF t_labeled_lines as $$
 DECLARE
   linestring geometry;
@@ -219,19 +219,24 @@ DECLARE
   point geometry;
   lastpoint geometry;
   curline geometry;
+  pseudo_id bigint;
 BEGIN
+  -- RAISE NOTICE 'called for object: %',label;
   len_label = char_length(label);
   linestring = trim_arc(arc_from_poly(polygon),margin,len_label);
+  -- shifting this by 20 bits should not conflict with osm-ids for a long time
+  pseudo_id=osm_id<<20;
   i = 0;
   FOR point IN SELECT points.geom FROM ( SELECT (ST_DumpPoints(linestring)).* ) AS points LOOP
     IF (i > 0) THEN
       curline = ST_SetSRID(ST_Makeline(lastpoint,point),ST_SRID(polygon));
-      RETURN NEXT (substr(label, i, 1), curline);
+      RETURN NEXT (substr(label, i, 1), curline, pseudo_id);
     END IF;
     if (i = len_label) THEN
       EXIT;
     END IF;
     i = i + 1;
+    pseudo_id =  pseudo_id +1;
     lastpoint = point;
   END LOOP;
   RETURN;

@@ -33,7 +33,10 @@ map:	topo.map .views-stamp
 	# shp2img -map_debug 2 -m topo.map -o testmap.png -e 626172.135712 6261721.357122 1252344.271424 6887893.492834 -s 256 256 -l default
 	
 	# Test Hoehenlinien
-	shp2img -map_debug 2 -m topo.map -o testmap.png -e 1429766.389046 6033695.311644 1434596.541751 6038257.581461 -s 1024 1024 -l default
+	# shp2img -map_debug 2 -m topo.map -o testmap.png -e 1429766.389046 6033695.311644 1434596.541751 6038257.581461 -s 1024 1024 -l default
+	
+	# Test Gebirgszuege
+	shp2img -map_debug 2 -m topo.map -o testmap.png -e 1458607.042720 6005250.724761 1497704.674277 6043467.950316 -s 1024 1024 -l default
 		
 	display testmap.png
 	rm -f testmap.png
