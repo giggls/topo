@@ -2131,7 +2131,7 @@ END
 #
 LAYER
   TYPE LINE
-  STATUS OFF
+  STATUS ON
   GROUP "default"
   NAME "gebname"
   OPACITY 30
