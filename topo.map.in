@@ -2130,6 +2130,7 @@ END
 #########################  GEBIRGSNAMEN PL/pgSQL Variante ############################################################
 #
 LAYER
+  DEBUG 9
   TYPE LINE
   STATUS ON
   GROUP "default"
@@ -2156,7 +2157,7 @@ LAYER
     FONT "scb"
     TYPE TRUETYPE
     SIZE  [lsize]
-    ANGLE FOLLOW
+    ANGLE AUTO2
     MAXSIZE 40
     MINSIZE  1
     BUFFER 1
@@ -2173,7 +2174,7 @@ LAYER
     FONT "scb"
     TYPE TRUETYPE
     SIZE  [lsize]
-    ANGLE FOLLOW
+    ANGLE AUTO2
     MAXSIZE 40
     MINSIZE  1
     BUFFER 1
@@ -2190,7 +2191,7 @@ LAYER
     FONT "scb"
     TYPE TRUETYPE
     SIZE  [lsize]
-    ANGLE FOLLOW
+    ANGLE AUTO2
     MAXSIZE 40
     MINSIZE  1
     BUFFER 1
