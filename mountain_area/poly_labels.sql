@@ -128,8 +128,14 @@ CREATE or REPLACE FUNCTION arc_from_poly(polygon geometry) RETURNS geometry AS $
     cpoints[1]=pcenter;
     IF ((ST_Y(north)-ST_Y(south)) > (ST_X(east)-ST_X(west))) THEN
       -- RAISE NOTICE 'north-south is longest distance % %',ST_astext(north),ST_astext(south);
-      cpoints[0]=north;
-      cpoints[2]=south;
+      -- make shure, that labels are alway written from left to right
+      IF (ST_X(north) > ST_X(south)) THEN
+        cpoints[2]=north;
+        cpoints[0]=south;      
+      ELSE
+        cpoints[0]=north;
+        cpoints[2]=south;
+      END IF;
     ELSE
       -- RAISE NOTICE 'east-west is longest distance';
       cpoints[0]=west;
