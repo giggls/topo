@@ -4759,7 +4759,7 @@ LAYER
     MINSCALEDENOM  250001
     TYPE ANNOTATION
     NAME "orte1M"
-    DATA "way from ((select way,osm_id ,place ,name,population from @osm_poi@ where place = 'city' or place = 'town') order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    DATA "way from ((select way,osm_id ,place ,name,population from @osm_poi@ where place = 'city' or place = 'town') order by population asc) as foo using unique osm_id using srid=900913"
     LABELITEM 'name'
     CLASSITEM 'place'
     CLASS
@@ -4814,7 +4814,7 @@ LAYER
     MINSCALEDENOM  100001
     TYPE ANNOTATION
     NAME "orte100k"
-    DATA "way from ((select way,osm_id ,place ,name,population from @osm_poi@ where   place = 'city' or place = 'town' or place = 'village' or  place = 'suburb') order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    DATA "way from ((select way,osm_id ,place ,name,population from @osm_poi@ where   place = 'city' or place = 'town' or place = 'village' or  place = 'suburb') order by population asc) as foo using unique osm_id using srid=900913"
     LABELITEM 'name'
     CLASSITEM 'place'
     CLASS
@@ -4910,7 +4910,7 @@ LAYER
     MINSCALEDENOM   15000
     TYPE ANNOTATION
     NAME "orte100k"
-    DATA "way from (((select way,osm_id ,place ,name,population from @osm_poi@ where  place = 'town' or place = 'village' or  place = 'suburb' or place = 'hamlet')) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    DATA "way from (((select way,osm_id ,place ,name,population from @osm_poi@ where  place = 'town' or place = 'village' or  place = 'suburb' or place = 'hamlet')) order by population asc) as foo using unique osm_id using srid=900913"
     LABELITEM 'name'
     CLASSITEM 'place'
     CLASS
@@ -5011,7 +5011,7 @@ LAYER
     MAXSCALEDENOM    5000
     TYPE ANNOTATION
     NAME "orte5k"
-    DATA "way from (((select way,osm_id ,place ,name,population from @osm_poi@ where  place = 'hamlet')) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    DATA "way from (((select way,osm_id ,place ,name,population from @osm_poi@ where  place = 'hamlet')) order by population asc) as foo using unique osm_id using srid=900913"
     SIZEUNITS  meters
     LABELITEM 'name'
     CLASSITEM 'place'
@@ -5043,7 +5043,7 @@ LAYER
     MAXSCALEDENOM   30000
     TYPE ANNOTATION
     NAME "orte5k"
-    #DATA "way from (((select way,osm_id ,place ,name,population,amenity,coalesce(name||'|'||ele,name,ele) as elename,landuse from @osm_poi@ where  amenity = 'alm' or amenity = 'isolated_building' or place = 'isolated_dwelling' or place = 'locality' or place = 'farm' or place = 'farmyard') ) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    #DATA "way from (((select way,osm_id ,place ,name,population,amenity,coalesce(name||'|'||ele,name,ele) as elename,landuse from @osm_poi@ where  amenity = 'alm' or amenity = 'isolated_building' or place = 'isolated_dwelling' or place = 'locality' or place = 'farm' or place = 'farmyard') ) order by population asc) as foo using unique osm_id using srid=900913"
     DATA "way from (((select way,osm_id ,place ,name,population,amenity,elename,landuse from topo_view_osm_poi where  amenity = 'alm' or place = 'isolated_dwelling' or place = 'locality' or place = 'farm' or place = 'farmyard') ) order by population) as foo using unique osm_id using srid=900913"
     LABELITEM 'elename'
     CLASSITEM 'place'
@@ -5935,7 +5935,7 @@ LAYER
     MAXSCALEDENOM 1000000
     MINSCALEDENOM 100001
     NAME "GIPFEL1"
-    #DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||ele,name,ele) as elename,population from @osm_poi@ where nature='peak' and name is not null and cast(population as integer)>8000 and (cast(ele as float)>1000 or cast(srtmele as float)>1000) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
+    #DATA "way from (select way,osm_id,ele,name,coalesce(name||'|'||ele,name,ele) as elename,population from @osm_poi@ where nature='peak' and name is not null and population >8000 and (cast(ele as float)>1000 or cast(srtmele as float)>1000) order by population asc) as foo using unique osm_id using srid=900913"
     DATA "way from (select way,osm_id,ele,name,elename from topo_view_osm_peak where dominanz >8000 order by dominanz asc) as foo using unique osm_id using srid=900913"
     CLASS
         STYLE

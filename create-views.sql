@@ -78,7 +78,7 @@ CREATE VIEW topo_view_osm_poi as select
 way,osm_id,historic,tourism,ele,
 coalesce(tags->'name'||'|'||trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ',')),tags->'name',trim(trailing ',' from replace(TO_CHAR(ele,'FM9999D99'), '.', ','))) as elename,
 place,tags->'name' as name,tags->'short_name' as shortname,amenity,tags->'religion' as religion,
-tags->'population' as population,landuse,military,aeroway,tags->'service' as service,railway,tags->'sport' as sport,
+cast(regexp_replace(tags->'population', '^([0-9]*).*', '0\1') as integer) as population,landuse,military,aeroway,tags->'service' as service,railway,tags->'sport' as sport,
 leisure,tags->'addr:housenumber' as housenumber, "natural" as nature,tags->'barrier' as barrier,tags->'access' as access,tags->'bicycle' as bike,tags->'foot' as foot,
 tags->'information' as information,tags->'ruins' as ruins from planet_osm_point;
 grant select on topo_view_osm_poi to public;
