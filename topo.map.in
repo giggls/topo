@@ -2130,7 +2130,6 @@ END
 #########################  GEBIRGSNAMEN PL/pgSQL Variante ############################################################
 #
 LAYER
-  DEBUG 9
   TYPE LINE
   STATUS ON
   GROUP "default"
