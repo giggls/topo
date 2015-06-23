@@ -199,7 +199,7 @@ CREATE or REPLACE FUNCTION trim_arc(arc geometry, margin double precision, num_s
     -- number of elements for interpolation is based on quarter circle (pi/2)
     -- but we would like to have them based on the angle of our segment
     -- (1-2*margin)*angle_end    
-    num_segments=round((num_segments*pi())/((1.0-2.0*margin)*abs(angle_end)*2.0));
+    num_segments=trunc((num_segments*pi())/((1.0-2.0*margin)*abs(angle_end)*2.0))+1;
     
     angle_end=margin*angle_end;
     cpoints[0]=ST_Rotate(ST_PointN(arc,1),-1*angle_end,ST_X(center),ST_Y(center));
