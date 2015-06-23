@@ -34,7 +34,7 @@
 MAP
 # write debug Information (like render times) to stderr
 CONFIG "MS_ERRORFILE" stderr
-DEBUG 5
+#DEBUG 5
 
 OUTPUTFORMAT
     NAME agg
@@ -4724,30 +4724,30 @@ LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
     MINSCALEDENOM  1000001
     MAXSCALEDENOM  8000000
-    TYPE ANNOTATION
+    TYPE POINT
     NAME "orte2M"
     DATA "way from (select way,osm_id ,place ,name from @osm_poi@ where place = 'city' order by population asc) as foo using unique osm_id using srid=900913"
     LABELITEM 'name'
     CLASSITEM 'place'
     CLASS
-        STYLE
-         SIZE   9
-         SYMBOL "citycircle"
-         COLOR  "#ffffff"
-         OUTLINECOLOR "#777777"
-         OUTLINEWIDTH 2
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 9
-            COLOR "#222222"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 8
-            PARTIALS FALSE
-            POSITION AUTO
+          STYLE
+           SIZE   9
+           SYMBOL "citycircle"
+           COLOR  "#ffffff"
+           OUTLINECOLOR "#777777"
+           OUTLINEWIDTH 2
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 9
+          COLOR "#222222"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 8
+          PARTIALS FALSE
+          POSITION AUTO
         END
     END
 END
@@ -4757,31 +4757,31 @@ LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
     MAXSCALEDENOM 1000000
     MINSCALEDENOM  250001
-    TYPE ANNOTATION
+    TYPE POINT
     NAME "orte1M"
     DATA "way from ((select way,osm_id ,place ,name,population from @osm_poi@ where place = 'city' or place = 'town') order by population asc) as foo using unique osm_id using srid=900913"
     LABELITEM 'name'
     CLASSITEM 'place'
     CLASS
         EXPRESSION 'city'
-        STYLE
-         SIZE   9
-         SYMBOL "citycircle"
-         COLOR  "#ffffff"
-         OUTLINECOLOR "#777777"
-         OUTLINEWIDTH 2
-        END
-        LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 9
-            COLOR "#222222"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 8
-            PARTIALS FALSE
-            POSITION AUTO
+          LABEL
+          STYLE
+           SIZE   9
+           SYMBOL "citycircle"
+           COLOR  "#ffffff"
+           OUTLINECOLOR "#777777"
+           OUTLINEWIDTH 2
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 9
+          COLOR "#222222"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 8
+          PARTIALS FALSE
+          POSITION AUTO
         END
     END
     CLASS
@@ -4812,78 +4812,78 @@ LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
     MAXSCALEDENOM  250000
     MINSCALEDENOM  100001
-    TYPE ANNOTATION
+    TYPE POINT
     NAME "orte100k"
     DATA "way from ((select way,osm_id ,place ,name,population from @osm_poi@ where   place = 'city' or place = 'town' or place = 'village' or  place = 'suburb') order by population asc) as foo using unique osm_id using srid=900913"
     LABELITEM 'name'
     CLASSITEM 'place'
     CLASS
         EXPRESSION 'city'
-        STYLE
-         SIZE   9
-         SYMBOL "citycircle"
-         COLOR  "#ffffff"
-         OUTLINECOLOR "#777777"
-         OUTLINEWIDTH 2
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 14
-            COLOR "#222222"
-            OUTLINECOLOR "#ffffff"
+          STYLE
+            SIZE   9
+            SYMBOL "citycircle"
+            COLOR  "#ffffff"
+            OUTLINECOLOR "#777777"
             OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 8
-            PARTIALS FALSE
-            BUFFER  20
-            POSITION auto
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 14
+          COLOR "#222222"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 8
+          PARTIALS FALSE
+          BUFFER  20
+          POSITION auto
         END
     END
     CLASS
         EXPRESSION 'town'
-        STYLE
-         SIZE   7
-         SYMBOL "citycircle"
-         COLOR  "#ffffff"
-         OUTLINECOLOR "#777777"
-         OUTLINEWIDTH 2
-        END  
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 10
-            COLOR "#222222"
-            OUTLINECOLOR "#ffffff"
+          STYLE
+            SIZE   7
+            SYMBOL "citycircle"
+            COLOR  "#ffffff"
+            OUTLINECOLOR "#777777"
             OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 7
-            PARTIALS FALSE
-            BUFFER 15
-            POSITION AUTO
+          END  
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 10
+          COLOR "#222222"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 7
+          PARTIALS FALSE
+          BUFFER 15
+          POSITION AUTO
         END
     END
     CLASS
         EXPRESSION 'village'
-        STYLE
-         SIZE   5
-         SYMBOL "citycircle"
-         COLOR  "#ffffff"
-         OUTLINECOLOR "#777777"
-         OUTLINEWIDTH 2
-        END  
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#222222"
-            OUTLINECOLOR "#ffffff"
+          STYLE
+            SIZE   5
+            SYMBOL "citycircle"
+            COLOR  "#ffffff"
+            OUTLINECOLOR "#777777"
             OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 6
-            PARTIALS FALSE
-            BUFFER 10
-            POSITION AUTO
+           END  
+           FONT sc
+           TYPE TRUETYPE
+           SIZE 7
+           COLOR "#222222"
+           OUTLINECOLOR "#ffffff"
+           OUTLINEWIDTH 2
+           ALIGN CENTER
+           PRIORITY 6
+           PARTIALS FALSE
+           BUFFER 10
+           POSITION AUTO
         END
     END
     CLASS
@@ -4908,7 +4908,7 @@ LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
     MAXSCALEDENOM  100001
     MINSCALEDENOM   15000
-    TYPE ANNOTATION
+    TYPE POINT
     NAME "orte100k"
     DATA "way from (((select way,osm_id ,place ,name,population from @osm_poi@ where  place = 'town' or place = 'village' or  place = 'suburb' or place = 'hamlet')) order by population asc) as foo using unique osm_id using srid=900913"
     LABELITEM 'name'
@@ -4967,7 +4967,7 @@ LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
     MAXSCALEDENOM   15000
     MINSCALEDENOM    5001
-    TYPE ANNOTATION
+    TYPE POINT
     NAME "orte15k"
     DATA "way from (((select way,osm_id ,place ,name,population from @osm_poi@ where  place = 'town' or place = 'village' or  place = 'suburb' or place = 'hamlet')) order by cast(population as integer) asc) as foo using unique osm_id using srid=900913"
     LABELITEM 'name'
@@ -5009,7 +5009,7 @@ END
 LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
     MAXSCALEDENOM    5000
-    TYPE ANNOTATION
+    TYPE POINT
     NAME "orte5k"
     DATA "way from (((select way,osm_id ,place ,name,population from @osm_poi@ where  place = 'hamlet')) order by population asc) as foo using unique osm_id using srid=900913"
     SIZEUNITS  meters
@@ -5041,7 +5041,7 @@ END
 LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
     MAXSCALEDENOM   30000
-    TYPE ANNOTATION
+    TYPE POINT
     NAME "orte5k"
     #DATA "way from (((select way,osm_id ,place ,name,population,amenity,coalesce(name||'|'||ele,name,ele) as elename,landuse from @osm_poi@ where  amenity = 'alm' or amenity = 'isolated_building' or place = 'isolated_dwelling' or place = 'locality' or place = 'farm' or place = 'farmyard') ) order by population asc) as foo using unique osm_id using srid=900913"
     DATA "way from (((select way,osm_id ,place ,name,population,amenity,elename,landuse from topo_view_osm_poi where  amenity = 'alm' or place = 'isolated_dwelling' or place = 'locality' or place = 'farm' or place = 'farmyard') ) order by population) as foo using unique osm_id using srid=900913"
@@ -5171,7 +5171,7 @@ END
 
 LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
-    TYPE ANNOTATION
+    TYPE POINT
     MAXSCALEDENOM 10000
     NAME "iconloselabels"
     DATA "way from (select way,osm_id,place,name,amenity,religion,tourism from @osm_poi@ where (amenity IN ('school', 'college', 'university', 'townhall') or tourism='attraction')) as foo using unique osm_id using srid=900913"
@@ -5254,7 +5254,7 @@ END
 
 LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
-    TYPE ANNOTATION
+    TYPE POINT
     MAXSCALEDENOM 10000
     NAME "kirchen2"
     DATA "way from (select way,osm_id ,place,name,amenity,religion,historic from @osm_poi@ where amenity='place_of_worship' or historic='castle' or historic='castleruin' or amenity='tower') as foo using unique osm_id using srid=900913"
@@ -5262,178 +5262,178 @@ LAYER
     CLASSITEM 'religion'
     CLASS
         EXPRESSION 'christian'
-        STYLE
-         SYMBOL ../icons/png/place_of_worship_christian3.p.16.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#555555"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 2
-            PARTIALS FALSE
-            MAXLENGTH 8
-            WRAP ' '
-            POSITION auto
+          STYLE
+            SYMBOL ../icons/png/place_of_worship_christian3.p.16.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#555555"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 2
+          PARTIALS FALSE
+          MAXLENGTH 8
+          WRAP ' '
+          POSITION auto
         END
     END
     CLASS
         EXPRESSION 'buddhist'
-        STYLE
-         SYMBOL ../icons/png/place_of_worship_buddhist3.p.16.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#555555"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 2
-            PARTIALS FALSE
-            MAXLENGTH 8
-            WRAP ' '
-            POSITION auto
+          STYLE
+            SYMBOL ../icons/png/place_of_worship_buddhist3.p.16.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#555555"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 2
+          PARTIALS FALSE
+          MAXLENGTH 8
+          WRAP ' '
+          POSITION auto
         END
     END
     CLASS
         EXPRESSION 'jewish'
-        STYLE
-         SYMBOL ../icons/png/place_of_worship_jewish3.p.16.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#555555"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 2
-            PARTIALS FALSE
-            MAXLENGTH 8
-            WRAP ' '
-            POSITION auto
+          STYLE
+            SYMBOL ../icons/png/place_of_worship_jewish3.p.16.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#555555"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 2
+          PARTIALS FALSE
+          MAXLENGTH 8
+          WRAP ' '
+          POSITION auto
         END
     END
     CLASS
         EXPRESSION 'muslim'
-        STYLE
-         SYMBOL ../icons/png/place_of_worship_islamic3.p.16.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#555555"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 5
-            PARTIALS FALSE
-            MAXLENGTH 8
-            WRAP ' '
-            POSITION auto
+          STYLE
+            SYMBOL ../icons/png/place_of_worship_islamic3.p.16.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#555555"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 5
+          PARTIALS FALSE
+          MAXLENGTH 8
+          WRAP ' '
+          POSITION auto
         END
     END
     CLASS
         EXPRESSION 'sikh'
-        STYLE
-         SYMBOL ../icons/png/place_of_worship_sikh3.p.16.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#555555"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 2
-            PARTIALS FALSE
-            MAXLENGTH 8
-            WRAP ' '
-            POSITION AUTO
+          STYLE
+            SYMBOL ../icons/png/place_of_worship_sikh3.p.16.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#555555"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 2
+          PARTIALS FALSE
+          MAXLENGTH 8
+          WRAP ' '
+          POSITION AUTO
         END
     END
     CLASS
         EXPRESSION ('[amenity]'='place_of_worship')
-        STYLE
-         SYMBOL ../icons/png/place_of_worship_unknown3.p.16.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#555555"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 2
-            PARTIALS FALSE
-            WRAP ' '
-            POSITION auto
-        END
+          STYLE
+            SYMBOL ../icons/png/place_of_worship_unknown3.p.16.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#555555"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 2
+          PARTIALS FALSE
+          WRAP ' '
+          POSITION auto
+      END
     END
     CLASS
         EXPRESSION ('[historic]'='castle')
-        STYLE
-         SYMBOL ../icons/png/burg16.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#555555"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 2
-            PARTIALS FALSE
-            WRAP ' '
-            POSITION auto
+          STYLE
+            SYMBOL ../icons/png/burg16.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#555555"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 2
+          PARTIALS FALSE
+          WRAP ' '
+          POSITION auto
         END
     END
     CLASS
         EXPRESSION ('[historic]'='castleruin')
-        STYLE
-         SYMBOL ../icons/png/ruine16.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#555555"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 2
-            PARTIALS FALSE
-            WRAP ' '
-            POSITION auto
+          STYLE
+            SYMBOL ../icons/png/ruine16.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#555555"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 2
+          PARTIALS FALSE
+          WRAP ' '
+          POSITION auto
         END
     END
     CLASS
         EXPRESSION ('[amenity]'='tower')
-        STYLE
-         SYMBOL ../icons/png/turm16.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#555555"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 2
-            PARTIALS FALSE
-            WRAP ' '
-            POSITION auto
+          STYLE
+            SYMBOL ../icons/png/turm16.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#555555"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 2
+          PARTIALS FALSE
+          WRAP ' '
+          POSITION auto
         END
     END
 
@@ -5457,7 +5457,7 @@ END
 
 LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
-    TYPE ANNOTATION
+    TYPE POINT
     MAXSCALEDENOM 10000
     NAME "hospitaeler"
     DATA "way from (select way,osm_id,name,amenity from @osm_poi@ where amenity='hospital') as foo using unique osm_id using srid=900913"
@@ -5465,22 +5465,22 @@ LAYER
     CLASSITEM 'amenity'
     CLASS
         NAME "Krankenhaus"
-        STYLE
-         SYMBOL ../icons/png/health_hospital.n.12.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#cc2222"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 3
-            PARTIALS FALSE
-            MAXLENGTH 8
-            WRAP ' '
-            POSITION auto
+          STYLE
+            SYMBOL ../icons/png/health_hospital.n.12.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#cc2222"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 3
+          PARTIALS FALSE
+          MAXLENGTH 8
+          WRAP ' '
+          POSITION auto
         END
     END
 END
@@ -5639,29 +5639,29 @@ END
 
 LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
-    TYPE ANNOTATION
+    TYPE POINT
     MAXSCALEDENOM 30000
     NAME "aerodrome"
     DATA "way from (select way,osm_id,name,amenity from @osm_poi@ where aeroway='aerodrome') as foo using unique osm_id using srid=900913"
     LABELITEM 'name'
     CLASSITEM 'amenity'
     CLASS
-        STYLE
-         SYMBOL ../icons/png/transport_airport.n.12.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#2222ff"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 3
-            PARTIALS FALSE
-            MAXLENGTH 8
-            WRAP ' '
-            POSITION auto
+          STYLE
+            SYMBOL ../icons/png/transport_airport.n.12.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#2222ff"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 3
+          PARTIALS FALSE
+          MAXLENGTH 8
+          WRAP ' '
+          POSITION auto
         END
     END
 END
@@ -5786,7 +5786,7 @@ END
 
 LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
-    TYPE ANNOTATION
+    TYPE POINT
     MAXSCALEDENOM 15000
     NAME "bahnhoefe3"
     DATA "way from (select way,osm_id,name,service,amenity,railway from @osm_poi@ where railway='station' or railway='tram_stop') as foo using unique osm_id using srid=900913"
@@ -5794,83 +5794,83 @@ LAYER
     CLASSITEM 'service'
     CLASS
      EXPRESSION 'ubahn'
-        STYLE
-         SYMBOL ../icons/png/transport_u-bahn.p.16.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#2222cc"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 2
-            PARTIALS FALSE
-            MAXLENGTH 8
-            WRAP ' '
-            POSITION auto
+          STYLE
+            SYMBOL ../icons/png/transport_u-bahn.p.16.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#2222cc"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 2
+          PARTIALS FALSE
+          MAXLENGTH 8
+          WRAP ' '
+          POSITION auto
         END
     END
     CLASS
      EXPRESSION 'sbahn'
-        STYLE
-         SYMBOL ../icons/png/transport_s-bahn.p.16.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#2222cc"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 2
-            PARTIALS FALSE
-            MAXLENGTH 8
-            WRAP ' '
-            POSITION auto
+          STYLE
+            SYMBOL ../icons/png/transport_s-bahn.p.16.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#2222cc"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 2
+          PARTIALS FALSE
+          MAXLENGTH 8
+          WRAP ' '
+          POSITION auto
         END
     END
     CLASS
         EXPRESSION ('[railway]'='station')
-        STYLE
-         SYMBOL ../icons/png/transport_train_station2.n.16.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#2222cc"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 2
-            PARTIALS FALSE
-            MAXLENGTH 8
-            WRAP ' '
-            POSITION auto
+          STYLE
+            SYMBOL ../icons/png/transport_train_station2.n.16.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#2222cc"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 2
+          PARTIALS FALSE
+          MAXLENGTH 8
+          WRAP ' '
+          POSITION auto
         END
     END
     CLASS
         EXPRESSION ('[railway]'='tram_stop')
         MAXSCALEDENOM 5000
-        STYLE
-         SYMBOL ../icons/png/transport_tram_stop.n.16.png 
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#2222cc"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 2
-            PARTIALS FALSE
-            MAXLENGTH 8
-            WRAP ' '
-            POSITION auto
+          STYLE
+            SYMBOL ../icons/png/transport_tram_stop.n.16.png 
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#2222cc"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 2
+          PARTIALS FALSE
+          MAXLENGTH 8
+          WRAP ' '
+          POSITION auto
         END
     END
 END
@@ -5904,7 +5904,7 @@ END
 
 LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
-    TYPE ANNOTATION
+    TYPE POINT
     MAXSCALEDENOM 5000
     NAME "hausnummern"
     DATA "way from (select way,osm_id,housenumber from  @osm_poi@ where housenumber is not null) as foo using unique osm_id using srid=900913"
@@ -5946,30 +5946,30 @@ END
 
 LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
-    TYPE ANNOTATION
+    TYPE POINT
     MAXSCALEDENOM 1000000
     MINSCALEDENOM 250001
     NAME "GIPFEL2"
     DATA "way from (select way,osm_id,ele,name,elename from topo_view_osm_peak where dominanz >5000 order by dominanz asc) as foo using unique osm_id using srid=900913"
     LABELITEM 'elename'
     CLASS
-        STYLE
-         SYMBOL ../icons/png/poi_peak.p.9.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#000000"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 5
-            BUFFER 10
-            PARTIALS FALSE
-            MAXLENGTH 2
-            WRAP '|'
-            POSITION lc
+          STYLE
+            SYMBOL ../icons/png/poi_peak.p.9.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#000000"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 5
+          BUFFER 10
+          PARTIALS FALSE
+          MAXLENGTH 2
+          WRAP '|'
+          POSITION lc
         END
     END
 END
@@ -5977,30 +5977,30 @@ END
 
 LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
-    TYPE ANNOTATION
+    TYPE POINT
     MAXSCALEDENOM 250000
     MINSCALEDENOM 100001
     NAME "GIPFEL3"
     DATA "way from (select way,osm_id,ele,name,elename from topo_view_osm_peak where dominanz >1200 order by dominanz asc) as foo using unique osm_id using srid=900913"
     LABELITEM 'elename'
     CLASS
-        STYLE
-         SYMBOL ../icons/png/poi_peak.p.9.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 7
-            COLOR "#000000"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 2
-            ALIGN CENTER
-            PRIORITY 5
-            BUFFER 10
-            PARTIALS FALSE
-            MAXLENGTH 2
-            WRAP '|'
-            POSITION lc
+          STYLE
+            SYMBOL ../icons/png/poi_peak.p.9.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 7
+          COLOR "#000000"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 2
+          ALIGN CENTER
+          PRIORITY 5
+          BUFFER 10
+          PARTIALS FALSE
+          MAXLENGTH 2
+          WRAP '|'
+          POSITION lc
         END
     END
 END
@@ -6008,7 +6008,7 @@ END
 
 LAYER
     STATUS ON GROUP "default" PROJECTION "init=epsg:900913" END CONNECTIONTYPE postgis CONNECTION "@pgsqlcon@" PROCESSING "CLOSE_CONNECTION=DEFER" 
-    TYPE ANNOTATION
+    TYPE POINT
     MAXSCALEDENOM 100000
     NAME "GIPFEL4"
     DATA "way from (select way,osm_id,ele,name,elename,nature from topo_view_osm_poi where nature='peak' or nature='cave_entrance' or nature='mountain_pass' or nature='col' order by ele) as foo using unique osm_id using srid=900913"
@@ -6017,82 +6017,82 @@ LAYER
     SIZEUNITS meters    
     CLASS
         EXPRESSION 'peak'
-        STYLE
-         SIZE 300
-         MAXSIZE 9
-         MINSIZE 9
-         SYMBOL ../icons/png/poi_peak.p.9.png
-         #SYMBOL ../icons/png/debug-magenta.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 40  
-            MINSIZE 7
-            MAXSIZE 12
-            COLOR "#000000"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 5
-            ALIGN CENTER
-            PRIORITY 10
-            BUFFER 10
-            PARTIALS FALSE
-            MAXLENGTH 2
-            WRAP '|'
-            POSITION lc
+          STYLE
+            SIZE 300
+            MAXSIZE 9
+            MINSIZE 9
+            SYMBOL ../icons/png/poi_peak.p.9.png
+            #SYMBOL ../icons/png/debug-magenta.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 40  
+          MINSIZE 7
+          MAXSIZE 12
+          COLOR "#000000"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 5
+          ALIGN CENTER
+          PRIORITY 10
+          BUFFER 10
+          PARTIALS FALSE
+          MAXLENGTH 2
+          WRAP '|'
+          POSITION lc
         END
     END
     CLASS
         EXPRESSION ('[nature]'='mountain_pass' or '[nature]'='col' or '[nature]'='saddle' )
-        STYLE
-         SIZE 300
-         MAXSIZE 8
-         MINSIZE 8
-         SYMBOL ../icons/png/poi_pass.p.9.png
-        END
         LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 35
-            MINSIZE 7 
-            MAXSIZE 12
-            COLOR "#333333"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 5
-            ALIGN CENTER
-            PRIORITY 1
-            BUFFER 5
-            PARTIALS FALSE
-            MAXLENGTH 2
-            WRAP '|'
-            POSITION auto
+          STYLE
+            SIZE 300
+            MAXSIZE 8
+            MINSIZE 8
+            SYMBOL ../icons/png/poi_pass.p.9.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 35
+          MINSIZE 7 
+          MAXSIZE 12
+          COLOR "#333333"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 5
+          ALIGN CENTER
+          PRIORITY 1
+          BUFFER 5
+          PARTIALS FALSE
+          MAXLENGTH 2
+          WRAP '|'
+          POSITION auto
         END
     END
 
     CLASS
         EXPRESSION ('cave_entrance')
-        STYLE
-         SIZE 300
-         MAXSIZE 16
-         MINSIZE 16
-         SYMBOL ../icons/png/cave.16.png
-        END
-        LABEL
-            FONT sc
-            TYPE TRUETYPE
-            SIZE 35
-            MINSIZE 7 
-            MAXSIZE 9
-            COLOR "#333333"
-            OUTLINECOLOR "#ffffff"
-            OUTLINEWIDTH 5
-            ALIGN CENTER
-            PRIORITY 1
-            BUFFER 5
-            PARTIALS FALSE
-            MAXLENGTH 2
-            WRAP '|'
-            POSITION auto
+	LABEL
+          STYLE
+            SIZE 300
+            MAXSIZE 16
+            MINSIZE 16
+            SYMBOL ../icons/png/cave.16.png
+          END
+          FONT sc
+          TYPE TRUETYPE
+          SIZE 35
+          MINSIZE 7 
+          MAXSIZE 9
+          COLOR "#333333"
+          OUTLINECOLOR "#ffffff"
+          OUTLINEWIDTH 5
+          ALIGN CENTER
+          PRIORITY 1
+          BUFFER 5
+          PARTIALS FALSE
+          MAXLENGTH 2
+          WRAP '|'
+          POSITION auto
         END
     END
 
@@ -6725,7 +6725,7 @@ END
 LAYER 
   STATUS OFF
   NAME "CR"
-  TYPE annotation
+  TYPE point
   TRANSFORM ll
   UNITS PIXELS
 
@@ -6733,7 +6733,7 @@ LAYER
     POINTS
        0 0
     END
-    TEXT "Karte cc-by geo.dianacht.de/topo; Daten OpenStreetMap (odbl-Lizenz)| Höhen: ASTER GDEM (ein Produkt von METI und NASA)"  
+    TEXT "Karte cc-by geo.dianacht.de/topo; Daten OpenStreetMap (odbl-Lizenz)| Hoehen: CGIAR"  
   END
   CLASS
     LABEL
