@@ -235,7 +235,7 @@ BEGIN
   i = 0;
   FOR point IN SELECT points.geom FROM ( SELECT (ST_DumpPoints(linestring)).* ) AS points LOOP
     IF (i > 0) THEN
-      RAISE NOTICE 'line: % % %',substr(label, i, 1),ST_astext(lastpoint),ST_astext(point);
+      -- RAISE NOTICE 'line: % % %',substr(label, i, 1),ST_astext(lastpoint),ST_astext(point);
       curline = ST_SetSRID(ST_Makeline(lastpoint,point),ST_SRID(polygon));
       RETURN NEXT (substr(label, i, 1), curline, pseudo_id);
     END IF;
