@@ -1339,7 +1339,7 @@ LAYER
     GROUP "default"
     MAXSCALEDENOM 150000 # Z12
     CONNECTIONTYPE POSTGIS
-    CONNECTION "dbname=osm"
+    CONNECTION "@pgsqlcon@"
     DATA "geom from (select geom,id,height from contours where height%200=0) as foo using unique id using srid=900913"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -1368,7 +1368,7 @@ LAYER
     GROUP "default"
     MAXSCALEDENOM 100000 # Z13
     CONNECTIONTYPE POSTGIS
-    CONNECTION "dbname=osm"
+    CONNECTION "@pgsqlcon@"
     DATA "geom from (select geom,id,height,height%200 as type from contours where height%100=0) as foo using unique id using srid=900913"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -1402,7 +1402,7 @@ LAYER
     GROUP "default"
     MAXSCALEDENOM 30000 # Z14
     CONNECTIONTYPE POSTGIS
-    CONNECTION "dbname=osm"
+    CONNECTION "@pgsqlcon@"
     DATA "geom from (select geom,id,height,height%100 as type from contours) as foo using unique id using srid=900913"
     PROCESSING "LABEL_NO_CLIP=ON"
     PROCESSING "CLOSE_CONNECTION=DEFER"
@@ -5119,7 +5119,7 @@ LAYER
     STATUS ON 
     GROUP "default" 
     CONNECTIONTYPE postgis 
-    CONNECTION "dbname=osm" 
+    CONNECTION "@pgsqlcon@" 
     PROCESSING "CLOSE_CONNECTION=DEFER" 
     TYPE LINE
     NAME "ferry"
